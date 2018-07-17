@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,8 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".DesignerSignUpActivity" />
         <activity android:name=".DesignerSignInActivity"></activity>
+=======
+        <activity android:name=".UserSignUpActivity"></activity>
+>>>>>>> 38d606b90ef764e19cd4c044fecb4dfcad5f7d39
     </application>
 
 </manifest>
