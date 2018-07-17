@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">RemotyApplication</string>
+    <string name="app_name">Remoty</string>
+
+    <string name="remoty">Remoty</string>
+    <string name="text">Get your design easily</string>
+    <string name="signUpbuttonuser">Sign up as a user</string>
+    <string name="signUpbuttondesigner">Sign up as a designer</string>
+    <string name="signUpbutton">Sign up</string>
+    <string name="signInbutton">Sign In</string>
+    <string name="tosignPage">Already have an account?! sign In</string>
+    <string name="signEdit">sign In</string>
+    <string name="signEmailEdit">E-mail</string>
+    <string name="signFullNameEdit">Full Name</string>
+    <string name="signPasswordEdit">Password</string>
+    <string name="signConfirmPassEdit">Confirm Password</string>
+    <string name="signPohoneEdit">Phone Number</string>
+    <string name="DessEdit">Descripe yourself</string>
+
+
 </resources>

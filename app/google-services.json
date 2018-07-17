@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "708600594871",
+    "firebase_url": "https://remotyapp.firebaseio.com",
+    "project_id": "remotyapp",
+    "storage_bucket": "remotyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708600594871:android:eca9129ca6399fbe",
+        "android_client_info": {
+          "package_name": "remoty.internship.wadimakkah.remotyapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708600594871-tpntiso2a5fnnq4akbgc4g2jb1681the.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "remoty.internship.wadimakkah.remotyapplication",
+            "certificate_hash": "6ffd8ef943f09551f5cc64b5f36a3d16867dc817"
+          }
+        },
+        {
+          "client_id": "708600594871-kpnaon8h4t66s6mine71ep626mamg81t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEChiqnOy2UxPdGBTeC7YlSguVOevA7io"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708600594871-kpnaon8h4t66s6mine71ep626mamg81t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

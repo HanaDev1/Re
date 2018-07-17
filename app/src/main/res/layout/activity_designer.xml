@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DesignerSignUpActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/signText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signUpbutton" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameDesignerEditText"
+        android:hint="@string/signFullNameEdit"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailDesignerEditText"
+        android:hint="@string/signEmailEdit"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/passDesignerEditText"
+        android:hint="@string/signPasswordEdit"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CpassDesignerEditText"
+        android:hint="@string/signConfirmPassEdit"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneDesignerEditText"
+        android:hint="@string/signPohoneEdit"
+        android:inputType="phone"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DesDesignerEditText"
+        android:hint="@string/DessEdit"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DesignerSignUpBtn"
+        android:text="@string/signUpbutton"/>
+
+</LinearLayout>
