@@ -39,6 +39,7 @@
         android:id="@+id/SignUpDesignerBtn1"/>
 
     <Button
+        android:id="@+id/signUpUserBtn2"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="@string/signUpbuttonuser"
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:textAllCaps="true"
         android:text="@string/tosignPage"
+        android:id="@+id/tosignPage"
         android:paddingTop="20dp"/>
 
 
