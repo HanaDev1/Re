@@ -4,22 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DesignerSignInActivity">
+    tools:context=".DesignerSignInActivity"
+    android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/signInbutton"
+        android:fontFamily="@font/remotymaintitle"
+        android:textSize="30sp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/emailDesignerEditText"
-        android:hint="@string/signEmailEdit"/>
+        android:hint="@string/signEmailEdit"
+        android:fontFamily="@font/titlefont"
+        style="@style/EditText"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/passDesignerEditText"
         android:hint="@string/signPasswordEdit"
-        android:inputType="numberPassword"/>
+        android:inputType="numberPassword"
+        android:fontFamily="@font/titlefont"
+        style="@style/EditText"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/DesignerSignInBtn"
-        android:text="@string/signInbutton"/>
+        android:text="@string/signInbutton"
+        android:fontFamily="@font/titlefont"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/button_n"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/resetPass"
+        android:text="@string/forgetPass"
+        android:fontFamily="@font/titlefont"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        style="@style/EditText"/>
 </LinearLayout>

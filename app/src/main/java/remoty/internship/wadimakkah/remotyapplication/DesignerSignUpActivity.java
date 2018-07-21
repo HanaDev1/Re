@@ -67,10 +67,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     return;
                 }
                 //checking user password length, must be longer than 6 characters.
-                if (password != confirmPassword) {
-                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
-                    return;
-                }
+//                if (password != confirmPassword) {
+//                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 if (TextUtils.isEmpty(fullName)) {
                     Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();

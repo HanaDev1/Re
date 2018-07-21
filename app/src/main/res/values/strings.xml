@@ -1,5 +1,5 @@
 <resources>
-<<<<<<< HEAD
+
     <string name="app_name">Remoty</string>
 
     <string name="remoty">Remoty</string>
@@ -18,11 +18,7 @@
     <string name="DessEdit">Descripe yourself</string>
 
 
-=======
-    <string name="app_name">RemotyApplication</string>
-
-
-
+    <string name="app_name2">RemotyApplication</string>
     <string name="action_settings">Settings</string>
     <string name="email">Email</string>
     <string name="passowrd">Password</string>
@@ -42,5 +38,15 @@
 
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
->>>>>>> 38d606b90ef764e19cd4c044fecb4dfcad5f7d39
+
+    <string name="forgetText">We just need your registed email to send Reset password instructions</string>
+    <string name="resetPass">RESET PASSWORS</string>
+    <string name="action_accepted">Accept </string>
+    <string name="action_rejcted">Reject</string>
+    <string name="action_details">Details</string>
+    <string name="backdrop_title">Users products</string>
+    <string name="backdrop_subtitle">Work Hard</string>
+    <string name="forgetPass">Forget Password ? </string>
+    <string name="backButton">Back</string>
+
 </resources>

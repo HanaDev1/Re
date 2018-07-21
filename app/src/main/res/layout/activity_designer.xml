@@ -4,51 +4,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DesignerSignUpActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/signText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signUpbutton" />
+        android:text="@string/signUpbutton"
+        android:fontFamily="@font/remotymaintitle"
+        android:textSize="36sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nameDesignerEditText"
-        android:hint="@string/signFullNameEdit"/>
+        android:hint="@string/signFullNameEdit"
+        style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/emailDesignerEditText"
-        android:hint="@string/signEmailEdit"/>
+        android:hint="@string/signEmailEdit"
+        style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/passDesignerEditText"
-        android:hint="@string/signPasswordEdit"/>
+        android:hint="@string/signPasswordEdit"
+        android:inputType="numberPassword"
+        style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/CpassDesignerEditText"
-        android:hint="@string/signConfirmPassEdit"/>
+        android:hint="@string/signConfirmPassEdit"
+        android:inputType="numberPassword"
+        style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/phoneDesignerEditText"
         android:hint="@string/signPohoneEdit"
-        android:inputType="phone"/>
+        android:inputType="phone"
+        style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/DesDesignerEditText"
-        android:hint="@string/DessEdit"/>
+        android:hint="@string/DessEdit"
+        style="@style/EditText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/DesignerSignUpBtn"
-        android:text="@string/signUpbutton"/>
-
+        android:text="@string/signUpbutton"
+        android:fontFamily="@font/titlefont"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_n"/>
 </LinearLayout>

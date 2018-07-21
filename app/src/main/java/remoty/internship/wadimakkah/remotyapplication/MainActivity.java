@@ -5,16 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    TextView alreadyAcount;
+    Button signUpDesignerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.activity_main);
 
-        Button signUpDesignerButton = (Button)findViewById(R.id.SignUpDesignerBtn1);
+         signUpDesignerButton = (Button)findViewById(R.id.SignUpDesignerBtn1);
         signUpDesignerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -22,8 +23,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(toDesignerSignUp);
             }
         });
-=======
-        setContentView(R.layout.activity_user_sign_up);
->>>>>>> 38d606b90ef764e19cd4c044fecb4dfcad5f7d39
+
+        alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
+
+        alreadyAcount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toSinInPage = new Intent(MainActivity.this,DesignerSignInActivity.class);
+                startActivity(toSinInPage);
+            }
+        });
+
     }
 }

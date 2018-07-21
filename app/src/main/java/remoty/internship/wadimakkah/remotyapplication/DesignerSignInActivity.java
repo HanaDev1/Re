@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +23,8 @@ public class DesignerSignInActivity extends AppCompatActivity {
 
     EditText inputEmail;
     EditText inputPassword;
-    Button btnSignUp;
+    Button btnSignIn;
+    TextView resetPass;
     FirebaseAuth auth;
 
     @Override
@@ -30,23 +32,35 @@ public class DesignerSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_sign_in);
 
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
 
+        auth = FirebaseAuth.getInstance();
+        //Firebase auththentication instance
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class));
+            finish();
+        }
+
+        //view initlilaztion
         inputEmail = (EditText) findViewById(R.id.emailDesignerEditText);
         inputPassword = (EditText) findViewById(R.id.passDesignerEditText);
-        btnSignUp = (Button) findViewById(R.id.DesignerSignInBtn);
+        btnSignIn = (Button) findViewById(R.id.DesignerSignInBtn);
+        resetPass = (TextView) findViewById(R.id.resetPass);
 
-        //sign Up and adding users to the DB
+        //if user forget password
+        resetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DesignerSignInActivity.this, ResetPassActivity.class));
+            }
+        });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        //sign In
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                //trim to remove all spaces
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                //get user inputs
+                String email = inputEmail.getText().toString();
+                final String password = inputPassword.getText().toString();
 
                 //checking user inputs, if it is empty or not and return response
                 if (TextUtils.isEmpty(email)) {
@@ -58,32 +72,30 @@ public class DesignerSignInActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
                     return;
                 }
-                //checking user password length, must be longer than 6 characters.
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", LENGTH_SHORT).show();
-                    return;
-                }
 
-                //create a new user in database ,
+                //Sign In to user account using email and password ,
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
 
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(DesignerSignInActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), LENGTH_SHORT).show();
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(DesignerSignInActivity.this, "Authentication failed." + task.getException(),
-
-                                    LENGTH_SHORT).show();
-                            Log.e("the error", String.valueOf(task.getException()));
-                        } else {
-                            startActivity(new Intent(DesignerSignInActivity.this, MainActivity.class));
-                            finish();
-                        }
-                    }
-                });
-
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+                                        inputPassword.setError("your password is too short");
+                                    } else {
+                                        Toast.makeText(DesignerSignInActivity.this, "Authenticaion faild ", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
             }
         });
-    }
-}
-
+    }}

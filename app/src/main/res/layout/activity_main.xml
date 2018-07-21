@@ -10,17 +10,13 @@
     android:gravity="center"
     android:background="@drawable/applicationbackground">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/appLogo"
-        android:src="@drawable/logoapp"
-        android:paddingBottom="26dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/remoty"
-        android:paddingBottom="1dp"/>
+        android:paddingBottom="1dp"
+        android:fontFamily="@font/remotymaintitle"
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,29 +24,40 @@
         android:text="@string/text"
         android:textAllCaps="true"
         android:paddingBottom="26dp"
-        android:paddingTop="20dp"/>
+        android:paddingTop="20dp"
+        android:fontFamily="@font/remotymaintitle"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="@string/signUpbuttondesigner"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:id="@+id/SignUpDesignerBtn1"/>
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/SignUpDesignerBtn1"
+        android:fontFamily="@font/titlefont"
+        android:background="@drawable/button_n"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="@string/signUpbuttonuser"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/titlefont"
+        android:background="@drawable/button_n"
+        android:layout_marginRight="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
         android:text="@string/tosignPage"
-        android:paddingTop="20dp"/>
+        android:paddingTop="20dp"
+        android:id="@+id/toSignInPage"
+        android:fontFamily="@font/titlefont"/>
 
 
 
