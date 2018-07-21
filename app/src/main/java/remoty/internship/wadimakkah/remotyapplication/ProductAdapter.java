@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<ProductActivity> productList;
@@ -74,8 +74,6 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewH
     }
 
 
-
-
     /**
      * Click listener for popup menu items
      */
@@ -88,10 +86,10 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewH
                     Toast.makeText((Context) mContext, "Accepted", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.actionReject:
-                    Toast.makeText((Context)mContext, "Rejected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText((Context) mContext, "Rejected", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.actioDetails:
-                    Toast.makeText((Context)mContext, "Details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText((Context) mContext, "Details", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }

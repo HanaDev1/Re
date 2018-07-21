@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -29,6 +31,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
     EditText inputPhoneNumber;
     Button btnSignUp;
     FirebaseAuth auth;
+    //FirebaseDatabase refernce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +69,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
                     return;
                 }
-                //checking user password length, must be longer than 6 characters.
-//                if (password != confirmPassword) {
-//                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
-//                    return;
-//                }
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (TextUtils.isEmpty(fullName)) {
                     Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();
@@ -101,7 +103,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                         }
                     }
                 });
-
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Clients").child(auth.getUid());
+                reference.child("full_name").setValue(fullName);
+                reference.child("description").setValue(description);
+                reference.child("phone_number").setValue(phone);
+                reference.child("Designer").setValue("Designer");
 
             }
         });

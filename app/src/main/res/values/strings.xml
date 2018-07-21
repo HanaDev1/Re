@@ -1,7 +1,5 @@
 <resources>
-
     <string name="app_name">Remoty</string>
-
     <string name="remoty">Remoty</string>
     <string name="text">Get your design easily</string>
     <string name="signUpbuttonuser">Sign up as a user</string>
@@ -16,15 +14,7 @@
     <string name="signConfirmPassEdit">Confirm Password</string>
     <string name="signPohoneEdit">Phone Number</string>
     <string name="DessEdit">Descripe yourself</string>
-
-
-<<<<<<< HEAD
     <string name="app_name2">RemotyApplication</string>
-=======
-    =======
-
-
->>>>>>> 8a0fdc0cf8b88d4eaf58284344fcfbf23ffd4d2b
     <string name="action_settings">Settings</string>
     <string name="email">Email</string>
     <string name="passowrd">Password</string>
@@ -41,15 +31,8 @@
     <string name="terms_conditions">By clicking SignUp you agree all the Terms and Conditions.</string>
     <string name="signUp">SIGN UP</string>
     <string name="already_user">Already have Account? Login here.</string>
-
-    <string name="forgetText">We just need your registed email to send Reset password instructions</string>
-    <string name="resetPass">RESET PASSWORS</string>
-
-
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
-<<<<<<< HEAD
-
     <string name="forgetText">We just need your registed email to send Reset password instructions</string>
     <string name="resetPass">RESET PASSWORS</string>
     <string name="action_accepted">Accept </string>
@@ -57,9 +40,6 @@
     <string name="action_details">Details</string>
     <string name="backdrop_title">Users products</string>
     <string name="backdrop_subtitle">Work Hard</string>
-=======
->>>>>>> 8a0fdc0cf8b88d4eaf58284344fcfbf23ffd4d2b
     <string name="forgetPass">Forget Password ? </string>
     <string name="backButton">Back</string>
-
 </resources>

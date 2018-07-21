@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" >
         <!-- Customize your theme here. -->
@@ -15,17 +14,10 @@
         <item name="android:drawablePadding">8dp</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
-
     </style>
-
-
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">#000</item>
-
     </style>
-
 </resources>
