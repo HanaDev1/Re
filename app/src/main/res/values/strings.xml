@@ -1,5 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <string name="app_name">Remoty</string>
+
     <string name="remoty">Remoty</string>
     <string name="text">Get your design easily</string>
     <string name="signUpbuttonuser">Sign up as a user</string>
@@ -31,8 +33,10 @@
     <string name="terms_conditions">By clicking SignUp you agree all the Terms and Conditions.</string>
     <string name="signUp">SIGN UP</string>
     <string name="already_user">Already have Account? Login here.</string>
+
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
+
     <string name="forgetText">We just need your registed email to send Reset password instructions</string>
     <string name="resetPass">RESET PASSWORS</string>
     <string name="action_accepted">Accept </string>
@@ -42,4 +46,5 @@
     <string name="backdrop_subtitle">Work Hard</string>
     <string name="forgetPass">Forget Password ? </string>
     <string name="backButton">Back</string>
+
 </resources>

@@ -98,5 +98,4 @@ public class DesignerSignInActivity extends AppCompatActivity {
                         });
             }
         });
-    }
-}
+    }}

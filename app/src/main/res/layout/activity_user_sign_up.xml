@@ -28,7 +28,6 @@
         android:gravity="center_vertical"
         android:hint="@string/fullName"
         android:inputType="textCapWords"
-
         android:singleLine="true"
         style="@style/EditText"
         />
@@ -71,8 +70,6 @@
         android:inputType="phone"
         android:singleLine="true"
         style="@style/EditText"
-
-
         />
 
     <View

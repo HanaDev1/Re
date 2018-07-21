@@ -23,6 +23,22 @@
           }
         },
         {
+          "client_id": "708600594871-2st94gjcptbbrn7l5ocsr2idaseoct89.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "remoty.internship.wadimakkah.remotyapplication",
+            "certificate_hash": "012994fb58327d019963d591af287e34294b0b8e"
+          }
+        },
+        {
+          "client_id": "708600594871-gmbfc9nchh1v38tqcbht5i6e5kekimip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "remoty.internship.wadimakkah.remotyapplication",
+            "certificate_hash": "c672da895c46cc8fd3ad652df7e7de12743e9bfe"
+          }
+        },
+        {
           "client_id": "708600594871-kpnaon8h4t66s6mine71ep626mamg81t.apps.googleusercontent.com",
           "client_type": 3
         }

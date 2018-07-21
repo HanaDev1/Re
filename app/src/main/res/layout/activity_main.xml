@@ -59,4 +59,5 @@
         android:paddingTop="20dp"
         android:id="@+id/toSignInPage"
         android:fontFamily="@font/titlefont"/>
+
 </LinearLayout>
