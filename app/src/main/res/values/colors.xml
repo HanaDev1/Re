@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#4c4c4c</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000000</color>
+<<<<<<< HEAD
     <color name="album_title">#4c4c4c</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="lcolor">#DCDCDC</color>
 
+=======
+>>>>>>> 8a0fdc0cf8b88d4eaf58284344fcfbf23ffd4d2b
 </resources>
