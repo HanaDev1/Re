@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".DesignerSignUpActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/applicationbackground">
 
     <TextView
         android:id="@+id/signText"

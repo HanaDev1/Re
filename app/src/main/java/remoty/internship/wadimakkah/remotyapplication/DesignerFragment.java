@@ -36,8 +36,8 @@ public class DesignerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_desginer_fragment, container, false);
-        TextView tvLabel = (TextView) view.findViewById(R.id.tvLabel);
-        tvLabel.setText(pageNum + " -- " + pageTitle);
+        //TextView tvLabel = (TextView) view.findViewById(R.id.tvLabel);
+        //tvLabel.setText(pageNum + " -- " + pageTitle);
         return view;
     }
 }
