@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/appbackback">
+    android:background="@drawable/applicationbackground">
 
     <TextView
         android:layout_width="fill_parent"
@@ -13,9 +13,10 @@
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:text="@string/signUp"
-        android:textColor="#fff"
+
         android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/remotymaintitle"/>
 
     <EditText
         android:id="@+id/fullName"
@@ -23,13 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/user"
+
 
         android:gravity="center_vertical"
         android:hint="@string/fullName"
         android:inputType="textCapWords"
         android:singleLine="true"
         style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
         />
 
     <View
@@ -43,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/email"
 
+        android:fontFamily="@font/subtitlefont"
         android:gravity="center_vertical"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -64,12 +66,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/phone"
+
         android:gravity="center_vertical"
         android:hint="@string/mobileNumber"
         android:inputType="phone"
         android:singleLine="true"
         style="@style/EditText"
+        android:fontFamily="@font/subtitlefont"
         />
 
     <View
@@ -89,7 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/password"
+
+        android:fontFamily="@font/subtitlefont"
 
         android:gravity="center_vertical"
         android:hint="@string/passowrd"
@@ -110,48 +114,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/confirmpassword"
+
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/confirmPassword"
         android:inputType="textPassword"
-
+        android:fontFamily="@font/subtitlefont"
         android:singleLine="true"
         style="@style/EditText"
      />
 
-    <CheckBox
-        android:id="@+id/terms_conditions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="@string/terms_conditions"
-        android:textColor="#fff"
-        android:textSize="14sp" />
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="#e4e4e4"
+
         android:padding="3dp"
         android:text="@string/signUp"
-        android:textColor="#fff"
+
         android:textSize="17sp"
         android:textStyle="bold"
+        android:fontFamily="@font/titlefont"
+        android:background="@drawable/button_n"
         android:onClick="signUpUser"/>
 
-    <TextView
-        android:id="@+id/already_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/already_user"
-        android:textColor="#d3d3d3"
-        android:textSize="15sp" />
+        />
 
 </LinearLayout>

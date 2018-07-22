@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(toDesignerSignUp);
                 }
             });
-            alreadyAcount = (TextView) findViewById(R.id.tosignPage);
+            alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
 
             alreadyAcount.setOnClickListener(new View.OnClickListener() {
                 @Override
