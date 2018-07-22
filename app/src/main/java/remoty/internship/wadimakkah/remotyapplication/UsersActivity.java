@@ -2,13 +2,11 @@ package remoty.internship.wadimakkah.remotyapplication;
 
 public class UsersActivity {
     private String designer_name;
-private String img;
+private int img;
 
-    public UsersActivity() {
 
-    }
 
-    public UsersActivity(String designer_name, String img) {
+    public UsersActivity(String designer_name, int img) {
         this.designer_name = designer_name;
         this.img = img;
     }
@@ -22,11 +20,11 @@ private String img;
     }
 
 
-    public String getImg() {
+    public int getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(int img) {
         this.img = img;
     }
 }

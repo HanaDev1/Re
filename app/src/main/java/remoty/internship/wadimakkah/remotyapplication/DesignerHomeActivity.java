@@ -43,8 +43,8 @@ public class DesignerHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         //initCollapsingToolbar();
 
@@ -92,102 +92,65 @@ public class DesignerHomeActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             prepareProducts();
 
-<<<<<<< HEAD
-        try {
-            //Glide.with(getApplicationContext()).load(R.drawable.applicationbackground).into((ImageView) findViewById(R.id.backdrop));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-=======
                 try {
-                Glide.with(getApplicationContext()).load(R.drawable.applicationbackground).into((ImageView) findViewById(R.id.backdrop));
+                //Glide.with(getApplicationContext()).load(R.drawable.applicationbackground).into((ImageView) findViewById(R.id.backdrop));
             } catch (Exception e) {
                 e.printStackTrace();
             }
->>>>>>> 868f069518f7da0a17b7d5db154a67c50bc5cf1a
 
 
     }
 
-<<<<<<< HEAD
-    private void initCollapsingToolbar() {
-//        final CollapsingToolbarLayout collapsingToolbar =
-//                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-//        collapsingToolbar.setTitle(" ");
-//        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-//        appBarLayout.setExpanded(true);true
 
-//        // hiding & showing the title when toolbar expanded & collapsed
-//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            boolean isShow = false;
-//            int scrollRange = -1;
+//        private void initCollapsingToolbar() {
+//            //final CollapsingToolbarLayout collapsingToolbar =
+//                    (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+//            collapsingToolbar.setTitle(" ");
+//            AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+//            appBarLayout.setExpanded(true);
 //
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if (scrollRange == -1) {
-//                    scrollRange = appBarLayout.getTotalScrollRange();
+//            // hiding & showing the title when toolbar expanded & collapsed
+//            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+//                boolean isShow = false;
+//                int scrollRange = -1;
+//
+//                @Override
+//                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                    if (scrollRange == -1) {
+//                        scrollRange = appBarLayout.getTotalScrollRange();
+//                    }
+//                    if (scrollRange + verticalOffset == 0) {
+//                        //collapsingToolbar.setTitle(getString(R.string.app_name));
+//                        isShow = true;
+//                    } else if (isShow) {
+//                        collapsingToolbar.setTitle(" ");
+//                        isShow = false;
+//                    }
 //                }
-//                if (scrollRange + verticalOffset == 0) {
-//                    //collapsingToolbar.setTitle(getString(R.string.app_name));
-//                    isShow = true;
-//                } else if (isShow) {
-//                    collapsingToolbar.setTitle(" ");
-//                    isShow = false;
-//                }
-//            }
-//        });
-    }
-=======
-        private void initCollapsingToolbar() {
-            final CollapsingToolbarLayout collapsingToolbar =
-                    (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-            collapsingToolbar.setTitle(" ");
-            AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-            appBarLayout.setExpanded(true);
-
-            // hiding & showing the title when toolbar expanded & collapsed
-            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-                boolean isShow = false;
-                int scrollRange = -1;
-
-                @Override
-                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                    if (scrollRange == -1) {
-                        scrollRange = appBarLayout.getTotalScrollRange();
-                    }
-                    if (scrollRange + verticalOffset == 0) {
-                        //collapsingToolbar.setTitle(getString(R.string.app_name));
-                        isShow = true;
-                    } else if (isShow) {
-                        collapsingToolbar.setTitle(" ");
-                        isShow = false;
-                    }
-                }
-            });
-        }
->>>>>>> 868f069518f7da0a17b7d5db154a67c50bc5cf1a
+//            });
+        //}
 
     private void prepareProducts() {
 
-        ProductActivity product = new ProductActivity("Prototyping", 1);
+        ProductActivity product = new ProductActivity("Prototyping", 2019);
         productList.add(product);
 
-        product = new ProductActivity("Sketch a logo", 2);
+        product = new ProductActivity("Sketch a logo", 2018);
         productList.add(product);
 
-        product = new ProductActivity("SRS documents", 3);
+        product = new ProductActivity("SRS documents", 2018);
         productList.add(product);
 
-        product = new ProductActivity("Idea proposal", 4);
+        product = new ProductActivity("Idea proposal", 2018);
         productList.add(product);
 
-        product = new ProductActivity("Motion graphic of Advertisment ", 5);
+        product = new ProductActivity("Motion graphic of Advertisment ", 2018);
         productList.add(product);
 
-        product = new ProductActivity("Short film of resturant", 6);
+        product = new ProductActivity("Short film of resturant", 2018);
         productList.add(product);
 
-        product = new ProductActivity("Logo design ", 7);
+        product = new ProductActivity("Logo design ", 2018);
         productList.add(product);
 
         adapter.notifyDataSetChanged();
@@ -282,6 +245,6 @@ public static class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
             return "Chat";
 
     }
-}
-}
+}}
+
 

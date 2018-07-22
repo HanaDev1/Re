@@ -1,17 +1,20 @@
 package remoty.internship.wadimakkah.remotyapplication;
 
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,32 +47,25 @@ public class UserHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReferenceFromUrl("https://remotyapp.firebaseio.com/client");
-        Query data = myRef.orderByChild("Designer").equalTo("Designer");
-        data.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    String dn = data.child("full_name").getValue(String.class);
-                    String imges = data.child("img").getValue(String.class);
-                    UsersActivity users = new UsersActivity();
-                    users.setDesigner_name(dn);
-                    users.setImg(imges);
-                    designerList.add(users);
+
+        prepareAlbums();
 
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("Hello", "Failed to read value.", databaseError.toException());
-            }
-        });
 
     }
-       public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+    private void prepareAlbums() {
+        UsersActivity userAct = new UsersActivity("Sundus Ali",R.drawable.profileimg);
+        designerList.add(userAct);
+        userAct = new UsersActivity("Amjad Saad",R.drawable.profileimg);
+        designerList.add(userAct);
+        userAct = new UsersActivity("Omar ALi ",R.drawable.profileimgg);
+        designerList.add(userAct);
+        userAct = new UsersActivity("Hind Khaled ",R.drawable.profileimg);
+        designerList.add(userAct);
+
+    }
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
         private int spacing;

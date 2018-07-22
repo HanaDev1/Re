@@ -3,11 +3,16 @@ package remoty.internship.wadimakkah.remotyapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "Ab";
     TextView alreadyAcount;
     Button signUpDesignerButton;
 
@@ -27,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
             Button signUpUser = (Button) findViewById(R.id.signUpUserBtn2);
             signUpUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -41,13 +45,22 @@ public class MainActivity extends AppCompatActivity {
             alreadyAcount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent toSinInPage = new Intent(MainActivity.this, DesignerSignInActivity.class);
-                    startActivity(toSinInPage);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        // User is signed in
+                        Intent i = new Intent(MainActivity.this, DesignerSignInActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                    } else {
+                        // User is signed out
+                        Log.d(TAG, "onAuthStateChanged:signed_out");
+                    }
+
+
+//                    Intent toSinInPage = new Intent(MainActivity.this, DesignerSignInActivity.class);
+//                    startActivity(toSinInPage);
                 }
             });
-
-
-            setContentView(R.layout.activity_user_sign_up);
 
     }
 }

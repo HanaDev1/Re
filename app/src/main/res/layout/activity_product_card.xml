@@ -40,7 +40,8 @@
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="15sp"
-                android:fontFamily="@font/titlefont"/>
+                android:fontFamily="@font/titlefont"
+                />
 
             <ImageView
                 android:id="@+id/overflow"

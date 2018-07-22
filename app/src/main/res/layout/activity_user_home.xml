@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="12dp">
+        card_view:cardCornerRadius="12dp"
+        android:layout_margin="10dp">
 
 
         <RelativeLayout
@@ -24,26 +25,33 @@
                 android:layout_height="140dp"
                 android:layout_alignParentTop="true"
                 android:clickable="true"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:layout_margin="20dp"/>
 
             <TextView
                 android:id="@+id/designer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/designer_img"
-                android:paddingTop="5dp"
-                android:paddingBottom="12dp"/>
+                android:paddingTop="10dp"
+                android:fontFamily="@font/titlefont"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
 
             <RatingBar
                 android:id="@+id/rate"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_below="@id/designer_img"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/designer_name"
                 android:numStars="5"
                 android:paddingRight="12dp"
-               />
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"/>
 
         </RelativeLayout>
 

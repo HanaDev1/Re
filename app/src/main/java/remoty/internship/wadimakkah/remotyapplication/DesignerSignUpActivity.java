@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -49,12 +51,12 @@ public class DesignerSignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //trim to remove all spaces
-                String email = inputEmailUp.getText().toString().trim();
+                final String email = inputEmailUp.getText().toString().trim();
                 String password = inputPasswordUp.getText().toString().trim();
                 String confirmPassword = inputCPasswordUp.getText().toString().trim();
-                String fullName = inputFullNameUp.getText().toString().trim();
-                String description = inputDescription.getText().toString().trim();
-                String phone = inputPhoneNumber.getText().toString().trim();
+                final String fullName = inputFullNameUp.getText().toString().trim();
+                final String description = inputDescription.getText().toString().trim();
+                final String phone = inputPhoneNumber.getText().toString().trim();
 
                 //checking user inputs, if it is empty or not and return response
                 if (TextUtils.isEmpty(email)) {
@@ -67,10 +69,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     return;
                 }
                 //checking user password length, must be longer than 6 characters.
-//                if (password != confirmPassword) {
-//                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
-//                    return;
-//                }
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (TextUtils.isEmpty(fullName)) {
                     Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();
@@ -90,13 +92,22 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(DesignerSignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), LENGTH_SHORT).show();
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client").child(auth.getUid());
+
+                        reference.child("full_name").setValue(fullName);
+                        reference.child("email").setValue(email);
+                        reference.child("phone_number").setValue(phone);
+                        reference.child("description").setValue(description);
+                        reference.child("Designer").setValue("Designer");
+
+
                         if (!task.isSuccessful()) {
                             Toast.makeText(DesignerSignUpActivity.this, "Authentication failed." + task.getException(),
 
                                     LENGTH_SHORT).show();
                             Log.e("the error", String.valueOf(task.getException()));
                         } else {
-                            startActivity(new Intent(DesignerSignUpActivity.this, MainActivity.class));
+                            startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
                             finish();
                         }
                     }

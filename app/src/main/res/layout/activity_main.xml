@@ -59,6 +59,7 @@
         android:paddingTop="20dp"
         android:id="@+id/toSignInPage"
         android:textColor="@color/lcolor"
-        android:fontFamily="@font/titlefont"/>
+        android:fontFamily="@font/titlefont"
+        android:textStyle="bold"/>
 
 </LinearLayout>

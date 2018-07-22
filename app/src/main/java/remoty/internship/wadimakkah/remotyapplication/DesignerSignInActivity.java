@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -31,14 +34,6 @@ public class DesignerSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_sign_in);
-
-
-        auth = FirebaseAuth.getInstance();
-        //Firebase auththentication instance
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class));
-            finish();
-        }
 
         //view initlilaztion
         inputEmail = (EditText) findViewById(R.id.emailDesignerEditText);
@@ -72,30 +67,51 @@ public class DesignerSignInActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
                     return;
                 }
+                auth = FirebaseAuth.getInstance();
+                //Firebase auththentication instance
+                if (auth.getCurrentUser() != null) {
 
-                //Sign In to user account using email and password ,
-                auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
+                    startActivity(new Intent(DesignerSignInActivity.this, UserHomeActivity.class));
+                    finish();
+                    //Sign In to user account using email and password ,
+                    auth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
 
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        inputPassword.setError("your password is too short");
+                                    if (!task.isSuccessful()) {
+                                        if (password.length() < 6) {
+                                            inputPassword.setError("your password is too short");
+                                        } else {
+                                            Toast.makeText(DesignerSignInActivity.this, "Authenticaion faild ", Toast.LENGTH_LONG).show();
+                                        }
                                     } else {
-                                        Toast.makeText(DesignerSignInActivity.this, "Authenticaion faild ", Toast.LENGTH_LONG).show();
+
+                                        String reference = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
+                                        Log.e("Designer",reference);
+                                        Toast.makeText(getApplicationContext(),reference,LENGTH_SHORT).show();
+                                        if (reference.equals("Designer")) {
+                                            Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+                                            startActivity(intent);
+                                            finish();
+
+                                        } else {
+                                            String referenceUser = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
+                                            Log.e("Designer",referenceUser);
+                                            Toast.makeText(getApplicationContext(),referenceUser,LENGTH_SHORT).show();
+                                            if (referenceUser.equals("user")) {
+                                                Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }
                                     }
-                                } else {
-                                    Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                        });
-            }
-        });
-    }}
+                                }});}
+                }
+
+            });
+        }
+    }

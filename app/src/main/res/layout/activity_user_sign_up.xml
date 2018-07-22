@@ -2,144 +2,117 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/applicationbackground"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:background="@drawable/applicationbackground">
+    android:padding="20dp">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/remotymaintitle"
         android:gravity="center"
         android:padding="10dp"
-        android:layout_marginTop="20dp"
         android:text="@string/signUp"
-
         android:textSize="25sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/remotymaintitle"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/fullName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-
-
         android:gravity="center_vertical"
         android:hint="@string/fullName"
         android:inputType="textCapWords"
         android:singleLine="true"
-        style="@style/EditText"
-        android:fontFamily="@font/subtitlefont"
-        />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="#d3d3d3" />
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/titlefont"
+        style="@style/EditText"/>
 
     <EditText
         android:id="@+id/userEmail"
+        style="@style/EditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-
-        android:fontFamily="@font/subtitlefont"
+        android:fontFamily="@font/titlefont"
         android:gravity="center_vertical"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-
         android:singleLine="true"
-        style="@style/EditText"
- />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="#d3d3d3" />
+        android:textSize="15sp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/mobileNumber"
+        style="@style/EditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-
+        android:fontFamily="@font/titlefont"
         android:gravity="center_vertical"
         android:hint="@string/mobileNumber"
         android:inputType="phone"
         android:singleLine="true"
-        style="@style/EditText"
-        android:fontFamily="@font/subtitlefont"
-        />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="#d3d3d3" />
-
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="#d3d3d3" />
+        android:textSize="15sp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/password"
+        style="@style/EditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-
-        android:fontFamily="@font/subtitlefont"
-
+        android:fontFamily="@font/titlefont"
         android:gravity="center_vertical"
         android:hint="@string/passowrd"
         android:inputType="textPassword"
-
         android:singleLine="true"
-    style="@style/EditText"
-       />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="#d3d3d3" />
+        android:textSize="15sp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/confirmPassword"
+        style="@style/EditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-
         android:drawablePadding="8dp"
+        android:fontFamily="@font/titlefont"
         android:gravity="center_vertical"
         android:hint="@string/confirmPassword"
         android:inputType="textPassword"
-        android:fontFamily="@font/subtitlefont"
         android:singleLine="true"
-        style="@style/EditText"
-     />
+        android:textSize="15sp"
+        android:textStyle="bold"/>
 
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="15dp"
-
+        android:background="@drawable/button_n"
+        android:fontFamily="@font/titlefont"
+        android:onClick="signUpUser"
         android:padding="3dp"
         android:text="@string/signUp"
-
         android:textSize="17sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/titlefont"
-        android:background="@drawable/button_n"
-        android:onClick="signUpUser"/>
-
-        />
+        android:textStyle="bold" />
 
 </LinearLayout>

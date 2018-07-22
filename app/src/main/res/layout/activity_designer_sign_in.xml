@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DesignerSignInActivity"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/applicationbackground">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/passDesignerEditText"
         android:hint="@string/signPasswordEdit"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:fontFamily="@font/titlefont"
         style="@style/EditText"
         android:layout_marginRight="30dp"
