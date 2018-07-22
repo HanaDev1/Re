@@ -36,7 +36,6 @@
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".PassResetActivity"></activity>
->>>>>>> 8a0fdc0cf8b88d4eaf58284344fcfbf23ffd4d2b
     </application>
 
 </manifest>

@@ -17,30 +17,37 @@ public class MainActivity extends AppCompatActivity {
         TextView alreadyAcount;
         setContentView(R.layout.activity_main);
 
-        signUpDesignerButton = (Button) findViewById(R.id.SignUpDesignerBtn1);
-        signUpDesignerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
-                startActivity(toDesignerSignUp);
-            }
-        });
+            signUpDesignerButton = (Button) findViewById(R.id.SignUpDesignerBtn1);
+            signUpDesignerButton.setOnClickListener(new View.OnClickListener() {
 
-        alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
-        alreadyAcount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toDesignerSignIn = new Intent(MainActivity.this, DesignerSignInActivity.class);
-                startActivity(toDesignerSignIn);
-            }
-        });
-        Button signUpUser = (Button) findViewById(R.id.signUpUserBtn2);
-        signUpUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toDesignerSignIn = new Intent(MainActivity.this, UserSignUpActivity.class);
-                startActivity(toDesignerSignIn);
-            }
-        });
+                @Override
+                public void onClick(View v) {
+                    Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
+                    startActivity(toDesignerSignUp);
+                }
+            });
+
+            alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
+            Button signUpUser = (Button) findViewById(R.id.signUpUserBtn2);
+            signUpUser.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent toDesignerSignUp = new Intent(MainActivity.this, UserSignUpActivity.class);
+                    startActivity(toDesignerSignUp);
+                }
+            });
+            alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
+
+            alreadyAcount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent toSinInPage = new Intent(MainActivity.this, DesignerSignInActivity.class);
+                    startActivity(toSinInPage);
+                }
+            });
+
+
+            setContentView(R.layout.activity_user_sign_up);
+
     }
 }

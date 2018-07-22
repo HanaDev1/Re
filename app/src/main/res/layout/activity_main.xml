@@ -60,4 +60,5 @@
         android:id="@+id/toSignInPage"
         android:textColor="@color/lcolor"
         android:fontFamily="@font/titlefont"/>
+
 </LinearLayout>
