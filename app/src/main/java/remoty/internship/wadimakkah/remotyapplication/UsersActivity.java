@@ -2,8 +2,7 @@ package remoty.internship.wadimakkah.remotyapplication;
 
 public class UsersActivity {
     private String designer_name;
-private int img;
-
+    private int img;
 
 
     public UsersActivity(String designer_name, int img) {
@@ -11,7 +10,7 @@ private int img;
         this.img = img;
     }
 
-    public  String getDesigner_name() {
+    public String getDesigner_name() {
         return designer_name;
     }
 

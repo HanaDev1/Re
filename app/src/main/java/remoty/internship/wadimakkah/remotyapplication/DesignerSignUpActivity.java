@@ -40,11 +40,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
 
         inputEmailUp = (EditText) findViewById(R.id.emailDesignerEditText);
         inputPasswordUp = (EditText) findViewById(R.id.passDesignerEditText);
-        inputCPasswordUp = (EditText) findViewById(R.id.CpassDesignerEditText);
+        //inputCPasswordUp = (EditText) findViewById(R.id.CpassDesignerEditText);
         inputFullNameUp = (EditText) findViewById(R.id.nameDesignerEditText);
-        inputDescription = (EditText) findViewById(R.id.DesDesignerEditText);
+        //inputDescription = (EditText) findViewById(R.id.DesDesignerEditText);
         btnSignUp = (Button) findViewById(R.id.DesignerSignUpBtn);
-        inputPhoneNumber = (EditText) findViewById(R.id.phoneDesignerEditText);
+        //inputPhoneNumber = (EditText) findViewById(R.id.phoneDesignerEditText);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,10 +53,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                 //trim to remove all spaces
                 final String email = inputEmailUp.getText().toString().trim();
                 String password = inputPasswordUp.getText().toString().trim();
-                String confirmPassword = inputCPasswordUp.getText().toString().trim();
+//                String confirmPassword = inputCPasswordUp.getText().toString().trim();
                 final String fullName = inputFullNameUp.getText().toString().trim();
-                final String description = inputDescription.getText().toString().trim();
-                final String phone = inputPhoneNumber.getText().toString().trim();
+               // final String description = inputDescription.getText().toString().trim();
+               // final String phone = inputPhoneNumber.getText().toString().trim();
 
                 //checking user inputs, if it is empty or not and return response
                 if (TextUtils.isEmpty(email)) {
@@ -68,24 +68,24 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
                     return;
                 }
-                //checking user password length, must be longer than 6 characters.
-                if (!password.equals(confirmPassword)) {
-                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
-                    return;
-                }
+//                //checking user password length, must be longer than 6 characters.
+//                if (!password.equals(confirmPassword)) {
+//                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 if (TextUtils.isEmpty(fullName)) {
                     Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(description)) {
-                    Toast.makeText(getApplicationContext(), "Write about yourself !", LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(getApplicationContext(), "Write your phone number !", LENGTH_SHORT).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(description)) {
+//                    Toast.makeText(getApplicationContext(), "Write about yourself !", LENGTH_SHORT).show();
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(phone)) {
+//                    Toast.makeText(getApplicationContext(), "Write your phone number !", LENGTH_SHORT).show();
+//                    return;
+//                }
                 //create a new user in database ,
 
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(DesignerSignUpActivity.this, new OnCompleteListener<AuthResult>() {
@@ -96,8 +96,8 @@ public class DesignerSignUpActivity extends AppCompatActivity {
 
                         reference.child("full_name").setValue(fullName);
                         reference.child("email").setValue(email);
-                        reference.child("phone_number").setValue(phone);
-                        reference.child("description").setValue(description);
+//                        reference.child("phone_number").setValue(phone);
+//                        reference.child("description").setValue(description);
                         reference.child("Designer").setValue("Designer");
 
 

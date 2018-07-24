@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#4c4c4c</color>
     <color name="colorPrimaryDark">#4c4c4c</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#DCDCDC</color>
     <color name="black">#000000</color>
     <color name="album_title">#4c4c4c</color>
     <color name="viewBg">#f1f5f8</color>
-    <color name="lcolor">#DCDCDC</color>
+    <color name="lcolor">#AEB8C3</color>
+    <color name="buttonColor">#4E0E2E</color>
 
 </resources>

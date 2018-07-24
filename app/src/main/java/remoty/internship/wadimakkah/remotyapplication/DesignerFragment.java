@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 public class DesignerFragment extends Fragment {
 
-    private  String pageTitle;
-    private  int pageNum;
+    private String pageTitle;
+    private int pageNum;
+
     //cunstructor copy of the class
     public static android.support.v4.app.Fragment newInstance(int page, String title) {
         //using fragment
@@ -27,7 +28,7 @@ public class DesignerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageTitle = getArguments().getString("Requst");
-        pageNum = getArguments().getInt("PageNum",0);
+        pageNum = getArguments().getInt("PageNum", 0);
     }
 
     // Inflate the view for the fragment based on layout XML

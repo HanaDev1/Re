@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".DesignerSignUpActivity"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/applicationbackground">
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/signText"
@@ -15,29 +14,32 @@
         android:text="@string/signUpbutton"
         android:fontFamily="@font/remotymaintitle"
         android:textSize="36sp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp" />
+       android:gravity="center_horizontal"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nameDesignerEditText"
         android:hint="@string/signFullNameEdit"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:textStyle="bold"
         android:fontFamily="@font/titlefont"
-        style="@style/EditText"/>
+        style="@style/EditText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/buttonColor"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/emailDesignerEditText"
         android:hint="@string/signEmailEdit"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:textStyle="bold"
         android:fontFamily="@font/titlefont"
-        style="@style/EditText"/>
+        style="@style/EditText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/buttonColor"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -45,44 +47,39 @@
         android:id="@+id/passDesignerEditText"
         android:hint="@string/signPasswordEdit"
         android:inputType="textPassword"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:textStyle="bold"
         android:fontFamily="@font/titlefont"
-        style="@style/EditText"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/CpassDesignerEditText"
-        android:hint="@string/signConfirmPassEdit"
-        android:inputType="textPassword"
+        style="@style/EditText"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:fontFamily="@font/titlefont"
-        style="@style/EditText"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/phoneDesignerEditText"
-        android:hint="@string/signPohoneEdit"
-        android:inputType="phone"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/titlefont"
-        style="@style/EditText"/>
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/buttonColor"/>
 
-    <EditText
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DesDesignerEditText"
-        android:hint="@string/DessEdit"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/titlefont"
-        style="@style/EditText"/>
+        android:layout_marginTop="16dp">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/buttonColor"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Designer"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="@color/buttonColor"/>
+        </RadioGroup>
 
+    </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,5 +90,6 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
+        android:textColor="@color/lcolor"
         android:background="@drawable/button_n"/>
 </LinearLayout>

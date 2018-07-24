@@ -19,7 +19,7 @@ public class DesignersDetailActivity extends AppCompatActivity {
         requestDesigner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toDesignerRequest = new Intent(DesignersDetailActivity.this,UserRequestActivity.class);
+                Intent toDesignerRequest = new Intent(DesignersDetailActivity.this, UserRequestActivity.class);
                 startActivity(toDesignerRequest);
             }
         });

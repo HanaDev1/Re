@@ -71,7 +71,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
                 //Firebase auththentication instance
                 if (auth.getCurrentUser() != null) {
 
-                    startActivity(new Intent(DesignerSignInActivity.this, UserHomeActivity.class));
+                    startActivity(new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class));
                     finish();
                     //Sign In to user account using email and password ,
                     auth.signInWithEmailAndPassword(email, password)
@@ -91,8 +91,8 @@ public class DesignerSignInActivity extends AppCompatActivity {
                                     } else {
 
                                         String reference = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
-                                        Log.e("Designer",reference);
-                                        Toast.makeText(getApplicationContext(),reference,LENGTH_SHORT).show();
+                                        Log.e("Designer", reference);
+                                        Toast.makeText(getApplicationContext(), reference, LENGTH_SHORT).show();
                                         if (reference.equals("Designer")) {
                                             Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
                                             startActivity(intent);
@@ -100,8 +100,8 @@ public class DesignerSignInActivity extends AppCompatActivity {
 
                                         } else {
                                             String referenceUser = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
-                                            Log.e("Designer",referenceUser);
-                                            Toast.makeText(getApplicationContext(),referenceUser,LENGTH_SHORT).show();
+                                            Log.e("Designer", referenceUser);
+                                            Toast.makeText(getApplicationContext(), referenceUser, LENGTH_SHORT).show();
                                             if (referenceUser.equals("user")) {
                                                 Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
                                                 startActivity(intent);
@@ -109,9 +109,11 @@ public class DesignerSignInActivity extends AppCompatActivity {
                                             }
                                         }
                                     }
-                                }});}
+                                }
+                            });
                 }
+            }
 
-            });
-        }
+        });
     }
+}

@@ -50,7 +50,7 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
         holder.designer_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toDesignerDetails = new Intent(mContext,DesignersDetailActivity.class);
+                Intent toDesignerDetails = new Intent(mContext, DesignersDetailActivity.class);
                 mContext.startActivity(toDesignerDetails);
             }
         });
@@ -60,7 +60,6 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
         Glide.with(mContext).load(uhome.getImg()).into(holder.designer_img);
 
     }
-
 
 
     @Override

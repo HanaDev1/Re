@@ -16,6 +16,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name= "android:textStyle">bold</item>
+        <item name="colorControlNormal"></item>
 
 
     </style>

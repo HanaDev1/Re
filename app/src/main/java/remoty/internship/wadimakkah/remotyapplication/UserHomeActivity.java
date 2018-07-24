@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class UserHomeActivity extends AppCompatActivity {
     private List<UsersActivity> designerList;
     FirebaseDatabase database;
     DatabaseReference myRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,24 +49,23 @@ public class UserHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-
         prepareAlbums();
-
 
 
     }
 
     private void prepareAlbums() {
-        UsersActivity userAct = new UsersActivity("Sundus Ali",R.drawable.profileimg);
+        UsersActivity userAct = new UsersActivity("Sundus Ali", R.drawable.profileimg);
         designerList.add(userAct);
-        userAct = new UsersActivity("Amjad Saad",R.drawable.profileimg);
+        userAct = new UsersActivity("Amjad Saad", R.drawable.profileimg);
         designerList.add(userAct);
-        userAct = new UsersActivity("Omar ALi ",R.drawable.profileimgg);
+        userAct = new UsersActivity("Omar ALi ", R.drawable.profileimgg);
         designerList.add(userAct);
-        userAct = new UsersActivity("Hind Khaled ",R.drawable.profileimg);
+        userAct = new UsersActivity("Hind Khaled ", R.drawable.profileimg);
         designerList.add(userAct);
 
     }
+
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
@@ -106,4 +107,5 @@ public class UserHomeActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }}
+    }
+}

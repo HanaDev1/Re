@@ -14,13 +14,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
-
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context mContext;
-    private List<ProductActivity> productList;
+    private List<Product> productList;
 
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView title, count;
         public ImageView details;
 
@@ -29,69 +27,65 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewH
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.deadline);
             details = (ImageView) view.findViewById(R.id.overflow);
-
-
         }
-
-        public void showPopupMenu(View view) {
-            // inflate menu
-            PopupMenu popup = new PopupMenu(mContext, details);
-            MenuInflater inflater = popup.getMenuInflater();
-            inflater.inflate(R.menu.menu_produc_status, popup.getMenu());
-            popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-            popup.show();
-        }
-
     }
-
-    public ProductAdapter(Context mContext, List<ProductActivity> productList) {
+    public ProductAdapter(Context mContext, List<Product> productList) {
         this.mContext = mContext;
         this.productList = productList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_product_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
-
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        ProductActivity product = productList.get(position);
-        holder.title.setText(product.getProductName());
-        holder.count.setText(product.getProductDeadline() + " DEADLINE");
+        Product product = productList.get(position);
+        holder.title.setText(product.getFull_name());
+        //holder.count.setText(product.getDecription());
 
         holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showPopupMenu(view);
+                showPopupMenu(holder.details);
             }
         });
     }
 
-
-
-
+    /**
+     * Showing popup menu when tapping on 3 dots
+     */
+    private void showPopupMenu(View view) {
+        // inflate menu
+        ImageView details = (ImageView)view.findViewById(R.id.overflow);
+        PopupMenu popup = new PopupMenu(mContext, details);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_produc_status, popup.getMenu());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.show();
+    }
     /**
      * Click listener for popup menu items
      */
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
 
+        public MyMenuItemClickListener() {}
+
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.actionAccept:
-                    Toast.makeText((Context) mContext, "Accepted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Accepted", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.actionReject:
-                    Toast.makeText((Context)mContext, "Rejected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Rejected", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.actioDetails:
-                    Toast.makeText((Context)mContext, "Details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Project Details", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }
@@ -103,5 +97,4 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewH
     public int getItemCount() {
         return productList.size();
     }
-
 }
