@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import activity.DesignerSignInActivity;
+import activity.DesignerSignUpActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Ab";
     TextView alreadyAcount;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         signUpUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toDesignerSignUp = new Intent(MainActivity.this, UserSignUpActivity.class);
+                Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
                 startActivity(toDesignerSignUp);
             }
         });
@@ -55,10 +58,6 @@ public class MainActivity extends AppCompatActivity {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-
-
-//                    Intent toSinInPage = new Intent(MainActivity.this, DesignerSignInActivity.class);
-//                    startActivity(toSinInPage);
             }
         });
 

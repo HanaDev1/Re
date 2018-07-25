@@ -14,6 +14,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.DesignerHomeActivity;
+import adapter.ProductAdapter;
+
 public class ShowProjectDetails extends AppCompatActivity {
     DatabaseReference databaseReference;
 

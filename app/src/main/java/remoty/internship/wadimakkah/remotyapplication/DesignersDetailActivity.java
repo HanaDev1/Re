@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class DesignersDetailActivity extends AppCompatActivity {
     Button requestDesigner;
@@ -19,8 +18,8 @@ public class DesignersDetailActivity extends AppCompatActivity {
         requestDesigner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toDesignerRequest = new Intent(DesignersDetailActivity.this, UserRequestActivity.class);
-                startActivity(toDesignerRequest);
+//                Intent toDesignerRequest = new Intent(DesignersDetailActivity.this, UserRequestActivity.class);
+//                startActivity(toDesignerRequest);
             }
         });
 

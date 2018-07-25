@@ -1,8 +1,9 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package adapter;
 
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import remoty.internship.wadimakkah.remotyapplication.Product;
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context mContext;
@@ -46,12 +50,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.title.setText(product.getFull_name());
-        //holder.count.setText(product.getDecription());
-
-        holder.details.setOnClickListener(new View.OnClickListener() {
+        holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.details);
+                Log.d("the details menu", String.valueOf(holder.title));
+                showPopupMenu(holder.title);
             }
         });
     }
@@ -61,8 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
      */
     private void showPopupMenu(View view) {
         // inflate menu
-        ImageView details = (ImageView)view.findViewById(R.id.overflow);
-        PopupMenu popup = new PopupMenu(mContext, details);
+        PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_produc_status, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
@@ -79,13 +81,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.actionAccept:
-                    Toast.makeText(mContext, "Accepted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Accepted", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.actionReject:
-                    Toast.makeText(mContext, "Rejected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Rejected", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.actioDetails:
-                    Toast.makeText(mContext, "Project Details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Project Details", Toast.LENGTH_LONG).show();
                     return true;
                 default:
             }

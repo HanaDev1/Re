@@ -1,11 +1,12 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class DesignerFragment extends Fragment {
 

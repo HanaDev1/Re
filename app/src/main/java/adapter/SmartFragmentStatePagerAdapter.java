@@ -1,4 +1,4 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -1,4 +1,4 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import remoty.internship.wadimakkah.remotyapplication.Designer;
+import remoty.internship.wadimakkah.remotyapplication.R;
+
 public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<DesignerInfo> designerList;
+    private List<Designer> designerList;
 
-    public DesignerAdapter(Context mContext, List<DesignerInfo> designtList) {
+    public DesignerAdapter(Context mContext, List<Designer> designtList) {
         this.mContext = mContext;
         this.designerList = designtList;
     }
@@ -24,7 +27,7 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
         public MyViewHolder(View view) {
             super(view);
             fullName = (TextView) view.findViewById(R.id.fullName);
-            description = (TextView) view.findViewById(R.id.product_description);
+            //description = (TextView) view.findViewById(R.id.product_description);
 
         }}
 
@@ -38,7 +41,7 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
 
     @Override
     public void onBindViewHolder(DesignerAdapter.MyViewHolder holder, int position) {
-        DesignerInfo designer = designerList.get(position);
+        Designer designer = designerList.get(position);
         holder.fullName.setText(designer.getFullName());
         holder.description.setText(designer.getDescription());
     }

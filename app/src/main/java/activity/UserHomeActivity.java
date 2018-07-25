@@ -1,20 +1,16 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package activity;
 
-import android.app.DownloadManager;
-import android.content.Intent;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,12 +22,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.UserHomeAdapter;
+import remoty.internship.wadimakkah.remotyapplication.Product;
+import remoty.internship.wadimakkah.remotyapplication.R;
+import remoty.internship.wadimakkah.remotyapplication.Users;
+
 public class UserHomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private UserHomeAdapter adapter;
-    private List<UsersActivity> designerList;
-    FirebaseDatabase database;
+    private List<Users> designerList;
     DatabaseReference myRef;
+    private Context mContext;
+    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,32 +43,46 @@ public class UserHomeActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         designerList = new ArrayList<>();
-        adapter = new UserHomeAdapter(this, designerList);
+        adapter = new UserHomeAdapter(mContext, designerList);
+
+        //layoutManager to set cardview to recycle view
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
 
-        prepareAlbums();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference("remotyapp");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("client");
 
+        // Attach a listener to read the data at our posts reference
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+
+
+
+                        if (singleSnapshot.getValue(Users.class).getType().equals("Designer")) {
+                            Users pro = singleSnapshot.getValue(Users.class);
+                            designerList.add(pro);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
     }
-
-    private void prepareAlbums() {
-        UsersActivity userAct = new UsersActivity("Sundus Ali", R.drawable.profileimg);
-        designerList.add(userAct);
-        userAct = new UsersActivity("Amjad Saad", R.drawable.profileimg);
-        designerList.add(userAct);
-        userAct = new UsersActivity("Omar ALi ", R.drawable.profileimgg);
-        designerList.add(userAct);
-        userAct = new UsersActivity("Hind Khaled ", R.drawable.profileimg);
-        designerList.add(userAct);
-
-    }
-
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;

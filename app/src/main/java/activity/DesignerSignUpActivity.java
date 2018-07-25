@@ -1,4 +1,4 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,14 +9,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ser.std.RawSerializer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -31,6 +36,8 @@ public class DesignerSignUpActivity extends AppCompatActivity {
     EditText inputPhoneNumber;
     Button btnSignUp;
     FirebaseAuth auth;
+    RadioButton typeU, typeD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
         //inputDescription = (EditText) findViewById(R.id.DesDesignerEditText);
         btnSignUp = (Button) findViewById(R.id.DesignerSignUpBtn);
         //inputPhoneNumber = (EditText) findViewById(R.id.phoneDesignerEditText);
+
+        //user type
+        typeU = (RadioButton) findViewById(R.id.user);
+        typeD = (RadioButton) findViewById(R.id.designer);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +109,15 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                         reference.child("email").setValue(email);
 //                        reference.child("phone_number").setValue(phone);
 //                        reference.child("description").setValue(description);
-                        reference.child("Designer").setValue("Designer");
 
+                        if(typeU.isChecked()){
+                            reference.child("type").setValue("user");
+                            startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
+
+                        }else if (typeD.isChecked()){
+                            reference.child("type").setValue("Designer");
+                            startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
+                        }
 
                         if (!task.isSuccessful()) {
                             Toast.makeText(DesignerSignUpActivity.this, "Authentication failed." + task.getException(),
@@ -107,7 +125,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                                     LENGTH_SHORT).show();
                             Log.e("the error", String.valueOf(task.getException()));
                         } else {
-                            startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
+
+                            //startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
+
+
+
                             finish();
                         }
                     }

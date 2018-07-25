@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DesignerSignInActivity"
-    android:gravity="center"
-    android:background="@drawable/applicationbackground">
+    tools:context="activity.DesignerSignInActivity"
+    android:gravity="center">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

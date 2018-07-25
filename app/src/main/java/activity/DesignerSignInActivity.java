@@ -1,4 +1,4 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -71,7 +71,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
                 //Firebase auththentication instance
                 if (auth.getCurrentUser() != null) {
 
-                    startActivity(new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class));
+                    startActivity(new Intent(DesignerSignInActivity.this, UserRequestActivity.class));
                     finish();
                     //Sign In to user account using email and password ,
                     auth.signInWithEmailAndPassword(email, password)
@@ -91,10 +91,12 @@ public class DesignerSignInActivity extends AppCompatActivity {
                                     } else {
 
                                         String reference = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
+                                        Intent intent2 = new Intent(DesignerSignInActivity.this, UserRequestActivity.class);
+                                        startActivity(intent2);
                                         Log.e("Designer", reference);
                                         Toast.makeText(getApplicationContext(), reference, LENGTH_SHORT).show();
                                         if (reference.equals("Designer")) {
-                                            Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+                                            Intent intent = new Intent(DesignerSignInActivity.this, UserRequestActivity.class);
                                             startActivity(intent);
                                             finish();
 
@@ -103,7 +105,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
                                             Log.e("Designer", referenceUser);
                                             Toast.makeText(getApplicationContext(), referenceUser, LENGTH_SHORT).show();
                                             if (referenceUser.equals("user")) {
-                                                Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+                                                Intent intent = new Intent(DesignerSignInActivity.this, UserRequestActivity.class);
                                                 startActivity(intent);
                                                 finish();
                                             }

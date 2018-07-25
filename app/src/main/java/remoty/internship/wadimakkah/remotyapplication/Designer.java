@@ -1,17 +1,14 @@
 package remoty.internship.wadimakkah.remotyapplication;
 
-public class DesignerInfo {
+public class Designer {
     private String fullName;
     private String description;
 
-    public DesignerInfo(String fullName, String description) {
+    public Designer(String fullName, String description) {
         this.fullName = fullName;
         this.description = description;
     }
-
-    public DesignerInfo() {
-
-    }
+    public Designer() { }
 
     public String getFullName() {
         return fullName;

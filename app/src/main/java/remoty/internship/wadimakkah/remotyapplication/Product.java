@@ -1,14 +1,21 @@
 package remoty.internship.wadimakkah.remotyapplication;
 
 public class Product {
-
+//product
     private String productName;
     private int productDeadline;
+    private String productID;
+    private String productStatus;
+    private String productDetails;
+    private String productSteps;
+
+
     public String full_name;
     private String decription;
     private String email;
     private String phone_number;
     private String user;
+
 
     public String getFull_name() {
         return full_name;
@@ -21,8 +28,22 @@ public class Product {
     public String getDecription() {
         return decription;
     }
-// Default constructor required for calls to
-    // DataSnapshot.getValue(Product.class)
+
+    public String getProductID() { return productID; }
+
+    public void setProductID(String productID) { this.productID = productID; }
+
+    public String getProductStatus() { return productStatus; }
+
+    public void setProductStatus(String productStatus) { this.productStatus = productStatus; }
+
+    public String getProductDetails() { return productDetails; }
+
+    public void setProductDetails(String productDetails) { this.productDetails = productDetails; }
+
+    public String getProductSteps() { return productSteps; }
+
+    public void setProductSteps(String productSteps) { this.productSteps = productSteps; }
 
     public Product() { }
 

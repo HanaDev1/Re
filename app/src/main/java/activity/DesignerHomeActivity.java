@@ -1,4 +1,4 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package activity;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -27,8 +27,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.ProductAdapter;
+import fragment.DesignerFragment;
+import remoty.internship.wadimakkah.remotyapplication.Product;
+import remoty.internship.wadimakkah.remotyapplication.R;
+import adapter.SmartFragmentStatePagerAdapter;
+
+import static android.app.PendingIntent.getActivity;
+
 public class DesignerHomeActivity extends AppCompatActivity {
-    public static final String Firebase_Server_URL = "https://remotyapp.firebaseio.com/";
     //MyPagerAdapter adapterViewPager;
     private SmartFragmentStatePagerAdapter adapterViewPager;
 
@@ -93,17 +100,18 @@ public class DesignerHomeActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("client");
-         // Attach a listener to read the data at our posts reference
+        // Attach a listener to read the data at our posts reference
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Product pro = singleSnapshot.getValue(Product.class);
                     productList.add(pro);
                     adapter.notifyDataSetChanged();
                 }
-                 }
+            }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
@@ -149,13 +157,6 @@ public class DesignerHomeActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
     //use fragment and select which page will use it
 
     public static class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
@@ -197,6 +198,14 @@ public class DesignerHomeActivity extends AppCompatActivity {
                 return "Chat";
 
         }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 }
 
