@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -35,7 +36,6 @@ public class UserHomeActivity extends AppCompatActivity {
     private Context mContext;
     private DatabaseReference databaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +44,8 @@ public class UserHomeActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         designerList = new ArrayList<>();
         adapter = new UserHomeAdapter(mContext, designerList);
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
         //layoutManager to set cardview to recycle view
-
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setLayoutManager(mLayoutManager);
@@ -54,27 +53,20 @@ public class UserHomeActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("client");
-
+        Query query = databaseReference.orderByChild("type").equalTo("Designer");
         // Attach a listener to read the data at our posts reference
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-
-
-
-                        if (singleSnapshot.getValue(Users.class).getType().equals("Designer")) {
-                            Users pro = singleSnapshot.getValue(Users.class);
-                            designerList.add(pro);
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-
+                        Users user = singleSnapshot.getValue(Users.class);
+                        designerList.add(user);
+                        adapter.notifyDataSetChanged();
+                    }}
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -82,7 +74,12 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+        //CardView onClick ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     }
+
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;

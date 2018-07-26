@@ -1,6 +1,8 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,8 +17,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import activity.DesignersDetailActivity;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
+import remoty.internship.wadimakkah.remotyapplication.ShowProjectDetails;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context mContext;
@@ -25,12 +29,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView title, count;
         public ImageView details;
+        public CardView card_view;
 
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.deadline);
             details = (ImageView) view.findViewById(R.id.overflow);
+            card_view = (CardView)  view.findViewById(R.id.card_viewD);
+
+
+            card_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    Intent a = new Intent (view.getContext(), ShowProjectDetails.class);
+                    view.getContext().startActivity(a);
+
+                }
+            });
         }
     }
     public ProductAdapter(Context mContext, List<Product> productList) {
@@ -49,12 +65,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Product product = productList.get(position);
-        holder.title.setText(product.getFull_name());
+        holder.title.setText(product.getProduct_name());
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("the details menu", String.valueOf(holder.title));
-                showPopupMenu(holder.title);
+                //showPopupMenu(holder.title);
             }
         });
     }
@@ -62,14 +78,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     /**
      * Showing popup menu when tapping on 3 dots
      */
-    private void showPopupMenu(View view) {
-        // inflate menu
-        PopupMenu popup = new PopupMenu(mContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_produc_status, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
-    }
+//    private void showPopupMenu(View view) {
+//        // inflate menu
+//        PopupMenu popup = new PopupMenu(mContext, view);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.menu_produc_status, popup.getMenu());
+//        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+//        popup.show();
+//    }
     /**
      * Click listener for popup menu items
      */

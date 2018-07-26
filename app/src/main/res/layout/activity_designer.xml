@@ -3,97 +3,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.DesignerSignUpActivity"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    tools:context="activity.DesignerSignUpActivity">
 
     <TextView
         android:id="@+id/signText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signUpbutton"
         android:fontFamily="@font/remotymaintitle"
-        android:textSize="36sp"
-       android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:text="@string/signUpbutton"
+        android:textSize="36sp" />
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/nameDesignerEditText"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/buttonColor"
+        android:fontFamily="@font/titlefont"
         android:hint="@string/signFullNameEdit"
-        android:textStyle="bold"
-        android:fontFamily="@font/titlefont"
-        style="@style/EditText"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/buttonColor"/>
+        android:textStyle="bold" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/emailDesignerEditText"
-        android:hint="@string/signEmailEdit"
-        android:textStyle="bold"
-        android:fontFamily="@font/titlefont"
         style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/buttonColor"/>
+        android:backgroundTint="@color/buttonColor"
+        android:fontFamily="@font/titlefont"
+        android:hint="@string/signEmailEdit"
+        android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/passDesignerEditText"
+        style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/passDesignerEditText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/buttonColor"
+        android:fontFamily="@font/titlefont"
         android:hint="@string/signPasswordEdit"
         android:inputType="textPassword"
-        android:textStyle="bold"
-        android:fontFamily="@font/titlefont"
-        style="@style/EditText"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/buttonColor"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
+
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true">
+            android:clickable="true"
+            android:orientation="horizontal">
+
             <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:backgroundTint="@color/buttonColor"
                 android:id="@+id/user"
-                android:checked="true"/>
-            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Designer"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:backgroundTint="@color/buttonColor"
-                android:id="@+id/designer"/>
+                android:checked="true"
+                android:text="User" />
+
+            <RadioButton
+                android:id="@+id/designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Designer" />
         </RadioGroup>
 
     </LinearLayout>
+
     <Button
+        android:id="@+id/DesignerSignUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/DesignerSignUpBtn"
-        android:text="@string/signUpbutton"
-        android:fontFamily="@font/titlefont"
-        android:textSize="20sp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
+        android:background="@drawable/button_n"
+        android:fontFamily="@font/titlefont"
+        android:text="@string/signUpbutton"
         android:textColor="@color/lcolor"
-        android:background="@drawable/button_n"/>
+        android:textSize="20sp" />
 </LinearLayout>

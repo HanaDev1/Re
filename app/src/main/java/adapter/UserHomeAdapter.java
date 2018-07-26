@@ -1,20 +1,21 @@
 package adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
+import android.widget.Toast;
 
 import java.util.List;
 
-import remoty.internship.wadimakkah.remotyapplication.DesignersDetailActivity;
+import activity.DesignersDetailActivity;
+import activity.UserHomeActivity;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
 
@@ -26,15 +27,28 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView designer_name;
         public ImageView designer_img;
-        public RadioButton type;
+        CardView card_view ;
 
-        public MyViewHolder(View view) {
+
+
+        public MyViewHolder(final View view) {
             super(view);
             designer_name = (TextView) view.findViewById(R.id.designer_name);
             designer_img = (ImageView) view.findViewById(R.id.designer_img);
-            type = (RadioButton) view.findViewById(R.id.user);
+            card_view = (CardView) view.findViewById(R.id.card_view);
+
+            card_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent a = new Intent (view.getContext(),DesignersDetailActivity.class);
+                    view.getContext().startActivity(a);
+
+                }
+            });
+
         }
     }
+
     public UserHomeAdapter(Context mContext, List<Users> userList) {
         this.mContext = mContext;
         this.designerList = userList;
@@ -51,11 +65,11 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Users uhome = designerList.get(position);
         holder.designer_name.setText(uhome.getFull_name());
-        holder.type.setText("Designer");
 
 
 //        Glide.with(mContext).load(uhome.getImg()).into(holder.designer_img);
     }
+
     @Override
     public int getItemCount() {
         return designerList.size();

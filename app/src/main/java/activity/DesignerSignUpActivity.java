@@ -30,14 +30,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
     //initilaztion views
     EditText inputEmailUp;
     EditText inputPasswordUp;
-    EditText inputCPasswordUp;
     EditText inputFullNameUp;
-    EditText inputDescription;
-    EditText inputPhoneNumber;
     Button btnSignUp;
     FirebaseAuth auth;
     RadioButton typeU, typeD;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +43,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
 
         inputEmailUp = (EditText) findViewById(R.id.emailDesignerEditText);
         inputPasswordUp = (EditText) findViewById(R.id.passDesignerEditText);
-        //inputCPasswordUp = (EditText) findViewById(R.id.CpassDesignerEditText);
+
         inputFullNameUp = (EditText) findViewById(R.id.nameDesignerEditText);
-        //inputDescription = (EditText) findViewById(R.id.DesDesignerEditText);
+
         btnSignUp = (Button) findViewById(R.id.DesignerSignUpBtn);
-        //inputPhoneNumber = (EditText) findViewById(R.id.phoneDesignerEditText);
+
 
         //user type
         typeU = (RadioButton) findViewById(R.id.user);
@@ -64,12 +60,9 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                 //trim to remove all spaces
                 final String email = inputEmailUp.getText().toString().trim();
                 String password = inputPasswordUp.getText().toString().trim();
-//                String confirmPassword = inputCPasswordUp.getText().toString().trim();
-                final String fullName = inputFullNameUp.getText().toString().trim();
-               // final String description = inputDescription.getText().toString().trim();
-               // final String phone = inputPhoneNumber.getText().toString().trim();
 
-                //checking user inputs, if it is empty or not and return response
+                final String fullName = inputFullNameUp.getText().toString().trim();
+
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter Email Adderss !", LENGTH_SHORT).show();
                     return;
@@ -79,24 +72,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
                     return;
                 }
-//                //checking user password length, must be longer than 6 characters.
-//                if (!password.equals(confirmPassword)) {
-//                    Toast.makeText(getApplicationContext(), "Password is not match ?!", LENGTH_SHORT).show();
-//                    return;
-//                }
-
                 if (TextUtils.isEmpty(fullName)) {
                     Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();
                     return;
                 }
-//                if (TextUtils.isEmpty(description)) {
-//                    Toast.makeText(getApplicationContext(), "Write about yourself !", LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(phone)) {
-//                    Toast.makeText(getApplicationContext(), "Write your phone number !", LENGTH_SHORT).show();
-//                    return;
-//                }
+
                 //create a new user in database ,
 
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(DesignerSignUpActivity.this, new OnCompleteListener<AuthResult>() {
@@ -107,14 +87,12 @@ public class DesignerSignUpActivity extends AppCompatActivity {
 
                         reference.child("full_name").setValue(fullName);
                         reference.child("email").setValue(email);
-//                        reference.child("phone_number").setValue(phone);
-//                        reference.child("description").setValue(description);
 
-                        if(typeU.isChecked()){
+                        if (typeU.isChecked()) {
                             reference.child("type").setValue("user");
                             startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
 
-                        }else if (typeD.isChecked()){
+                        } else if (typeD.isChecked()) {
                             reference.child("type").setValue("Designer");
                             startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
                         }
@@ -125,17 +103,10 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                                     LENGTH_SHORT).show();
                             Log.e("the error", String.valueOf(task.getException()));
                         } else {
-
-                            //startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
-
-
-
                             finish();
                         }
                     }
                 });
-
-
             }
         });
     }

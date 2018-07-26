@@ -42,7 +42,7 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     @Override
     public void onBindViewHolder(DesignerAdapter.MyViewHolder holder, int position) {
         Designer designer = designerList.get(position);
-        holder.fullName.setText(designer.getFullName());
+        holder.fullName.setText(designer.getFull_name());
         holder.description.setText(designer.getDescription());
     }
 

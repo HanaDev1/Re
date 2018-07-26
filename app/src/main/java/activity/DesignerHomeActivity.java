@@ -18,10 +18,12 @@ import android.widget.Toast;
 
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -46,9 +48,10 @@ public class DesignerHomeActivity extends AppCompatActivity {
     private Context mContext;
     Firebase firebase;
     Product productItems;
+    FirebaseAuth auth;
 
     private DatabaseReference databaseReference;
-
+    private DatabaseReference databaseReference2;
 
     //root database
     public static final String Database_Path = "client";
@@ -90,16 +93,21 @@ public class DesignerHomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setLayoutManager(mLayoutManager);
-
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         recyclerView.setAdapter(adapter);
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //Retrieving data from firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("client");
+        //from designer side like a designer
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("products");
+
+
+        //from client side as a user
+
+        //client.productId equals to product.productId
+
         // Attach a listener to read the data at our posts reference
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -117,6 +125,8 @@ public class DesignerHomeActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     /**

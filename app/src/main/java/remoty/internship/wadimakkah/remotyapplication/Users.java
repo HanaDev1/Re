@@ -3,18 +3,10 @@ package remoty.internship.wadimakkah.remotyapplication;
 public class Users {
     private String full_name;
     private int img;
-    private String type;
 
 
-    public String getType() {
-        return type;
+    public Users() {
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Users() { }
 
     public String getFull_name() {
         return full_name;
@@ -31,4 +23,6 @@ public class Users {
     public void setImg(int img) {
         this.img = img;
     }
+
+
 }
