@@ -53,6 +53,10 @@ public class UserHomeActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");

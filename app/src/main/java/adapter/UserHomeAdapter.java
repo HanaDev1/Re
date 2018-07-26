@@ -16,6 +16,7 @@ import java.util.List;
 
 import activity.DesignersDetailActivity;
 import activity.UserHomeActivity;
+import remoty.internship.wadimakkah.remotyapplication.Designer;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
 
@@ -28,6 +29,7 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
         public TextView designer_name;
         public ImageView designer_img;
         CardView card_view ;
+        Designer designer;
 
 
 
@@ -40,12 +42,24 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
             card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent a = new Intent (view.getContext(),DesignersDetailActivity.class);
+                    Intent a = new Intent(view.getContext(), DesignersDetailActivity.class);
+                    a.putExtra("full_name",designer_name.getText());
                     view.getContext().startActivity(a);
 
                 }
             });
-
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // get position
+                    int pos = getAdapterPosition();
+                    // check if item still exists
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Users clickedDataItem = designerList.get(pos);
+                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getFull_name(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 

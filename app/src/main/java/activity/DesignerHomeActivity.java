@@ -1,6 +1,8 @@
 package activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.v4.app.Fragment;
@@ -12,8 +14,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
@@ -34,6 +38,7 @@ import fragment.DesignerFragment;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import adapter.SmartFragmentStatePagerAdapter;
+import remoty.internship.wadimakkah.remotyapplication.dialogeActivity;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -49,6 +54,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
     Firebase firebase;
     Product productItems;
     FirebaseAuth auth;
+    EditText desc;
 
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReference2;
@@ -60,6 +66,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_home);
+        desc = (EditText) findViewById(R.id.designerDesc) ;
 
         //View pager
         ViewPager vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
@@ -83,6 +90,25 @@ public class DesignerHomeActivity extends AppCompatActivity {
             }
         });
 
+        new AlertDialog.Builder(this)
+                .setTitle("Write About yourself")
+                .setView(desc)
+                .setMessage("For more connection .....")
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("MainActivity", "Sending atomic bombs to Jupiter");
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Log.d("MainActivity", "Aborting mission...");
+                    }
+                }).show();
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         productList = new ArrayList<>();
@@ -102,8 +128,6 @@ public class DesignerHomeActivity extends AppCompatActivity {
         database.getReference("remotyapp");
         //from designer side like a designer
         databaseReference = FirebaseDatabase.getInstance().getReference().child("products");
-
-
         //from client side as a user
 
         //client.productId equals to product.productId

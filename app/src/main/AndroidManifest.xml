@@ -12,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name="activity.DesignerHomeActivity">
+        <activity android:name="activity.DesignerSignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="activity.DesignerSignUpActivity" />
         <activity android:name="activity.UserHomeActivity" />
+        <activity android:name="activity.DesignerHomeActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -31,7 +31,8 @@
         <activity android:name="activity.DesignersDetailActivity" />
         <activity android:name=".ShowProjectDetails" />
         <activity android:name="activity.ProductTrackActivity" />
-        <activity android:name="activity.UserRequestActivity"></activity>
+        <activity android:name="activity.UserRequestActivity" />
+        <activity android:name=".dialogeActivity"></activity>
     </application>
 
 </manifest>
