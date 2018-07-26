@@ -1,8 +1,6 @@
 package activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.v4.app.Fragment;
@@ -14,7 +12,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
@@ -27,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -38,7 +34,6 @@ import fragment.DesignerFragment;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import adapter.SmartFragmentStatePagerAdapter;
-import remoty.internship.wadimakkah.remotyapplication.dialogeActivity;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -66,7 +61,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_home);
-        desc = (EditText) findViewById(R.id.designerDesc) ;
+        //desc = (EditText) findViewById(R.id.designerDesc);
 
         //View pager
         ViewPager vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
@@ -89,25 +84,6 @@ public class DesignerHomeActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
-        new AlertDialog.Builder(this)
-                .setTitle("Write About yourself")
-                .setView(desc)
-                .setMessage("For more connection .....")
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("MainActivity", "Sending atomic bombs to Jupiter");
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        Log.d("MainActivity", "Aborting mission...");
-                    }
-                }).show();
-
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -151,7 +127,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    }
+}
 
     /**
      * RecyclerView item decoration - give equal margin around grid item

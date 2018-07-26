@@ -12,14 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name="activity.DesignerSignUpActivity">
+        <activity android:name="activity.UserHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="activity.UserHomeActivity" />
+        <activity android:name="activity.DesignerSignUpActivity" />
         <activity android:name="activity.DesignerHomeActivity" />
         <activity
             android:name=".MainActivity"

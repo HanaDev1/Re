@@ -26,8 +26,8 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            fullName = (TextView) view.findViewById(R.id.fullName);
-            //description = (TextView) view.findViewById(R.id.product_description);
+//            fullName = (TextView) view.findViewById(R.id.dName);
+//            description = (TextView) view.findViewById(R.id.product_description);
 
         }}
 
@@ -42,8 +42,8 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     @Override
     public void onBindViewHolder(DesignerAdapter.MyViewHolder holder, int position) {
         Designer designer = designerList.get(position);
-        holder.fullName.setText(designer.getFull_name());
-        holder.description.setText(designer.getDescription());
+//        holder.fullName.setText(designer.getFull_name());
+//        holder.description.setText(designer.getDescription());
     }
 
     @Override

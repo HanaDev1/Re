@@ -71,20 +71,29 @@
                 android:id="@+id/user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:backgroundTint="@color/buttonColor"
                 android:checked="true"
                 android:text="User" />
 
             <RadioButton
-                android:id="@+id/designer"
+                android:id="@+id/freeLance_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Designer" />
+                android:text="Freelancer/Company " />
+
+            <RadioButton
+                android:id="@+id/consiltant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Consltant" />
         </RadioGroup>
 
     </LinearLayout>

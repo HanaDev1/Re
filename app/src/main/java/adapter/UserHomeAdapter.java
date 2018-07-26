@@ -48,18 +48,18 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
 
                 }
             });
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // get position
-                    int pos = getAdapterPosition();
-                    // check if item still exists
-                    if (pos != RecyclerView.NO_POSITION) {
-                        Users clickedDataItem = designerList.get(pos);
-                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getFull_name(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // get position
+//                    int pos = getAdapterPosition();
+//                    // check if item still exists
+//                    if (pos != RecyclerView.NO_POSITION) {
+//                        Users clickedDataItem = designerList.get(pos);
+//                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getFull_name(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
         }
     }
 

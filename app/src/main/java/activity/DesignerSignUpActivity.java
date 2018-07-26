@@ -51,7 +51,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
 
         //user type
         typeU = (RadioButton) findViewById(R.id.user);
-        typeD = (RadioButton) findViewById(R.id.designer);
+        typeD = (RadioButton) findViewById(R.id.freeLance_company);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                             startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
 
                         } else if (typeD.isChecked()) {
-                            reference.child("type").setValue("Designer");
+                            reference.child("type").setValue("freelancer_company");
+                            startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
+
+                        }else if (typeD.isChecked()) {
+                            reference.child("type").setValue("consultant");
                             startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
                         }
 
