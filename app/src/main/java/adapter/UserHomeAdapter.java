@@ -3,6 +3,7 @@ package adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,12 +25,14 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
 
     private Context mContext;
     private List<Users> designerList;
+    String email;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView designer_name;
         public ImageView designer_img;
         CardView card_view ;
         Designer designer;
+
 
 
 
@@ -43,6 +46,14 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
                 @Override
                 public void onClick(View v) {
                     Intent a = new Intent(view.getContext(), DesignersDetailActivity.class);
+
+                    //getting email to designer home
+
+                    Bundle bundle =new Bundle();
+                    bundle.putString("full_name",designer_name.getText().toString().trim());
+                    bundle.putString("email",email);
+                    a.putExtras(bundle);
+
                     a.putExtra("full_name",designer_name.getText());
                     view.getContext().startActivity(a);
 
@@ -79,6 +90,8 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Users uhome = designerList.get(position);
         holder.designer_name.setText(uhome.getFull_name());
+
+        email =uhome.getEmail();
 
 
 //        Glide.with(mContext).load(uhome.getImg()).into(holder.designer_img);

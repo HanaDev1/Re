@@ -29,7 +29,7 @@ public class UserRequestActivity extends AppCompatActivity {
     ImageView uploadFile;
     TextView upload;
     FirebaseAuth auth;
-    String name, details;
+    String name, details, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,12 @@ public class UserRequestActivity extends AppCompatActivity {
     }
 
     public void send_request() {
+        Bundle bundle = getIntent().getExtras();
+        email=bundle.getString("DEmail");
+
         name = pName.getText().toString().trim();
         details = pdesc.getText().toString().trim();
+
         rf = FirebaseDatabase.getInstance().getReference("client");
 
         String productID = rf.push().getKey();
@@ -60,6 +64,9 @@ public class UserRequestActivity extends AppCompatActivity {
         DatabaseReference allProducts = FirebaseDatabase.getInstance().getReference("products").child(productID);
         allProducts.child("product_name").setValue(name);
         allProducts.child("product_details").setValue(details);
+        allProducts.child("designer_email").setValue(email);
+
+
         Toast.makeText(getApplicationContext(), "Done !!!!!!", LENGTH_SHORT).show();
 
 

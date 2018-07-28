@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -50,18 +51,19 @@ public class DesignerHomeActivity extends AppCompatActivity {
     Product productItems;
     FirebaseAuth auth;
     EditText desc;
+    String email;
 
     private DatabaseReference databaseReference;
-    private DatabaseReference databaseReference2;
 
-    //root database
-    public static final String Database_Path = "client";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_home);
-        //desc = (EditText) findViewById(R.id.designerDesc);
+
+        Bundle bundle = getIntent().getExtras();
+        email=bundle.getString("email");
+
 
         //View pager
         ViewPager vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
@@ -73,7 +75,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Toast.makeText(DesignerHomeActivity.this,
-                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+                        getString(R.string.selectedPgePos) + position, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -99,17 +101,20 @@ public class DesignerHomeActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         //Retrieving data from firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");
         //from designer side like a designer
         databaseReference = FirebaseDatabase.getInstance().getReference().child("products");
+        Query query = databaseReference.orderByChild("Designer_email").equalTo(email);
         //from client side as a user
 
         //client.productId equals to product.productId
 
         // Attach a listener to read the data at our posts reference
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

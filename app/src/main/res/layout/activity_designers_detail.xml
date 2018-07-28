@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Designer profile "
+        android:text="@string/designer_profile"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textSize="20sp"
@@ -34,7 +34,6 @@
         android:id="@+id/dName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Omar Ali"
         android:layout_below="@id/dImg"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
@@ -51,7 +50,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:gravity="center"
-        android:text="i am android developer and logo designer with bachelor degree in computer science from UQU"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -63,8 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="145dp"
         android:gravity="center"
-        android:text="Email: ali_12@gmail.com"
-        android:textSize="20sp"
+       android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -75,7 +72,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="104dp"
         android:gravity="center"
-        android:text="Portfolio Link"
+        android:text="@string/portfolio_link"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -84,7 +81,7 @@
         android:id="@+id/requestBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Request"
+        android:text="@string/request"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:layout_alignParentBottom="true"
@@ -96,7 +93,7 @@
         android:id="@+id/consultBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="consult"
+        android:text="@string/consult"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:layout_alignParentBottom="true"

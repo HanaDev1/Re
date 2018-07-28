@@ -28,7 +28,7 @@ public class DesignersDetailActivity extends AppCompatActivity {
     Button designerConslt;
     Bundle bundle;
     Intent a;
-    String name;
+    String name, email;
     FirebaseDatabase firebasedatabase;
     DatabaseReference dataRefrence;
     private List<Users> designerList;
@@ -44,26 +44,34 @@ public class DesignersDetailActivity extends AppCompatActivity {
         designerDesc = (TextView)findViewById(R.id.dAbout);
 
         Designer designer = new Designer();
-
-
         designerDesc.setText(designer.getDescription());
-
-
         designerConslt = (Button) findViewById(R.id.consultBtn);
+
+
+        bundle = getIntent().getExtras();
+        name = bundle.getString("full_name");
+        email=bundle.getString("email");
+        designerName.setText(name);
+
 
         requestDesigner = (Button) findViewById(R.id.requestBtn);
         requestDesigner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toDesignerRequest = new Intent(DesignersDetailActivity.this, UserRequestActivity.class);
+
+                Bundle bundle =new Bundle();
+                bundle.putString("email",email);
+                toDesignerRequest.putExtras(bundle);
                 startActivity(toDesignerRequest);
+
             }
         });
 
 // Designer full name from card view to designer details activity
-        bundle = getIntent().getExtras();
-        name = bundle.getString("full_name");
-        designerName.setText(name);
+//        bundle = getIntent().getExtras();
+//        name = bundle.getString("full_name");
+//        designerName.setText(name);
 
 // get designer description from firebase to designer detials activity
 //        final FirebaseDatabase database = FirebaseDatabase.getInstance();

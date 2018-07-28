@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name="activity.UserHomeActivity">
+        <activity android:name="activity.DesignerSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,13 +26,13 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="activity.ResetPassActivity" />
-        <activity android:name="activity.DesignerSignInActivity" />
+        <activity android:name="activity.UserHomeActivity" />
         <activity android:name="activity.PassResetActivity" />
         <activity android:name="activity.DesignersDetailActivity" />
         <activity android:name=".ShowProjectDetails" />
         <activity android:name="activity.ProductTrackActivity" />
         <activity android:name="activity.UserRequestActivity" />
-        <activity android:name=".dialogeActivity"></activity>
+        <activity android:name=".ProductDetailsAcvivity"></activity>
     </application>
 
 </manifest>

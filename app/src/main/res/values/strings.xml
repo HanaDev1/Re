@@ -46,5 +46,19 @@
     <string name="backdrop_subtitle">Work Hard</string>
     <string name="forgetPass">Forget Password ? </string>
     <string name="backButton">Back</string>
+    <string name="add_step_here">Add step here</string>
+    <string name="user">User</string>
+    <string name="freelancer_company">Freelancer/Company</string>
+    <string name="consltant">Consltant</string>
+    <string name="designer_profile">Designer profile</string>
+    <string name="portfolio_link">Portfolio Link</string>
+    <string name="request">Request</string>
+    <string name="consult">consult</string>
+    <string name="request_product">Request product</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_description">Product Description</string>
+    <string name="upload_file">Upload File</string>
+    <string name="submit2">submit</string>
+    <string name="selectedPgePos">Selected page position:</string>
 
 </resources>

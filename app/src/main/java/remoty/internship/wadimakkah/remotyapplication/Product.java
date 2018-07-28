@@ -5,6 +5,16 @@ public class Product {
     private String product_name;
     private String id;
     private String product_details;
+    private String Designer_email;
+
+
+    public String getDesigner_email() {
+        return Designer_email;
+    }
+
+    public void setDesigner_email(String designer_email) {
+        Designer_email = designer_email;
+    }
 
     public String getProduct_name() {
         return product_name;

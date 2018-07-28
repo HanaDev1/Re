@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Request product"
+            android:text="@string/request_product"
             android:textSize="20sp"
             android:fontFamily="@font/remotymaintitle" />
 
@@ -30,7 +30,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="40dp"
-            android:hint="Product Name"
+            android:hint="@string/product_name"
             android:fontFamily="@font/titlefont"
             android:textSize="16sp"/>
 
@@ -42,7 +42,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:autoSizeMaxTextSize="20dp"
-            android:hint="Product Description"
+            android:hint="@string/product_description"
             android:fontFamily="@font/titlefont"
             android:textSize="16sp"/>
 
@@ -57,7 +57,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="40dp"
-                android:text="Upload File"
+                android:text="@string/upload_file"
                 android:fontFamily="@font/titlefont"
                 android:id="@+id/uploadfile"
                 android:textSize="16sp"/>
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
-            android:text="submit"
+            android:text="@string/submit2"
             android:fontFamily="@font/titlefont"
             android:background="@drawable/button_n"
             android:textSize="16sp"/>

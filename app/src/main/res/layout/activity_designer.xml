@@ -75,7 +75,7 @@
                 android:layout_marginRight="10dp"
                 android:backgroundTint="@color/buttonColor"
                 android:checked="true"
-                android:text="User" />
+                android:text="@string/user" />
 
             <RadioButton
                 android:id="@+id/freeLance_company"
@@ -84,7 +84,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Freelancer/Company " />
+                android:text="@string/freelancer_company" />
 
             <RadioButton
                 android:id="@+id/consiltant"
@@ -93,7 +93,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Consltant" />
+                android:text="@string/consltant" />
         </RadioGroup>
 
     </LinearLayout>

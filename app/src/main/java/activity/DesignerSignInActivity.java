@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -29,6 +30,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView resetPass;
     FirebaseAuth auth;
+    Product designerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,9 @@ public class DesignerSignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //get user inputs
-                String email = inputEmail.getText().toString();
+                final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
+
 
                 //checking user inputs, if it is empty or not and return response
                 if (TextUtils.isEmpty(email)) {
@@ -71,7 +74,12 @@ public class DesignerSignInActivity extends AppCompatActivity {
                 //Firebase auththentication instance
                 if (auth.getCurrentUser() != null) {
 
-                    startActivity(new Intent(DesignerSignInActivity.this, UserRequestActivity.class));
+                    Intent intent2 = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+                    Bundle bundle =new Bundle();
+                    bundle.putString("email",email);
+                    intent2.putExtras(bundle);
+                    startActivity(intent2);
+
                     finish();
                     //Sign In to user account using email and password ,
                     auth.signInWithEmailAndPassword(email, password)
@@ -91,25 +99,23 @@ public class DesignerSignInActivity extends AppCompatActivity {
                                     } else {
 
                                         String reference = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
-                                        Intent intent2 = new Intent(DesignerSignInActivity.this, UserRequestActivity.class);
-                                        startActivity(intent2);
-                                        Log.e("Designer", reference);
-                                        Toast.makeText(getApplicationContext(), reference, LENGTH_SHORT).show();
-                                        if (reference.equals("Designer")) {
-                                            Intent intent = new Intent(DesignerSignInActivity.this, UserRequestActivity.class);
-                                            startActivity(intent);
-                                            finish();
 
-                                        } else {
-                                            String referenceUser = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
-                                            Log.e("Designer", referenceUser);
-                                            Toast.makeText(getApplicationContext(), referenceUser, LENGTH_SHORT).show();
-                                            if (referenceUser.equals("user")) {
-                                                Intent intent = new Intent(DesignerSignInActivity.this, UserRequestActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }
+
+//                                        if (reference.equals("Designer")) {
+//                                            Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+//                                            startActivity(intent);
+//                                            finish();
+//
+//                                        } else {
+//                                            String referenceUser = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
+//                                            Log.e("Designer", referenceUser);
+//                                            Toast.makeText(getApplicationContext(), referenceUser, LENGTH_SHORT).show();
+//                                            if (referenceUser.equals("user")) {
+//                                                Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+//                                                startActivity(intent);
+//                                                finish();
+//                                            }
+//                                        }
                                     }
                                 }
                             });
