@@ -16,10 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import remoty.internship.wadimakkah.remotyapplication.Designer;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
+import remoty.internship.wadimakkah.remotyapplication.Users;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -30,7 +38,10 @@ public class DesignerSignInActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView resetPass;
     FirebaseAuth auth;
-    Product designerEmail;
+    Product designerType;
+    DatabaseReference databaseReference;
+    String email, password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +67,8 @@ public class DesignerSignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //get user inputs
-                final String email = inputEmail.getText().toString();
-                final String password = inputPassword.getText().toString();
+                email = inputEmail.getText().toString();
+                password = inputPassword.getText().toString();
 
 
                 //checking user inputs, if it is empty or not and return response
@@ -70,58 +81,100 @@ public class DesignerSignInActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
                     return;
                 }
-                auth = FirebaseAuth.getInstance();
-                //Firebase auththentication instance
-                if (auth.getCurrentUser() != null) {
 
-                    Intent intent2 = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
-                    Bundle bundle =new Bundle();
-                    bundle.putString("email",email);
-                    intent2.putExtras(bundle);
-                    startActivity(intent2);
-
-                    finish();
-                    //Sign In to user account using email and password ,
-                    auth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    // If sign in fails, display a message to the user. If sign in succeeds
-                                    // the auth state listener will be notified and logic to handle the
-                                    // signed in user can be handled in the listener.
-
-                                    if (!task.isSuccessful()) {
-                                        if (password.length() < 6) {
-                                            inputPassword.setError("your password is too short");
-                                        } else {
-                                            Toast.makeText(DesignerSignInActivity.this, "Authenticaion faild ", Toast.LENGTH_LONG).show();
-                                        }
-                                    } else {
-
-                                        String reference = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
-
-
-//                                        if (reference.equals("Designer")) {
-//                                            Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
-//                                            startActivity(intent);
-//                                            finish();
+                SignInButton();
+//                auth = FirebaseAuth.getInstance();
+//                //Firebase auththentication instance
+//                if (auth.getCurrentUser() != null) {
+//                    //Sign In to user account using email and password ,
+//                    auth.signInWithEmailAndPassword(email, password)
+//                            .addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<AuthResult> task) {
+//                                    // If sign in fails, display a message to the user. If sign in succeeds
+//                                    // the auth state listener will be notified and logic to handle the
+//                                    // signed in user can be handled in the listener.
 //
+//                                    if (!task.isSuccessful()) {
+//                                        if (password.length() < 6) {
+//                                            inputPassword.setError("your password is too short");
 //                                        } else {
-//                                            String referenceUser = FirebaseDatabase.getInstance().getReference("client").getRoot().getKey();
-//                                            Log.e("Designer", referenceUser);
-//                                            Toast.makeText(getApplicationContext(), referenceUser, LENGTH_SHORT).show();
-//                                            if (referenceUser.equals("user")) {
+//                                            Toast.makeText(DesignerSignInActivity.this, "Authenticaion faild ", Toast.LENGTH_LONG).show();
+//                                            finish();
+//                                        }
+//                                    } else {
+//
+//                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client");
+//                                        Query query = reference.child(auth.getUid()).orderByChild("type");
+//                                        if (query.equals("user")) {
+//
+//                                            Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+//                                            startActivity(intent);
+//                                            //finish();
+//                                        }else{
+////
 //                                                Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
 //                                                startActivity(intent);
-//                                                finish();
-//                                            }
+//                                                //finish();
+//                                            //}
 //                                        }
-                                    }
-                                }
-                            });
+//                                    }
+//                                }
+//                            });
+//
+//
+//                    //Intent intent2 = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+//
+////                    Bundle bundle =new Bundle();
+////                    bundle.putString("emails",email);
+////                    intent2.putExtras(bundle);
+////                    startActivity(intent2);
+//
+//                    finish();
+            }
+
+
+        });
+    }
+
+    public void SignInButton() {
+//        FirebaseUser user = auth.getCurrentUser();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("client");
+        ref.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot userSnap : dataSnapshot.getChildren()) {
+
+                    if (userSnap.child("type").getValue(String.class).equals("freelancer_company")) {
+                        Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email", email);
+                        intent.putExtras(bundle);
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
+                        startActivity(intent);
+                        //progressBar4.setVisibility(View.GONE);
+
+
+                    } else {
+                        Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
+                        startActivity(intent);
+                        // progressBar4.setVisibility(View.GONE);
+
+
+                    }
+
+
                 }
             }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     private Context mContext;
     private List<Product> designerList;
     CardView card_view ;
+    String type;
 
 
     public DesignerAdapter(Context mContext, List<Product> designtList) {
@@ -32,10 +34,12 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         //public TextView fullName, description;
         public TextView designe_email;
+        public RadioButton uType;
 
         public MyViewHolder(View view) {
             super(view);
             designe_email = (TextView) view.findViewById(R.id.dName);
+            uType = (RadioButton) view.findViewById(R.id.freeLance_company) ;
 
             card_view = (CardView) view.findViewById(R.id.card_view);
             card_view.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +71,7 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     public void onBindViewHolder(DesignerAdapter.MyViewHolder holder, int position) {
         Product designer = designerList.get(position);
         holder.designe_email.setText(designer.getDesigner_email());
+        type = designer.getType();
     }
 
     @Override

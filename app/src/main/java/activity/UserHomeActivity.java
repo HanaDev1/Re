@@ -41,6 +41,8 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
+        mContext = getApplicationContext();
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         designerList = new ArrayList<>();
         adapter = new UserHomeAdapter(mContext, designerList);
@@ -57,16 +59,18 @@ public class UserHomeActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("client");
-        Query query = databaseReference.orderByChild("type").equalTo("Designer");
+        Query query = databaseReference.orderByChild("type").equalTo("freelancer_company");
         // Attach a listener to read the data at our posts reference
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                        Users user = singleSnapshot.getValue(Users.class);
-                        designerList.add(user);
-                        adapter.notifyDataSetChanged();
-                    }}
+                    Users user = singleSnapshot.getValue(Users.class);
+
+                    designerList.add(user);
+                    adapter.notifyDataSetChanged();
+                }
+            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

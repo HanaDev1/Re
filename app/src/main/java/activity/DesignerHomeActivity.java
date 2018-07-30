@@ -64,7 +64,6 @@ public class DesignerHomeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         email=bundle.getString("email");
 
-
         //View pager
         ViewPager vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
@@ -75,9 +74,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Toast.makeText(DesignerHomeActivity.this,
-                        getString(R.string.selectedPgePos) + position, Toast.LENGTH_SHORT).show();
-            }
-
+                        getString(R.string.selectedPgePos) + position, Toast.LENGTH_SHORT).show(); }
             @Override
             public void onPageSelected(int position) {
             }
@@ -110,9 +107,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("products");
         Query query = databaseReference.orderByChild("Designer_email").equalTo(email);
         //from client side as a user
-
         //client.productId equals to product.productId
-
         // Attach a listener to read the data at our posts reference
         query.addValueEventListener(new ValueEventListener() {
             @Override

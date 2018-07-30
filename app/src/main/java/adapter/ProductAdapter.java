@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import activity.DesignersDetailActivity;
+import activity.ProductTrackActivity;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.ShowProjectDetails;
@@ -38,11 +39,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             details = (ImageView) view.findViewById(R.id.overflow);
             card_view = (CardView)  view.findViewById(R.id.card_viewD);
 
-
             card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    Intent a = new Intent (view.getContext(), ShowProjectDetails.class);
+                    Intent a = new Intent (view.getContext(), ProductTrackActivity.class);
                     view.getContext().startActivity(a);
 
                 }
@@ -75,41 +75,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         });
     }
 
-    /**
-     * Showing popup menu when tapping on 3 dots
-     */
-//    private void showPopupMenu(View view) {
-//        // inflate menu
-//        PopupMenu popup = new PopupMenu(mContext, view);
-//        MenuInflater inflater = popup.getMenuInflater();
-//        inflater.inflate(R.menu.menu_produc_status, popup.getMenu());
-//        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-//        popup.show();
-//    }
-    /**
-     * Click listener for popup menu items
-     */
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {}
-
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.actionAccept:
-                    Toast.makeText(mContext, "Accepted", Toast.LENGTH_LONG).show();
-                    return true;
-                case R.id.actionReject:
-                    Toast.makeText(mContext, "Rejected", Toast.LENGTH_LONG).show();
-                    return true;
-                case R.id.actioDetails:
-                    Toast.makeText(mContext, "Project Details", Toast.LENGTH_LONG).show();
-                    return true;
-                default:
-            }
-            return false;
-        }
-    }
 
     @Override
     public int getItemCount() {

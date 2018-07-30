@@ -1,6 +1,5 @@
 package adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import activity.DesignersDetailActivity;
-import activity.UserHomeActivity;
 import remoty.internship.wadimakkah.remotyapplication.Designer;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
@@ -25,14 +22,14 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
 
     private Context mContext;
     private List<Users> designerList;
-    String email;
+    String id;
+    public TextView designer_name;
+    public ImageView designer_img;
+    CardView card_view ;
+    Designer designer;
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView designer_name;
-        public ImageView designer_img;
-        CardView card_view ;
-        Designer designer;
-
 
 
 
@@ -42,35 +39,7 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
             designer_img = (ImageView) view.findViewById(R.id.designer_img);
             card_view = (CardView) view.findViewById(R.id.card_view);
 
-            card_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent a = new Intent(view.getContext(), DesignersDetailActivity.class);
 
-                    //getting email to designer home
-
-                    Bundle bundle =new Bundle();
-                    bundle.putString("full_name",designer_name.getText().toString().trim());
-                    bundle.putString("email",email);
-                    a.putExtras(bundle);
-
-                    a.putExtra("full_name",designer_name.getText());
-                    view.getContext().startActivity(a);
-
-                }
-            });
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // get position
-//                    int pos = getAdapterPosition();
-//                    // check if item still exists
-//                    if (pos != RecyclerView.NO_POSITION) {
-//                        Users clickedDataItem = designerList.get(pos);
-//                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getFull_name(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
         }
     }
 
@@ -89,12 +58,23 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Users uhome = designerList.get(position);
-        holder.designer_name.setText(uhome.getFull_name());
+        designer_name.setText(uhome.getFull_name());
+        final String name = uhome.getFull_name();
+        final String email =uhome.getEmail();
 
-        email =uhome.getEmail();
+        card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(mContext , DesignersDetailActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("full_name",name);
+                bundle.putString("email",email);
+                a.putExtras(bundle);
+                a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
 
-
-//        Glide.with(mContext).load(uhome.getImg()).into(holder.designer_img);
+                mContext.startActivity(a);
+            }
+        });
     }
 
     @Override
@@ -102,5 +82,3 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
         return designerList.size();
     }
 }
-
-

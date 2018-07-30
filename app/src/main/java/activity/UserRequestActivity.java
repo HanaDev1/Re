@@ -1,5 +1,6 @@
 package activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -49,8 +50,10 @@ public class UserRequestActivity extends AppCompatActivity {
     }
 
     public void send_request() {
+
+
         Bundle bundle = getIntent().getExtras();
-        email=bundle.getString("DEmail");
+        email=bundle.getString("email");
 
         name = pName.getText().toString().trim();
         details = pdesc.getText().toString().trim();
@@ -68,6 +71,8 @@ public class UserRequestActivity extends AppCompatActivity {
 
 
         Toast.makeText(getApplicationContext(), "Done !!!!!!", LENGTH_SHORT).show();
+        Intent i = new Intent(UserRequestActivity.this, UserHomeActivity.class);
+        startActivity(i);
 
 
     }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ser.std.RawSerializer;
@@ -18,9 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import remoty.internship.wadimakkah.remotyapplication.MainActivity;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -34,7 +37,8 @@ public class DesignerSignUpActivity extends AppCompatActivity {
     Button btnSignUp;
     FirebaseAuth auth;
     RadioButton typeU, typeD;
-
+    EditText inputdescription;
+    TextView alreadyAcount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +49,31 @@ public class DesignerSignUpActivity extends AppCompatActivity {
         inputPasswordUp = (EditText) findViewById(R.id.passDesignerEditText);
 
         inputFullNameUp = (EditText) findViewById(R.id.nameDesignerEditText);
-
+        inputdescription = (EditText) findViewById(R.id.DesignerDescription);
         btnSignUp = (Button) findViewById(R.id.DesignerSignUpBtn);
-
+        inputdescription.setVisibility(View.INVISIBLE);
 
         //user type
         typeU = (RadioButton) findViewById(R.id.user);
         typeD = (RadioButton) findViewById(R.id.freeLance_company);
+
+        alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
+
+        alreadyAcount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Intent i = new Intent(DesignerSignUpActivity.this, DesignerSignInActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                } else {
+                    // User is signed out
+
+                }
+            }
+        });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +111,18 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                         reference.child("email").setValue(email);
 
                         if (typeU.isChecked()) {
+
                             reference.child("type").setValue("user");
                             startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
 
                         } else if (typeD.isChecked()) {
+                            inputdescription.setVisibility(View.VISIBLE);
                             reference.child("type").setValue("freelancer_company");
-                            startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
+                            Intent intent = new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class);
+                            Bundle bundle =new Bundle();
+                            bundle.putString("emails",email);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
 
                         }else if (typeD.isChecked()) {
                             reference.child("type").setValue("consultant");

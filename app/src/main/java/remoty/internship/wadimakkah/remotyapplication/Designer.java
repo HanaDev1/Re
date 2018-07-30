@@ -5,8 +5,10 @@ public class Designer {
     private String description;
     private String email;
 
-    public Designer() {
-    }
+
+    public Designer() { }
+
+
 
     public String getEmail() {
         return email;

@@ -6,6 +6,13 @@ public class Product {
     private String id;
     private String product_details;
     private String Designer_email;
+    private String type;
+
+
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 
 
     public String getDesigner_email() {
