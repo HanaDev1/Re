@@ -96,6 +96,8 @@
 
 
         </LinearLayout>
+
+
         <EditText
             android:id="@+id/DesignerDescription"
             android:layout_width="wrap_content"
@@ -103,7 +105,11 @@
             android:hint="@string/designer_desc"
             android:backgroundTint="@color/buttonColor"
             android:fontFamily="@font/titlefont"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
+            />
+
+
         <Button
             android:id="@+id/DesignerSignUpBtn"
             android:layout_width="match_parent"

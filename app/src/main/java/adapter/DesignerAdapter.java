@@ -1,8 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import activity.DesignersDetailActivity;
-import remoty.internship.wadimakkah.remotyapplication.Designer;
 import remoty.internship.wadimakkah.remotyapplication.Product;
-import remoty.internship.wadimakkah.remotyapplication.ProductDetailsAcvivity;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyViewHolder> {
@@ -25,6 +20,9 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     private List<Product> designerList;
     CardView card_view ;
     String type;
+    public TextView designe_email;
+    public RadioButton uType;
+
 
 
     public DesignerAdapter(Context mContext, List<Product> designtList) {
@@ -33,29 +31,11 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     }
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         //public TextView fullName, description;
-        public TextView designe_email;
-        public RadioButton uType;
 
         public MyViewHolder(View view) {
             super(view);
             designe_email = (TextView) view.findViewById(R.id.dName);
-            uType = (RadioButton) view.findViewById(R.id.freeLance_company) ;
-
-            card_view = (CardView) view.findViewById(R.id.card_view);
-            card_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent a = new Intent(v.getContext(), ProductDetailsAcvivity.class);
-                    //getting email to designer home
-
-                    Bundle bundle =new Bundle();
-                    bundle.putString("email",designe_email.getText().toString().trim());
-                    a.putExtras(bundle);
-
-                    v.getContext().startActivity(a);
-
-                }
-            });
+            uType = (RadioButton) view.findViewById(R.id.freeLance_company);
 
         }}
 
@@ -70,8 +50,10 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
     @Override
     public void onBindViewHolder(DesignerAdapter.MyViewHolder holder, int position) {
         Product designer = designerList.get(position);
-        holder.designe_email.setText(designer.getDesigner_email());
+        designe_email.setText(designer.getDesigner_email());
         type = designer.getType();
+
+
     }
 
     @Override

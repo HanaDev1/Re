@@ -1,7 +1,9 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class ProductDetailsAcvivity extends AppCompatActivity {
 

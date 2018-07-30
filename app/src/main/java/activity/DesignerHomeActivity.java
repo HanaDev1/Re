@@ -64,6 +64,8 @@ public class DesignerHomeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         email=bundle.getString("email");
 
+        mContext = getApplicationContext();
+
         //View pager
         ViewPager vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
@@ -83,7 +85,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         productList = new ArrayList<>();
@@ -105,10 +107,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         database.getReference("remotyapp");
         //from designer side like a designer
         databaseReference = FirebaseDatabase.getInstance().getReference().child("products");
-        Query query = databaseReference.orderByChild("Designer_email").equalTo(email);
-        //from client side as a user
-        //client.productId equals to product.productId
-        // Attach a listener to read the data at our posts reference
+        Query query = databaseReference.orderByChild("designer_email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -166,7 +165,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
             }
         }
     }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //use fragment and select which page will use it
 
     public static class MyPagerAdapter extends SmartFragmentStatePagerAdapter {

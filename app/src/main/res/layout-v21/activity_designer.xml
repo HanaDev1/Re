@@ -100,10 +100,10 @@
             android:id="@+id/DesignerDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:hint="@string/designer_desc"
             android:backgroundTint="@color/buttonColor"
             android:fontFamily="@font/titlefont"
-            android:hint="Write about your self and add portflio link" />
+            android:layout_gravity="center_horizontal" />
         <Button
             android:id="@+id/DesignerSignUpBtn"
             android:layout_width="match_parent"

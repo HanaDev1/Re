@@ -83,54 +83,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
                 }
 
                 SignInButton();
-//                auth = FirebaseAuth.getInstance();
-//                //Firebase auththentication instance
-//                if (auth.getCurrentUser() != null) {
-//                    //Sign In to user account using email and password ,
-//                    auth.signInWithEmailAndPassword(email, password)
-//                            .addOnCompleteListener(DesignerSignInActivity.this, new OnCompleteListener<AuthResult>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<AuthResult> task) {
-//                                    // If sign in fails, display a message to the user. If sign in succeeds
-//                                    // the auth state listener will be notified and logic to handle the
-//                                    // signed in user can be handled in the listener.
-//
-//                                    if (!task.isSuccessful()) {
-//                                        if (password.length() < 6) {
-//                                            inputPassword.setError("your password is too short");
-//                                        } else {
-//                                            Toast.makeText(DesignerSignInActivity.this, "Authenticaion faild ", Toast.LENGTH_LONG).show();
-//                                            finish();
-//                                        }
-//                                    } else {
-//
-//                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client");
-//                                        Query query = reference.child(auth.getUid()).orderByChild("type");
-//                                        if (query.equals("user")) {
-//
-//                                            Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
-//                                            startActivity(intent);
-//                                            //finish();
-//                                        }else{
-////
-//                                                Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
-//                                                startActivity(intent);
-//                                                //finish();
-//                                            //}
-//                                        }
-//                                    }
-//                                }
-//                            });
-//
-//
-//                    //Intent intent2 = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
-//
-////                    Bundle bundle =new Bundle();
-////                    bundle.putString("emails",email);
-////                    intent2.putExtras(bundle);
-////                    startActivity(intent2);
-//
-//                    finish();
+
             }
 
 
@@ -163,9 +116,8 @@ public class DesignerSignInActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
                         startActivity(intent);
                         // progressBar4.setVisibility(View.GONE);
-
-
-                    }
+                        //
+                        }
 
 
                 }

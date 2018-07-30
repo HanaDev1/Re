@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -39,6 +40,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
     RadioButton typeU, typeD;
     EditText inputdescription;
     TextView alreadyAcount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +53,22 @@ public class DesignerSignUpActivity extends AppCompatActivity {
         inputFullNameUp = (EditText) findViewById(R.id.nameDesignerEditText);
         inputdescription = (EditText) findViewById(R.id.DesignerDescription);
         btnSignUp = (Button) findViewById(R.id.DesignerSignUpBtn);
-        inputdescription.setVisibility(View.INVISIBLE);
 
         //user type
         typeU = (RadioButton) findViewById(R.id.user);
         typeD = (RadioButton) findViewById(R.id.freeLance_company);
+
+        typeD.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    inputdescription.setVisibility(View.VISIBLE);
+                    typeU.setChecked(false);
+                }else{
+                    inputdescription.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
 
@@ -74,6 +87,9 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,15 +132,14 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                             startActivity(new Intent(DesignerSignUpActivity.this, UserHomeActivity.class));
 
                         } else if (typeD.isChecked()) {
-                            inputdescription.setVisibility(View.VISIBLE);
                             reference.child("type").setValue("freelancer_company");
                             Intent intent = new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class);
-                            Bundle bundle =new Bundle();
-                            bundle.putString("emails",email);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("emails", email);
                             intent.putExtras(bundle);
                             startActivity(intent);
 
-                        }else if (typeD.isChecked()) {
+                        } else {
                             reference.child("type").setValue("consultant");
                             startActivity(new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class));
                         }
