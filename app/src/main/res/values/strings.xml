@@ -61,5 +61,7 @@
     <string name="submit2">submit</string>
     <string name="selectedPgePos">Selected page position:</string>
     <string name="designer_desc">Write about your self or add portflio link</string>
+    <string name="product_nameDetails">Product Name :</string>
+    <string name="product_detailsD">Product Details :</string>
 
 </resources>

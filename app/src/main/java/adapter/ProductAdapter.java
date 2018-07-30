@@ -2,6 +2,7 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,17 +21,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private Context mContext;
     private List<Product> productList;
     public CardView card_view;
+    public TextView title, details;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView title, count;
-        public ImageView details;
 
 
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
-            count = (TextView) view.findViewById(R.id.deadline);
-            details = (ImageView) view.findViewById(R.id.overflow);
+            details = (TextView) view.findViewById(R.id.deadline);
             card_view = (CardView)  view.findViewById(R.id.card_viewD);
 
 
@@ -52,21 +51,27 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Product product = productList.get(position);
-        holder.title.setText(product.getProduct_name());
+       title.setText(product.getProduct_name());
+
         //to get product id
 
+        final String productName = title.getText().toString();
+        final String productDetails = product.getProduct_details();
+        details.setText(productDetails);
         card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 Intent a = new Intent (mContext, ProductDetailsActivity.class);
-
-                view.getContext().startActivity(a);
+                Bundle bundle = new Bundle();
+                bundle.putString("product_name",productName);
+                bundle.putString("product_details",productDetails);
+                a.putExtras(bundle);
+                a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                mContext.startActivity(a);
 
             }
         });
     }
-
-
     @Override
     public int getItemCount() {
         return productList.size();

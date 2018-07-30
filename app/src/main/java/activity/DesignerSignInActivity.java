@@ -40,7 +40,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
     FirebaseAuth auth;
     Product designerType;
     DatabaseReference databaseReference;
-    String email, password;
+
 
 
     @Override
@@ -53,6 +53,7 @@ public class DesignerSignInActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.passDesignerEditText);
         btnSignIn = (Button) findViewById(R.id.DesignerSignInBtn);
         resetPass = (TextView) findViewById(R.id.resetPass);
+        auth = FirebaseAuth.getInstance();
 
         //if user forget password
         resetPass.setOnClickListener(new View.OnClickListener() {
@@ -67,20 +68,9 @@ public class DesignerSignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //get user inputs
-                email = inputEmail.getText().toString();
-                password = inputPassword.getText().toString();
 
 
-                //checking user inputs, if it is empty or not and return response
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter Email Adderss !", LENGTH_SHORT).show();
-                    return;
-                }
 
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
-                    return;
-                }
 
                 SignInButton();
 
@@ -91,41 +81,62 @@ public class DesignerSignInActivity extends AppCompatActivity {
     }
 
     public void SignInButton() {
-//        FirebaseUser user = auth.getCurrentUser();
+        final String email = inputEmail.getText().toString();
+        String password = inputPassword.getText().toString();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("client");
-        ref.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+        //checking user inputs, if it is empty or not and return response
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Enter Email Adderss !", LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
+            return;
+        }
+
+//        auth.getCurrentUser();
+        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot userSnap : dataSnapshot.getChildren()) {
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()){
+                    Toast.makeText(DesignerSignInActivity.this,"Please check your email or password",Toast.LENGTH_LONG).show();
+                }else{
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("client");
+                    ref.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot userSnap : dataSnapshot.getChildren()) {
 
-                    if (userSnap.child("type").getValue(String.class).equals("freelancer_company")) {
-                        Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
+                                if (userSnap.child("type").getValue(String.class).equals("freelancer_company")) {
+                                    Intent intent = new Intent(DesignerSignInActivity.this, DesignerHomeActivity.class);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("email", email);
-                        intent.putExtras(bundle);
+                                    //send email to designer home
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("email", email);
+                                    intent.putExtras(bundle);
 
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
-                        startActivity(intent);
-                        //progressBar4.setVisibility(View.GONE);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
+                                    startActivity(intent);
 
 
-                    } else {
-                        Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
-                        startActivity(intent);
-                        // progressBar4.setVisibility(View.GONE);
-                        //
+
+                                } else {
+                                    Intent intent = new Intent(DesignerSignInActivity.this, UserHomeActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
+                                    startActivity(intent);
+
+                                }
+                            }
                         }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

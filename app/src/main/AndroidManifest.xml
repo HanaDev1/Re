@@ -32,7 +32,6 @@
         <activity android:name=".ShowProjectDetails" />
         <activity android:name="activity.DesignerSignInActivity" />
         <activity android:name="activity.UserRequestActivity" />
-        <activity android:name="activity.ProductDetailsAcvivity" />
         <activity android:name="activity.ProductDetailsActivity"></activity>
     </application>
 

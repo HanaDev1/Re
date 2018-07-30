@@ -51,7 +51,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
     Product productItems;
     FirebaseAuth auth;
     EditText desc;
-    String email;
+    String email, prodName;
 
     private DatabaseReference databaseReference;
 
@@ -62,7 +62,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_designer_home);
 
         Bundle bundle = getIntent().getExtras();
-        email=bundle.getString("email");
+        email = bundle.getString("email");
 
         mContext = getApplicationContext();
 

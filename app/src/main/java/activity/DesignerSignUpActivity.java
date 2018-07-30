@@ -21,8 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import remoty.internship.wadimakkah.remotyapplication.MainActivity;
 import remoty.internship.wadimakkah.remotyapplication.R;
@@ -40,6 +43,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
     RadioButton typeU, typeD;
     EditText inputdescription;
     TextView alreadyAcount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +102,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                 //trim to remove all spaces
                 final String email = inputEmailUp.getText().toString().trim();
                 String password = inputPasswordUp.getText().toString().trim();
+                final String description = inputdescription.getText().toString().trim();
 
                 final String fullName = inputFullNameUp.getText().toString().trim();
 
@@ -113,6 +118,9 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(fullName)) {
                     Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();
                     return;
+                }if (TextUtils.isEmpty(description)) {
+                    Toast.makeText(getApplicationContext(), "Enter Description !", LENGTH_SHORT).show();
+                    return;
                 }
 
                 //create a new user in database ,
@@ -121,10 +129,11 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(DesignerSignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), LENGTH_SHORT).show();
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client").child(auth.getUid());
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client").push();
 
                         reference.child("full_name").setValue(fullName);
                         reference.child("email").setValue(email);
+                        reference.child("description").setValue(description);
 
                         if (typeU.isChecked()) {
 
@@ -135,7 +144,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                             reference.child("type").setValue("freelancer_company");
                             Intent intent = new Intent(DesignerSignUpActivity.this, DesignerHomeActivity.class);
                             Bundle bundle = new Bundle();
-                            bundle.putString("emails", email);
+                            bundle.putString("email", email);
                             intent.putExtras(bundle);
                             startActivity(intent);
 
@@ -154,7 +163,9 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                         }
                     }
                 });
+
             }
         });
+
     }
 }
