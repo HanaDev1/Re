@@ -3,6 +3,9 @@ package activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -16,6 +19,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 import com.firebase.client.Firebase;
@@ -52,10 +56,12 @@ public class DesignerHomeActivity extends AppCompatActivity {
     FirebaseAuth auth;
     EditText desc;
     String email, prodName;
-
+    private TabLayout tabLayout;
+    ViewPager vpPager;
     private DatabaseReference databaseReference;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +71,29 @@ public class DesignerHomeActivity extends AppCompatActivity {
         email = bundle.getString("email");
 
         mContext = getApplicationContext();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //toolbar & viewpager
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        //Initializing the tablayout
+//        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+//
+//        //Adding the tabs using addTab() method
+//        tabLayout.addTab(tabLayout.newTab().setText("Request"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Current"));
+//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //View pager
-        ViewPager vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
+         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
+        //tabLayout.setOnTabSelectedListener(this);
+
 
         vpPager.setPageTransformer(true, new RotateUpTransformer());
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -128,6 +152,25 @@ public class DesignerHomeActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
+//    private void setSupportActionBar(Toolbar toolbar) {
+//    }
+//
+//    @Override
+//    public void onTabSelected(TabLayout.Tab tab) {
+//        vpPager.setCurrentItem(tab.getPosition());
+//    }
+//
+//    @Override
+//    public void onTabUnselected(TabLayout.Tab tab) {
+//
+//    }
+//
+//    @Override
+//    public void onTabReselected(TabLayout.Tab tab) {
+//
+//    }
+
+
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
@@ -181,7 +224,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
             return NUM_ITEMS;
         }
 
-        // Returns the fragment to display for that page
+         //Returns the fragment to display for that page
         @Override
         public Fragment getItem(int position) {
             switch (position) {
@@ -193,8 +236,8 @@ public class DesignerHomeActivity extends AppCompatActivity {
                     return DesignerFragment.newInstance(2, "Chat");
                 default:
                     return null;
-            }
-        }
+
+        }}
 
         // Returns the page title for the top indicator
         @Override
@@ -216,6 +259,9 @@ public class DesignerHomeActivity extends AppCompatActivity {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+
+
 }
 
 

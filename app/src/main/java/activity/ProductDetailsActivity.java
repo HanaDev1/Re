@@ -2,11 +2,14 @@ package activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,13 +34,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
     TextView title, Description;
     private DatabaseReference databaseReference;
     Button acceptBtn, rejecctBtn;
+    String key;
+    Button addMenu;
+    FloatingActionButton butnFloat;
+    private LinearLayout parentLinearLayout;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details_acvivity);
+        setContentView(R.layout.activity_product_details);
         mContext = getApplicationContext();
         title = (TextView)findViewById(R.id.prodName);
         Description = (TextView) findViewById(R.id.deadline);
@@ -59,12 +66,34 @@ public class ProductDetailsActivity extends AppCompatActivity {
         acceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toAddSteps = new Intent(ProductDetailsActivity.this,ProductTrackActivity.class);
-                startActivity(toAddSteps);
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("products");
+                Query refQuery = ref.orderByChild("product_name").equalTo(productTitle);
+
+                refQuery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                             key = singleSnapshot.getKey();
+                            Log.d("User key ",key);
+                            ref.child(key).child("product_status").setValue("accepted");
+                            Intent toAddSteps = new Intent(ProductDetailsActivity.this,ProductTrackActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("key",key);
+                            toAddSteps.putExtras(bundle);
+                            toAddSteps.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Toast.makeText(mContext,"The product is Accepted ",Toast.LENGTH_LONG).show();
+                            startActivity(toAddSteps);
+                    }}
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
 
             }
         });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         rejecctBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +124,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
+    public void onAddField(View v) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.activity_show_project_details, null);
+        // Add the new row before the add field button.
+        parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
+    }
 
+    public void onDelete(View v) {
+        //this.openOptionsMenu();
+        parentLinearLayout.removeView((View) v.getParent());
+    }
     public void getDetails(){
         //Retrieving data from firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

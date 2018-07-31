@@ -68,32 +68,4 @@ public class DesignersDetailActivity extends AppCompatActivity {
             }
         });
 
-// Designer full name from card view to designer details activity
-//        bundle = getIntent().getExtras();
-//        name = bundle.getString("full_name");
-//        designerName.setText(name);
-
-// get designer description from firebase to designer detials activity
-//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        database.getReference("remotyapp");
-//        dataRefrence = FirebaseDatabase.getInstance().getReference().child("client");
-//
-//        Query query = dataRefrence.orderByChild("type").equalTo("Designer");
-//   // Attach a listener to read the data at our posts reference
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-//                    Users user = singleSnapshot.getValue(Users.class);
-//                    designerList.add(user);
-//                    adapter.notifyDataSetChanged();
-//                }}
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
-//
-//    }
 }}

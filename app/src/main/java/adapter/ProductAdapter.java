@@ -22,6 +22,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private List<Product> productList;
     public CardView card_view;
     public TextView title, details;
+    String status;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
 
@@ -57,6 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         final String productName = title.getText().toString();
         final String productDetails = product.getProduct_details();
+
         details.setText(productDetails);
         card_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +67,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 Bundle bundle = new Bundle();
                 bundle.putString("product_name",productName);
                 bundle.putString("product_details",productDetails);
+
                 a.putExtras(bundle);
                 a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 mContext.startActivity(a);
 
             }
         });
+         status = product.getProductStatus();
     }
     @Override
     public int getItemCount() {

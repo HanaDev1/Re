@@ -62,8 +62,11 @@ public class UserRequestActivity extends AppCompatActivity {
 
         String productID = rf.push().getKey();
         //String designerId =
+
+
         DatabaseReference fReference = rf.child(auth.getUid()).child("products").child(productID);
         fReference.setValue(productID);
+        ////
         DatabaseReference allProducts = FirebaseDatabase.getInstance().getReference("products").child(productID);
         allProducts.child("product_name").setValue(name);
         allProducts.child("product_details").setValue(details);

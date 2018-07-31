@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,10 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import remoty.internship.wadimakkah.remotyapplication.R;
 
@@ -23,9 +31,12 @@ public class ProductTrackActivity extends Activity {
 
     FloatingActionButton addNewStep;
     EditText writeStep;
-    TextView stepView;
-    Button addMenu;
+    Button delMenu;
+    ImageView saveSteps;
     Menu mm;
+    String key;
+
+    Context mContext;
 
 
     private LinearLayout parentLinearLayout;
@@ -36,11 +47,24 @@ public class ProductTrackActivity extends Activity {
         setContentView(R.layout.activity_product_track);
             parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
 
-        addMenu = (Button) findViewById(R.id.addMenu);
+        mContext = getApplicationContext();
 
+        delMenu = (Button) findViewById(R.id.del);
+        parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
+        saveSteps = (ImageView) findViewById(R.id.save);
+        writeStep = (EditText) findViewById(R.id.stepEditText);
 
+        saveSteps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = getIntent().getExtras();
+                key = bundle.getString("key");
+
+                DatabaseReference refernce =  FirebaseDatabase.getInstance().getReference("products").child(key).child("steps");
+                refernce.child("Step 1").setValue(writeStep.getText().toString());
+            }
+        });
     }
-
     public void onAddField(View v) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.activity_show_project_details, null);
@@ -49,32 +73,7 @@ public class ProductTrackActivity extends Activity {
     }
 
     public void onDelete(View v) {
-        //this.openOptionsMenu();
         parentLinearLayout.removeView((View) v.getParent());
     }
 
-
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_produc_status, menu);
-//        return true;
-//    }
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        int id = item.getItemId();
-//        switch (id){
-//            case R.id.actionAccept:
-//                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
-//                return true;
-//            case R.id.actionReject:
-//                Toast.makeText(getApplicationContext(),"Item 2 Selected",Toast.LENGTH_LONG).show();
-//                return true;
-//            case R.id.actioDetails:
-//                Toast.makeText(getApplicationContext(),"Item 3 Selected",Toast.LENGTH_LONG).show();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-    // }}
 }

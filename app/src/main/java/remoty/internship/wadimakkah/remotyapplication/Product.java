@@ -7,8 +7,16 @@ public class Product {
     private String product_details;
     private String Designer_email;
     private String type;
+    private String productStatus;
 
 
+    public String getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(String productStatus) {
+        this.productStatus = productStatus;
+    }
 
     public String getType() { return type; }
 
