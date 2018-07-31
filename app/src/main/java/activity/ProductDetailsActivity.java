@@ -35,10 +35,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     Button acceptBtn, rejecctBtn;
     String key;
+<<<<<<< HEAD
     Button addMenu;
     FloatingActionButton butnFloat;
     private LinearLayout parentLinearLayout;
 
+=======
+>>>>>>> 31b5f0121e24d14fc5fc67bf618e1bdd99b988bf
 
 
     @Override
@@ -73,6 +76,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+<<<<<<< HEAD
                              key = singleSnapshot.getKey();
                             Log.d("User key ",key);
                             ref.child(key).child("product_status").setValue("accepted");
@@ -84,12 +88,26 @@ public class ProductDetailsActivity extends AppCompatActivity {
                             Toast.makeText(mContext,"The product is Accepted ",Toast.LENGTH_LONG).show();
                             startActivity(toAddSteps);
                     }}
+=======
+                            key = singleSnapshot.getKey();
+                            Log.d("User key ",key);
+                            ref.child(key).child("product_status").setValue("accepted");
+
+                        }}
+>>>>>>> 31b5f0121e24d14fc5fc67bf618e1bdd99b988bf
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         System.out.println("The read failed: " + databaseError.getCode());
                     }
                 });
+<<<<<<< HEAD
+=======
+
+                Intent toAddSteps = new Intent(ProductDetailsActivity.this,ProductTrackActivity.class);
+                Toast.makeText(mContext,"The product is Accepted ",Toast.LENGTH_LONG).show();
+
+>>>>>>> 31b5f0121e24d14fc5fc67bf618e1bdd99b988bf
 
             }
         });
