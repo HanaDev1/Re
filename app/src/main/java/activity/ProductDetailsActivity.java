@@ -31,7 +31,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     TextView title, Description;
     private DatabaseReference databaseReference;
     Button acceptBtn, rejecctBtn;
-
+    String key;
 
 
     @Override
@@ -59,8 +59,28 @@ public class ProductDetailsActivity extends AppCompatActivity {
         acceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("products");
+                Query refQuery = ref.orderByChild("product_name").equalTo(productTitle);
+
+                refQuery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                            key = singleSnapshot.getKey();
+                            Log.d("User key ",key);
+                            ref.child(key).child("product_status").setValue("accepted");
+
+                        }}
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
+
                 Intent toAddSteps = new Intent(ProductDetailsActivity.this,ProductTrackActivity.class);
-                startActivity(toAddSteps);
+                Toast.makeText(mContext,"The product is Accepted ",Toast.LENGTH_LONG).show();
+
 
             }
         });
