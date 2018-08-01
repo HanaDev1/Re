@@ -63,5 +63,8 @@
     <string name="designer_desc">Write about your self or add portflio link</string>
     <string name="product_nameDetails">Product Name :</string>
     <string name="product_detailsD">Product Details :</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 
 </resources>

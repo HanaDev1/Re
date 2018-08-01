@@ -1,8 +1,14 @@
 package activity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,7 +17,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
+import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,32 +33,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.UserHomeAdapter;
+import remoty.internship.wadimakkah.remotyapplication.MyProducts;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
 
-public class UserHomeActivity extends AppCompatActivity {
+import static remoty.internship.wadimakkah.remotyapplication.R.string.navigation_drawer_open;
+
+public class UserHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private RecyclerView recyclerView;
     private UserHomeAdapter adapter;
     private List<Users> designerList;
     DatabaseReference myRef;
     private Context mContext;
     private DatabaseReference databaseReference;
+    DrawerLayout drawerLayout;
+    ImageView editName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_home);
+        setContentView(R.layout.main_user_home);
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+         drawerLayout = findViewById(R.id.drawerLayout);
+        ActionBarDrawerToggle toggle =
+                new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        editName = findViewById(R.id.editName);
+
+//        editName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+
+        NavigationView navigationView = findViewById(R.id.arcNavigationView);
+        navigationView.setNavigationItemSelectedListener(this);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         mContext = getApplicationContext();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_viewU);
         designerList = new ArrayList<>();
         adapter = new UserHomeAdapter(mContext, designerList);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         //layoutManager to set cardview to recycle view
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -79,6 +118,7 @@ public class UserHomeActivity extends AppCompatActivity {
         });
 
     }
+
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -112,6 +152,31 @@ public class UserHomeActivity extends AppCompatActivity {
                     outRect.top = spacing; // item top
                 }
             }
+        }
+    }
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        Intent myProfile ;
+        int id = item.getItemId();
+       if (id == R.id.nav_myProduct) {
+            myProfile = new Intent(UserHomeActivity.this, MyProducts.class);
+            startActivity(myProfile);
+        } else if (id == R.id.nav_AboutUs) {
+
+        } else if (id == R.id.nav_contact_us) {
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawerLayout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 

@@ -10,22 +10,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="activity.DesignerSignInActivity">
-            <intent-filter><action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name="activity.ProductTrackActivity"></activity>
+        <activity android:name="activity.ProductTrackActivity" />
         <activity android:name="activity.DesignerHomeActivity" />
-        <activity android:name=".MainActivity" android:label="@string/app_name"/>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
         <activity android:name="activity.ResetPassActivity" />
         <activity android:name="activity.UserHomeActivity" />
         <activity android:name="activity.PassResetActivity" />
-        <activity android:name="activity.DesignersDetailActivity"></activity>
+        <activity android:name="activity.DesignersDetailActivity" />
         <activity android:name=".ShowProjectDetails" />
         <activity android:name="activity.DesignerSignUpActivity" />
         <activity android:name="activity.UserRequestActivity" />
-        <activity android:name="activity.ProductDetailsActivity"></activity>
+        <activity android:name="activity.ProductDetailsActivity" />
+        <activity android:name=".MyProducts" />
+        <activity android:name="activity.UserProductDetailsActivity" />
+        <activity android:name=".UserViewProfile"></activity>
     </application>
 
 </manifest>

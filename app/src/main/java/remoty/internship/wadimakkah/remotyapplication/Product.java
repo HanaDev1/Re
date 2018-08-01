@@ -8,7 +8,15 @@ public class Product {
     private String Designer_email;
     private String type;
     private String productStatus;
+    private String steps;
 
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
 
     public String getProductStatus() {
         return productStatus;

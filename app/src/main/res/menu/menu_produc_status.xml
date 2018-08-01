@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/actionAccept"
-        android:orderInCategory="100"
-        android:title="@string/action_accepted" />
 
-    <item
-        android:id="@+id/actionReject"
-        android:orderInCategory="101"
-        android:title="@string/action_rejcted" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_myProduct"
+            android:icon="@drawable/ic_folder"
+            android:title="My Product"/>
 
-    <item
-        android:id="@+id/actioDetails"
-        android:orderInCategory="101"
-        android:title="@string/action_details" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_AboutUs"
+                android:icon="@drawable/ic_about_us"
+                android:title="About Us"/>
+            <item
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/ic_contact_us"
+                android:title="Contact Us"/>
+        </menu>
+    </item>
+
 </menu>
