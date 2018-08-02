@@ -1,6 +1,7 @@
 package activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +27,11 @@ public class DesignersDetailActivity extends AppCompatActivity {
     TextView designerName;
     TextView designerDesc;
     Button designerConslt;
+    String description;
     Bundle bundle;
-    Intent a;
     String name, email;
-    FirebaseDatabase firebasedatabase;
     DatabaseReference dataRefrence;
-    private List<Users> designerList;
-    private UserHomeAdapter adapter;
+
 
 
     @Override
@@ -40,8 +39,8 @@ public class DesignersDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designers_detail);
 
-        designerName = (TextView)findViewById(R.id.dName);
-        designerDesc = (TextView)findViewById(R.id.dAbout);
+        designerName = (TextView) findViewById(R.id.dName);
+        designerDesc = (TextView) findViewById(R.id.dAbout);
 
         Designer designer = new Designer();
         designerDesc.setText(designer.getDescription());
@@ -50,22 +49,40 @@ public class DesignersDetailActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
         name = bundle.getString("full_name");
-        email=bundle.getString("email");
+        email = bundle.getString("email");
         designerName.setText(name);
 
+        //reterive designer description to the user
+        dataRefrence = FirebaseDatabase.getInstance().getReference("client");
+        Query query = dataRefrence.orderByChild("email").equalTo(email);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot datasnap : dataSnapshot.getChildren()) {
 
+                    description = datasnap.child("description").getValue(String.class);
+                    designerDesc.setText(description);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         requestDesigner = (Button) findViewById(R.id.requestBtn);
         requestDesigner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toDesignerRequest = new Intent(DesignersDetailActivity.this, UserRequestActivity.class);
 
-                Bundle bundle =new Bundle();
-                bundle.putString("email",email);
+                Bundle bundle = new Bundle();
+                bundle.putString("email", email);
                 toDesignerRequest.putExtras(bundle);
                 startActivity(toDesignerRequest);
 
             }
         });
 
-}}
+    }
+}

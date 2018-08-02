@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -86,12 +87,14 @@ public class DesignerSignInActivity extends AppCompatActivity {
 
         //checking user inputs, if it is empty or not and return response
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Enter Email Adderss !", LENGTH_SHORT).show();
+            inputEmail.setError("required ");
+            inputEmail.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
+            inputPassword.setError("required ");
+            inputPassword.requestFocus();
             return;
         }
 

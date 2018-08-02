@@ -27,13 +27,14 @@
         <activity android:name="activity.UserHomeActivity" />
         <activity android:name="activity.PassResetActivity" />
         <activity android:name="activity.DesignersDetailActivity" />
-        <activity android:name=".ShowProjectDetails" />
         <activity android:name="activity.DesignerSignUpActivity" />
         <activity android:name="activity.UserRequestActivity" />
         <activity android:name="activity.ProductDetailsActivity" />
         <activity android:name=".MyProducts" />
         <activity android:name="activity.UserProductDetailsActivity" />
-        <activity android:name=".UserViewProfile"></activity>
+        <activity android:name=".UserViewProfile" />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".ContactUs"></activity>
     </application>
 
 </manifest>

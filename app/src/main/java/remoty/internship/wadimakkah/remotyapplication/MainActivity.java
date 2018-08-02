@@ -25,41 +25,41 @@ public class MainActivity extends AppCompatActivity {
         TextView alreadyAcount;
         setContentView(R.layout.activity_main);
 
-        signUpDesignerButton = (Button) findViewById(R.id.SignUpDesignerBtn1);
-        signUpDesignerButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
-                startActivity(toDesignerSignUp);
-            }
-        });
-
-        Button signUpUser = (Button) findViewById(R.id.signUpUserBtn2);
-        signUpUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
-                startActivity(toDesignerSignUp);
-            }
-        });
-        alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
-
-        alreadyAcount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Intent i = new Intent(MainActivity.this, DesignerSignInActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-            }
-        });
+//        signUpDesignerButton = (Button) findViewById(R.id.SignUpDesignerBtn1);
+//        signUpDesignerButton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
+//                startActivity(toDesignerSignUp);
+//            }
+//        });
+//
+//        Button signUpUser = (Button) findViewById(R.id.signUpUserBtn2);
+//        signUpUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent toDesignerSignUp = new Intent(MainActivity.this, DesignerSignUpActivity.class);
+//                startActivity(toDesignerSignUp);
+//            }
+//        });
+//        alreadyAcount = (TextView) findViewById(R.id.toSignInPage);
+//
+//        alreadyAcount.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                if (user != null) {
+//                    // User is signed in
+//                    Intent i = new Intent(MainActivity.this, DesignerSignInActivity.class);
+//                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(i);
+//                } else {
+//                    // User is signed out
+//                    Log.d(TAG, "onAuthStateChanged:signed_out");
+//                }
+//            }
+//        });
 
     }
 }

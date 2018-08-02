@@ -39,6 +39,7 @@ import fragment.DesignerFragment;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import adapter.SmartFragmentStatePagerAdapter;
+import remoty.internship.wadimakkah.remotyapplication.Users;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -71,7 +72,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         email = bundle.getString("email");
 
         mContext = getApplicationContext();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +90,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
 //        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //View pager
-         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
+        vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         //tabLayout.setOnTabSelectedListener(this);
@@ -138,6 +139,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
 
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Product pro = singleSnapshot.getValue(Product.class);
+
                     productList.add(pro);
                     adapter.notifyDataSetChanged();
                 }
@@ -150,7 +152,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-}
+    }
 
 //    private void setSupportActionBar(Toolbar toolbar) {
 //    }
@@ -224,7 +226,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
             return NUM_ITEMS;
         }
 
-         //Returns the fragment to display for that page
+        //Returns the fragment to display for that page
         @Override
         public Fragment getItem(int position) {
             switch (position) {
@@ -237,7 +239,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
                 default:
                     return null;
 
-        }}
+            }}
 
         // Returns the page title for the top indicator
         @Override
@@ -263,5 +265,3 @@ public class DesignerHomeActivity extends AppCompatActivity {
 
 
 }
-
-

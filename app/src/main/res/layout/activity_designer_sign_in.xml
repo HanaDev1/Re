@@ -5,27 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="activity.DesignerSignInActivity"
-    android:gravity="center">
-    <TextView
+    android:background="@drawable/bbac">
+
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/remotymaintitle"
+            android:text="@string/signInbutton"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:text="@string/signInbutton"
-        android:fontFamily="@font/remotymaintitle"
-        android:textSize="30sp"/>
+        android:orientation="vertical"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center_horizontal">
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:id="@+id/emailDesignerEditText"
         android:hint="@string/signEmailEdit"
         android:fontFamily="@font/titlefont"
         style="@style/EditText"
         android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"/>
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:id="@+id/passDesignerEditText"
         android:hint="@string/signPasswordEdit"
@@ -33,9 +49,10 @@
         android:fontFamily="@font/titlefont"
         style="@style/EditText"
         android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"/>
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center_horizontal"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/DesignerSignInBtn"
         android:text="@string/signInbutton"
@@ -44,7 +61,7 @@
         android:layout_marginLeft="30dp"
         android:background="@drawable/button_n"
         android:layout_marginTop="30dp"
-        />
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -54,5 +71,7 @@
         android:fontFamily="@font/titlefont"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        style="@style/EditText"/>
+        style="@style/EditText"
+        android:gravity="center_horizontal"/>
+    </LinearLayout>
 </LinearLayout>

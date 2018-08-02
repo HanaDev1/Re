@@ -133,17 +133,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
-    public void onAddField(View v) {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.activity_show_project_details, null);
-        // Add the new row before the add field button.
-        parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
-    }
 
-    public void onDelete(View v) {
-        //this.openOptionsMenu();
-        parentLinearLayout.removeView((View) v.getParent());
-    }
+
     public void getDetails(){
         //Retrieving data from firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -107,19 +107,23 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                 final String fullName = inputFullNameUp.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter Email Adderss !", LENGTH_SHORT).show();
+                    inputEmailUp.setError("required ");
+                    inputEmailUp.requestFocus();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", LENGTH_SHORT).show();
+                    inputPasswordUp.setError("required ");
+                    inputPasswordUp.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(fullName)) {
-                    Toast.makeText(getApplicationContext(), "Enter full name !", LENGTH_SHORT).show();
+                    inputFullNameUp.setError("required ");
+                    inputFullNameUp.requestFocus();
                     return;
                 }if (TextUtils.isEmpty(description)) {
-                    Toast.makeText(getApplicationContext(), "Enter Description !", LENGTH_SHORT).show();
+                    inputdescription.setError("required ");
+                    inputdescription.requestFocus();
                     return;
                 }
 

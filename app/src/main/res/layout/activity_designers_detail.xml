@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.DesignersDetailActivity">
+    tools:context="activity.DesignersDetailActivity"
+    android:background="@drawable/bbac">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_alignParentTop="true"
-        android:background="#BEBEBE">
-
-    </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="85dp"
-        android:src="@drawable/profileimgg" />
+        android:src="@drawable/male" />
     <TextView
         android:id="@+id/dName"
         android:layout_width="wrap_content"
@@ -53,54 +46,33 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/demail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="145dp"
-        android:gravity="center"
-       android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/protfilo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="215dp"
-        android:gravity="center"
-        android:text="@string/portfolio_link"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
 
     <Button
         android:id="@+id/requestBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="@string/request"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:background="#8FBC8F"
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_n"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textStyle="bold"/>
     <Button
         android:id="@+id/consultBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="@string/consult"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#8FBC8F"
-        />
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_n"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

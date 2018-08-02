@@ -6,51 +6,151 @@
     android:orientation="vertical"
     tools:context="activity.ProductDetailsActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:id="@+id/tool"/>
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/checksave"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="16dp"
-            android:id="@+id/save"
-            />
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/tool">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
         <EditText
-            android:id="@+id/stepEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step1"
+            android:hint="step 1"
+            android:layout_weight="1"/>
+        <Spinner
+            android:id="@+id/type_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right" />
+</LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:hint="Add your steps here "
-            android:layout_marginLeft="20dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step2"
+            android:hint="step 2"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+        <Spinner
+            android:id="@+id/type_spinner2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_weight="2"
+            android:visibility="invisible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step3"
+            android:hint="step 3"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+        <Spinner
+            android:id="@+id/type_spinner3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:visibility="invisible"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step4"
+            android:hint="step 4"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+        <Spinner
+            android:id="@+id/type_spinner4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:visibility="invisible"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step5"
+            android:hint="step 5"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+        <Spinner
+            android:id="@+id/type_spinner5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:visibility="invisible"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step6"
+            android:hint="step 6"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+        <Spinner
+            android:id="@+id/type_spinner6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:visibility="invisible"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step7"
+            android:hint="step 7"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+        <Spinner
+            android:id="@+id/type_spinner7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:visibility="invisible"/>
+        </LinearLayout>
 
         <Button
-            android:id="@+id/del"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@android:drawable/ic_delete"
-            android:onClick="onDelete"
-            android:layout_marginLeft="140dp"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save"
+            android:text="Save"/>
 
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
         <android.support.design.widget.FloatingActionButton
 
             android:id="@+id/addnewStep"
@@ -61,8 +161,6 @@
             android:layout_gravity="bottom"
             android:layout_margin="16dp"
             android:backgroundTint="#f38630"
-            android:clickable="true"
-            android:onClick="onAddField"/>
+            android:clickable="true" />
 
-</RelativeLayout>
 </LinearLayout>

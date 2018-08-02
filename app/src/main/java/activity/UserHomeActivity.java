@@ -67,8 +67,7 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        editName = findViewById(R.id.editName);
-
+        editName = (ImageView) findViewById(R.id.editName);
 //        editName.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
