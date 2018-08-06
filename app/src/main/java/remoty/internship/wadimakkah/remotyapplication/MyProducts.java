@@ -12,6 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
@@ -39,14 +40,13 @@ public class MyProducts extends AppCompatActivity {
     private List<Product> productList;
     private Context mContext;
     FirebaseAuth auth;
-//    String name, designerName;
-
+    String name;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_products);
+        setContentView(R.layout.user_myproduct_card);
 
         mContext = getApplicationContext();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_viewUserPro);
@@ -56,13 +56,14 @@ public class MyProducts extends AppCompatActivity {
 
         //layoutManager to set cardview to recycle view
         auth = FirebaseAuth.getInstance();
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference reference = database.getReference("client").child(auth.getUid()).child("products");
@@ -72,18 +73,20 @@ public class MyProducts extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     String getID = dataSnapshot1.getValue(String.class);
+                    Log.d("id",getID);
 
-
-                    DatabaseReference reference2 = database.getReference("products").child(getID);
+                    final DatabaseReference reference2 = database.getReference("products").child(getID);
                     reference2.addValueEventListener(new ValueEventListener() {
+
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             Product userProfile = dataSnapshot.getValue(Product.class);
                             productList.add(userProfile);
                             adapter.notifyDataSetChanged();
-                        }
 
+                            Log.d("reference", String.valueOf(reference2));
+                        }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -98,9 +101,6 @@ public class MyProducts extends AppCompatActivity {
 
             }
         });
-
-
-
 
     }
 

@@ -28,7 +28,7 @@
                 android:clickable="true"
                 android:scaleType="fitXY"
                 android:layout_margin="20dp"
-                android:src="@drawable/paint"/>
+                android:src="@drawable/paintt"/>
 
             <TextView
                 android:id="@+id/designer_name"

@@ -52,8 +52,6 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.MyView
         Product designer = designerList.get(position);
         designe_email.setText(designer.getDesigner_email());
         type = designer.getType();
-
-
     }
 
     @Override

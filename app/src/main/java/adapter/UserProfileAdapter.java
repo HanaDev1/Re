@@ -42,8 +42,6 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
             ProductName = (TextView) view.findViewById(R.id.myProductName);
             DesignerName = (TextView) view.findViewById(R.id.designerOfProName);
             card_viewUserProfile = (CardView)  view.findViewById(R.id.card_viewUserProfile);
-
-
         }}
 
     public UserProfileAdapter(Context mContext, List<Product> productList) {
@@ -51,11 +49,10 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
         this.productList = productList;
     }
 
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_my_products, parent, false);
+                .inflate(R.layout.user_myproduct_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -69,32 +66,6 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
         final String productName = ProductName.getText().toString();
         final String productDesignerEmail = DesignerName.getText().toString();
 
-
-        //retrieve designer name
-        ///DatabaseReference ref= FirebaseDatabase.getInstance().getReference("client");
-
-
-//        Query query = ref.orderByChild("email").equalTo(productDesignerEmail);
-//
-//
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-////                    name = singleSnapshot.getValue().toString();
-////                    DesignerName.setText(name);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-        card_viewUserProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
                 Intent a = new Intent (mContext, UserProductDetailsActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("product_name",productName);
@@ -105,9 +76,6 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
                 mContext.startActivity(a);
 
             }
-        });
-
-    }
 
     @Override
     public int getItemCount() {

@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    defaultConfig{
+        multiDexEnabled true
+    }
 
     packagingOptions {
         exclude 'META-INF/LICENSE'
@@ -46,5 +49,10 @@ dependencies {
 
     implementation 'com.android.support:design:26.0.2'
     implementation 'com.rom4ek:arcnavigationview:1.0.3'
+    implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+
+    implementation 'com.jakewharton:butterknife:8.8.1' //8.8.1 is the latest version atm
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }
 apply plugin: 'com.google.gms.google-services'

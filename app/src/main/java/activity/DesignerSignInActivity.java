@@ -69,10 +69,6 @@ public class DesignerSignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //get user inputs
-
-
-
-
                 SignInButton();
 
             }

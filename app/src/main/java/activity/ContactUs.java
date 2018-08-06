@@ -1,13 +1,15 @@
-package remoty.internship.wadimakkah.remotyapplication;
+package activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AboutUs extends AppCompatActivity {
+import remoty.internship.wadimakkah.remotyapplication.R;
+
+public class ContactUs extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_contact_us);
     }
 }

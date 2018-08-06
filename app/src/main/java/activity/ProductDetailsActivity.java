@@ -2,6 +2,7 @@ package activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -159,4 +160,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+
+    }
+

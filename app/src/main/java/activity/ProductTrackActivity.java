@@ -40,9 +40,9 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
 
     FloatingActionButton addNewStep;
     String key;
-    EditText step1, step2, step3, step4, step5, step6, step7;
+    EditText step1, step2, step3, step4, step5, step6, step7, price;
     int counter = 1;
-    String getStep1, getStep2, getStep3, getStep4, getStep5, getStep6, getStep7;
+    String getStep1, getStep2, getStep3, getStep4, getStep5, getStep6, getStep7, getPrice;
 
     Context mContext;
     DatabaseReference reference;
@@ -52,6 +52,11 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_track);
+
+        Bundle b = getIntent().getExtras();
+        final String email = b.getString("email");
+
+
         step1 = (EditText) findViewById(R.id.step1);
         step2 = (EditText) findViewById(R.id.step2);
         step3 = (EditText) findViewById(R.id.step3);
@@ -59,6 +64,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
         step5 = (EditText) findViewById(R.id.step5);
         step6 = (EditText) findViewById(R.id.step6);
         step7 = (EditText) findViewById(R.id.step7);
+        price = (EditText) findViewById(R.id.payment);
 
         spiner1 = (Spinner) findViewById(R.id.type_spinner);
         spiner2 = (Spinner) findViewById(R.id.type_spinner2);
@@ -134,6 +140,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                 getStep5 = step5.getText().toString().trim();
                 getStep6 = step6.getText().toString().trim();
                 getStep7 = step7.getText().toString().trim();
+                getPrice = price.getText().toString().trim();
 
                 //spinner value
                 String text1 = spiner1.getSelectedItem().toString();
@@ -150,6 +157,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                 List stepList = new ArrayList<String>(Arrays.asList(steps));
                 Bundle bundle = getIntent().getExtras();
                 key = bundle.getString("key");
+                //Log.d("user key",key);
                 reference = FirebaseDatabase.getInstance().getReference("products").child(key).child("steps");
                 reference.setValue(stepList);
 
@@ -169,9 +177,13 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                 reference.child("4").child("status").setValue(text5);
                 reference.child("5").child("status").setValue(text6);
                 reference.child("6").child("status").setValue(text7);
+                reference.child("price").setValue(getPrice);
 
 
                 Intent back = new Intent(ProductTrackActivity.this, DesignerHomeActivity.class);
+                Bundle bundleEmail = new Bundle();
+                bundleEmail.putString("email",email);
+                back.putExtras(bundleEmail);
                 startActivity(back);
                 finish();
             }
@@ -187,6 +199,6 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
     }
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+
     }
 }

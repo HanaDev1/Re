@@ -1,9 +1,11 @@
 package activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
@@ -34,18 +37,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.DesignerPagerAdapter;
 import adapter.ProductAdapter;
 import fragment.DesignerFragment;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
-import adapter.SmartFragmentStatePagerAdapter;
 import remoty.internship.wadimakkah.remotyapplication.Users;
 
 import static android.app.PendingIntent.getActivity;
 
 public class DesignerHomeActivity extends AppCompatActivity {
     //MyPagerAdapter adapterViewPager;
-    private SmartFragmentStatePagerAdapter adapterViewPager;
+    private DesignerPagerAdapter adapterViewPager;
 
     //product details
     private RecyclerView recyclerView;
@@ -75,28 +78,15 @@ public class DesignerHomeActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //toolbar & viewpager
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        //Initializing the tablayout
-//        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-//
-//        //Adding the tabs using addTab() method
-//        tabLayout.addTab(tabLayout.newTab().setText("Request"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Current"));
-//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //View pager
         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        adapterViewPager = new DesignerPagerAdapter (getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         //tabLayout.setOnTabSelectedListener(this);
 
-
         vpPager.setPageTransformer(true, new RotateUpTransformer());
+
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -139,7 +129,6 @@ public class DesignerHomeActivity extends AppCompatActivity {
 
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Product pro = singleSnapshot.getValue(Product.class);
-
                     productList.add(pro);
                     adapter.notifyDataSetChanged();
                 }
@@ -153,25 +142,6 @@ public class DesignerHomeActivity extends AppCompatActivity {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
-
-//    private void setSupportActionBar(Toolbar toolbar) {
-//    }
-//
-//    @Override
-//    public void onTabSelected(TabLayout.Tab tab) {
-//        vpPager.setCurrentItem(tab.getPosition());
-//    }
-//
-//    @Override
-//    public void onTabUnselected(TabLayout.Tab tab) {
-//
-//    }
-//
-//    @Override
-//    public void onTabReselected(TabLayout.Tab tab) {
-//
-//    }
-
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -211,48 +181,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //use fragment and select which page will use it
 
-    public static class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
-        private static int NUM_ITEMS = 3;
-
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        // Returns total number of pages
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        //Returns the fragment to display for that page
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return DesignerFragment.newInstance(0, "Requst");
-                case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return DesignerFragment.newInstance(1, "Current");
-                case 2: // Fragment # 1 - This will show SecondFragment
-                    return DesignerFragment.newInstance(2, "Chat");
-                default:
-                    return null;
-
-            }}
-
-        // Returns the page title for the top indicator
-        @Override
-        public CharSequence getPageTitle(int position) {
-            if (position == 0) {
-                return "Request";
-            } else if (position == 1) {
-                return "Current";
-            } else
-                return "Chat";
-
-        }
-    }
 
     /**
      * Converting dp to pixel
@@ -261,7 +190,4 @@ public class DesignerHomeActivity extends AppCompatActivity {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
-
-
 }
