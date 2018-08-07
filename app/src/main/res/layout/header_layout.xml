@@ -25,7 +25,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/updateBtn"
-        android:background="@drawable/savechanges"/>
+        android:background="@drawable/savechanges"
+        android:visibility="gone"/>
 
 </LinearLayout>
     <LinearLayout
@@ -36,10 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Full Name"
+        android:text="Mohmmed Hani "
         android:layout_marginLeft="16dp"
         android:fontFamily="@font/titlefont"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/userfullName"/>
 
     <ImageView
         android:layout_width="20dp"
@@ -56,14 +58,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/updateName"
         android:hint="New name"
-        style="@style/EditText"/>
+        style="@style/EditText"
+        android:visibility="gone"/>
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-mail"
+        android:text="m_h@gmail.com"
         android:layout_marginLeft="16dp"
-        android:fontFamily="@font/titlefont" />
+        android:fontFamily="@font/titlefont"
+        />
 </LinearLayout>

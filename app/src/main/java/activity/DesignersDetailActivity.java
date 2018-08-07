@@ -44,7 +44,7 @@ public class DesignersDetailActivity extends AppCompatActivity {
 
         Designer designer = new Designer();
         designerDesc.setText(designer.getDescription());
-        designerConslt = (Button) findViewById(R.id.consultBtn);
+        //designerConslt = (Button) findViewById(R.id.consultBtn);
 
 
         bundle = getIntent().getExtras();

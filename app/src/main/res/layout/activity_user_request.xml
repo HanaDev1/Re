@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="activity.MainActivity"
     android:layout_gravity="center"
     android:layout_margin="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="40dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:text="@string/request_product"
-            android:textSize="20sp"
+            android:textSize="36sp"
             android:fontFamily="@font/remotymaintitle" />
 
         <EditText
@@ -32,7 +32,9 @@
             android:layout_marginTop="40dp"
             android:hint="@string/product_name"
             android:fontFamily="@font/titlefont"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="#fff"
+            style="@style/EditText"/>
 
         <EditText
             android:id="@+id/product_description"
@@ -44,7 +46,9 @@
             android:autoSizeMaxTextSize="20dp"
             android:hint="@string/product_description"
             android:fontFamily="@font/titlefont"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="#fff"
+            style="@style/EditText"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,4 +89,4 @@
             android:textSize="16sp"/>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

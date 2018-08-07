@@ -55,16 +55,15 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="100dp">
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Accept"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
         android:background="@drawable/button_n"
         android:id="@+id/acceptPro"/>
     <Button
@@ -72,10 +71,8 @@
         android:layout_height="wrap_content"
         android:text="Reject"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="36dp"
         android:background="@drawable/button_n"
         android:id="@+id/rejectPro"/>
     </RelativeLayout>

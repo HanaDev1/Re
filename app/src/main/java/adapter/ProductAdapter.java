@@ -90,9 +90,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists()){
-
-
-                                        Intent a = new Intent (mContext, ProductTrackActivity.class);
+                                        Intent a = new Intent (mContext, ProductDetailsActivity.class);
                                         Bundle bundle = new Bundle();
                                         bundle.putString("product_name",productName);
                                         bundle.putString("product_details",productDetails);

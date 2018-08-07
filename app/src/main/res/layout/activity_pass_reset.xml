@@ -50,7 +50,7 @@
         android:textColor="@android:color/black"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/button_n"/>
+        android:background="@drawable/mainbutton"/>
 
     <Button
         android:id="@+id/btn_back"
@@ -61,6 +61,8 @@
         android:text="@string/back"
         android:textColor="@color/black"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"/>
+        android:layout_marginRight="30dp"
+        style="@style/EditText"
+        android:textSize="16sp"/>
 
 </LinearLayout>

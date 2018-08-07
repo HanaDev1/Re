@@ -3,6 +3,7 @@ package activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
     EditText step1, step2, step3, step4, step5, step6, step7, price;
     int counter = 1;
     String getStep1, getStep2, getStep3, getStep4, getStep5, getStep6, getStep7, getPrice;
+    ImageView circle1, circle2,circle3,circle4,circle5,circle6,circle7;
 
     Context mContext;
     DatabaseReference reference;
@@ -74,6 +76,14 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
         spiner6 = (Spinner) findViewById(R.id.type_spinner6);
         spiner7 = (Spinner) findViewById(R.id.type_spinner7);
 
+        circle1 = (ImageView) findViewById(R.id.circle1);
+        circle2 = (ImageView) findViewById(R.id.circle2);
+        circle3 = (ImageView) findViewById(R.id.circle3);
+        circle4 = (ImageView) findViewById(R.id.circle4);
+        circle5 = (ImageView) findViewById(R.id.circle5);
+        circle6 = (ImageView) findViewById(R.id.circle6);
+        circle7 = (ImageView) findViewById(R.id.circle7);
+
         spiner1.setOnItemSelectedListener(this);
         spiner2.setOnItemSelectedListener(this);
         spiner3.setOnItemSelectedListener(this);
@@ -104,26 +114,32 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                     case 2:
                         step2.setVisibility(View.VISIBLE);
                         spiner2.setVisibility(View.VISIBLE);
+                        circle2.setVisibility(View.VISIBLE);
                         break;
                     case 3:
                         step3.setVisibility(View.VISIBLE);
                         spiner3.setVisibility(View.VISIBLE);
+                        circle3.setVisibility(View.VISIBLE);
                         break;
                     case 4:
                         step4.setVisibility(View.VISIBLE);
                         spiner4.setVisibility(View.VISIBLE);
+                        circle4.setVisibility(View.VISIBLE);
                         break;
                     case 5:
                         step5.setVisibility(View.VISIBLE);
                         spiner5.setVisibility(View.VISIBLE);
+                        circle5.setVisibility(View.VISIBLE);
                         break;
                     case 6:
                         step6.setVisibility(View.VISIBLE);
                         spiner6.setVisibility(View.VISIBLE);
+                        circle6.setVisibility(View.VISIBLE);
                         break;
                     case 7:
                         step7.setVisibility(View.VISIBLE);
                         spiner7.setVisibility(View.VISIBLE);
+                        circle7.setVisibility(View.VISIBLE);
                         break;
                 }
             }

@@ -7,7 +7,6 @@
 
     <item
         android:id="@+id/action_save"
-        android:icon="@drawable/checksave"
         android:title="save"
         app:showAsAction="ifRoom"
         />

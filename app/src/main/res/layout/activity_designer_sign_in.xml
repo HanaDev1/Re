@@ -5,32 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="activity.DesignerSignInActivity"
-    android:background="@drawable/bbac">
-
+    android:background="@drawable/lightback">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="153dp"
-        android:layout_alignParentTop="true">
-
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginBottom="100dp">
+        <ImageView
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/remotymaintitle"
             android:text="@string/signInbutton"
-            android:textSize="30sp" />
+            android:textSize="36sp"
+            android:src="@drawable/logov_v2"/>
+
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="70dp"
+        android:layout_margin="20dp"
+
         android:layout_gravity="center_horizontal">
     <EditText
-        android:layout_width="170dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/emailDesignerEditText"
         android:hint="@string/signEmailEdit"
@@ -38,10 +41,11 @@
         style="@style/EditText"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"/>
 
     <EditText
-        android:layout_width="170dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/passDesignerEditText"
         android:hint="@string/signPasswordEdit"
@@ -50,28 +54,48 @@
         style="@style/EditText"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/DesignerSignInBtn"
         android:text="@string/signInbutton"
-        android:fontFamily="@font/titlefont"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:background="@drawable/button_n"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"/>
-
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="end"
+    android:layout_marginTop="16dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginLeft="30dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/resetPass"
         android:text="@string/forgetPass"
-        android:fontFamily="@font/titlefont"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
+
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="20dp"
         style="@style/EditText"
-        android:gravity="center_horizontal"/>
+        android:textSize="16sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toSignUp2"
+            android:text="Create a new account ?"
+            style="@style/EditText"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="20dp"
+            />
+</LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary1">#69d27e</color>
+    <color name="colorPrimary1">#4E0E2E</color>
     <color name="colorPrimaryDark1">#f38630</color>
     <color name="colorAccent">#e0e4cc</color>
     <color name="black">#000000</color>
-    <color name="album_title">#4c4c4c</color>
+    <color name="album_title">#69d2e7</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="lcolor">#AEB8C3</color>
     <color name="buttonColor">#4E0E2E</color>
     <color name="lihghtBlue">#a7dbdb</color>
+    <color name="primary">#69d2e7</color>
+    <color name="primary_dark">#a7dbdb</color>
+    <color name="primary_darker">#e0e4cc</color>
+
 
 </resources>

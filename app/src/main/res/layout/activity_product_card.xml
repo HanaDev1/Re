@@ -48,7 +48,7 @@
                 android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                 android:scaleType="centerCrop"
                 android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_dotsss" />
+               />
 
         </RelativeLayout>
 

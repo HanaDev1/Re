@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,12 +50,15 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
     private DatabaseReference databaseReference;
     DrawerLayout drawerLayout;
     ImageView editName;
+    TextView userFullName, userEmail;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_user_home);
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,6 +70,11 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        userFullName = (TextView) findViewById(R.id.userfullName) ;
+        userEmail = (TextView) findViewById(R.id.userEmail) ;
+
+
 
         editName = (ImageView) findViewById(R.id.editName);
 //        editName.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +124,7 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 
@@ -162,8 +172,12 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
             myProfile = new Intent(UserHomeActivity.this, MyProducts.class);
             startActivity(myProfile);
         } else if (id == R.id.nav_AboutUs) {
+           myProfile = new Intent(UserHomeActivity.this, AboutUs.class);
+           startActivity(myProfile);
 
         } else if (id == R.id.nav_contact_us) {
+           myProfile = new Intent(UserHomeActivity.this, ContactUs.class);
+           startActivity(myProfile);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

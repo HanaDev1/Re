@@ -48,6 +48,14 @@ public class DesignerSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_sign_in);
+        TextView createNwe = (TextView) findViewById(R.id.toSignUp2);
+        createNwe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(DesignerSignInActivity.this, DesignerSignUpActivity.class);
+                startActivity(a);
+            }
+        });
 
         //view initlilaztion
         inputEmail = (EditText) findViewById(R.id.emailDesignerEditText);
