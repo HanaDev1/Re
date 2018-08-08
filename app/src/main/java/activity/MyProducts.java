@@ -1,13 +1,11 @@
-package remoty.internship.wadimakkah.remotyapplication;
-
+package activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,76 +20,71 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import activity.DesignerHomeActivity;
-import adapter.ProductAdapter;
-import adapter.UserProfileAdapter;
+import adapter.MyProductAdapter;
+import remoty.internship.wadimakkah.remotyapplication.Product;
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class MyProducts extends AppCompatActivity {
+
     private RecyclerView recyclerView;
-    private UserProfileAdapter adapter;
-    private List<Product> productList;
-    private Context mContext;
+    private MyProductAdapter adapter;
+    private List<Product> myProductList;
+    String designerName, productName;
+    DatabaseReference databaseReference;
     FirebaseAuth auth;
-    String name;
+    private Context mContext;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_myproduct_card);
+        setContentView(R.layout.activity_my_products);
 
         mContext = getApplicationContext();
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_viewUserPro);
-
-        productList = new ArrayList<>();
-        adapter = new UserProfileAdapter(mContext, productList);
-
-        //layoutManager to set cardview to recycle view
-        auth = FirebaseAuth.getInstance();
+        recyclerView = (RecyclerView) findViewById(R.id.myproductRecycle);
+        myProductList  = new ArrayList<>();
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        adapter = new MyProductAdapter(mContext,myProductList);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference reference = database.getReference("client").child(auth.getUid()).child("products");
-        reference.addValueEventListener(new ValueEventListener() {
+        recyclerView.setAdapter(adapter);
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //database
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child("hcDe1xCRXfZlKeBcKLBeqx0OUxr1").child("products");
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    String id = snapshot.getValue(String.class);
+                    Log.d("User id: ",id);
 
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    String getID = dataSnapshot1.getValue(String.class);
-                    Log.d("id",getID);
-
-                    final DatabaseReference reference2 = database.getReference("products").child(getID);
+                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("products").child(id);
                     reference2.addValueEventListener(new ValueEventListener() {
-
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            Product userProfile = dataSnapshot.getValue(Product.class);
-                            productList.add(userProfile);
+                            Product pro = dataSnapshot.getValue(Product.class);
+                            String test=dataSnapshot.child("product_name").getValue(String.class);
+                            Log.d("product name",test);
+                            myProductList.add(pro);
                             adapter.notifyDataSetChanged();
 
-                            Log.d("reference", String.valueOf(reference2));
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
                     });
                 }
-
             }
 
             @Override
@@ -101,15 +92,7 @@ public class MyProducts extends AppCompatActivity {
 
             }
         });
-
-    }
-
-    private int dpToPx(int dp) {
-
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
-
+        }
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
@@ -145,7 +128,17 @@ public class MyProducts extends AppCompatActivity {
                     outRect.top = spacing; // item top
                 }
             }
-
-
         }
-}}
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+}
+

@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        startActivity(new Intent(MainActivity.this, DesignerSignInActivity.class));
+        startActivity(new Intent(MainActivity.this, DesignerSignUpActivity.class));
         // close splash activity
         finish();
 

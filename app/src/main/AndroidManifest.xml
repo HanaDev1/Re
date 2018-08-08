@@ -31,7 +31,7 @@
         <activity android:name="activity.DesignerSignUpActivity" />
         <activity android:name="activity.UserRequestActivity" />
         <activity android:name="activity.ProductDetailsActivity" />
-        <activity android:name=".MyProducts" />
+        <activity android:name="activity.MyProducts" />
         <activity android:name="activity.UserProductDetailsActivity" />
         <activity android:name=".UserViewProfile" />
         <activity android:name="activity.AboutUs" />

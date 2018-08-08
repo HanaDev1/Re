@@ -1,10 +1,10 @@
 package activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,14 +35,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.UserHomeAdapter;
-import remoty.internship.wadimakkah.remotyapplication.MyProducts;
-import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
 
-import static remoty.internship.wadimakkah.remotyapplication.R.string.navigation_drawer_open;
-
-public class UserHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class UserHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recyclerView;
     private UserHomeAdapter adapter;
     private List<Users> designerList;
@@ -51,7 +48,8 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
     DrawerLayout drawerLayout;
     ImageView editName;
     TextView userFullName, userEmail;
-    String email;
+    String email, userName;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +62,17 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         setSupportActionBar(toolbar);
 
 
-         drawerLayout = findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
         ActionBarDrawerToggle toggle =
                 new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                        R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        userFullName = (TextView) findViewById(R.id.userfullName) ;
-        userEmail = (TextView) findViewById(R.id.userEmail) ;
+        userFullName = (TextView) findViewById(R.id.userfullName);
+        userEmail = (TextView) findViewById(R.id.userEmail);
 
+        auth = FirebaseAuth.getInstance();
 
 
         editName = (ImageView) findViewById(R.id.editName);
@@ -113,7 +112,6 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Users user = singleSnapshot.getValue(Users.class);
-
                     designerList.add(user);
                     adapter.notifyDataSetChanged();
                 }
@@ -125,6 +123,29 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
             }
         });
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //editUserName();
+    }
+
+    public void editUserName (){
+        //Retrieving and editing user fullname
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("client").child(auth.getUid());
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                userName = dataSnapshot.child("full_name").getValue(String.class);
+//                email = dataSnapshot.child("email").getValue(String.class);
+//                Log.d("username",userName);
+
+                userFullName.setText("Hana");
+                userEmail.setText("Ahmed");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -166,18 +187,18 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
 
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Intent myProfile ;
+        Intent myProfile;
         int id = item.getItemId();
-       if (id == R.id.nav_myProduct) {
+        if (id == R.id.nav_myProduct) {
             myProfile = new Intent(UserHomeActivity.this, MyProducts.class);
             startActivity(myProfile);
         } else if (id == R.id.nav_AboutUs) {
-           myProfile = new Intent(UserHomeActivity.this, AboutUs.class);
-           startActivity(myProfile);
+            myProfile = new Intent(UserHomeActivity.this, AboutUs.class);
+            startActivity(myProfile);
 
         } else if (id == R.id.nav_contact_us) {
-           myProfile = new Intent(UserHomeActivity.this, ContactUs.class);
-           startActivity(myProfile);
+            myProfile = new Intent(UserHomeActivity.this, ContactUs.class);
+            startActivity(myProfile);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

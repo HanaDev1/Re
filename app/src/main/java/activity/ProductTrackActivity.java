@@ -201,6 +201,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                 bundleEmail.putString("email",email);
                 back.putExtras(bundleEmail);
                 startActivity(back);
+
                 finish();
             }
         });

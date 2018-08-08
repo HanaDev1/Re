@@ -26,20 +26,15 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
     public TextView designer_name;
     public ImageView designer_img;
     CardView card_view ;
-    Designer designer;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
 
         public MyViewHolder(final View view) {
             super(view);
             designer_name = (TextView) view.findViewById(R.id.designer_name);
             designer_img = (ImageView) view.findViewById(R.id.designer_img);
             card_view = (CardView) view.findViewById(R.id.card_view);
-
-
         }
     }
 
@@ -71,7 +66,6 @@ public class UserHomeAdapter extends RecyclerView.Adapter<UserHomeAdapter.MyView
                 bundle.putString("email",email);
                 a.putExtras(bundle);
                 a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//clear all activities before the signin
-
                 mContext.startActivity(a);
             }
         });

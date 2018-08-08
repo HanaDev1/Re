@@ -1,12 +1,8 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    tools:context="activity.MyProducts"
-    android:fitsSystemWindows="true">
-
-    <include layout="@layout/my_product_recycle_view" />
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_viewProduct"
@@ -14,15 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/card_margin"
         android:elevation="3dp"
-        card_view:cardCornerRadius="@dimen/card_album_radius"
-        android:layout_gravity="center">
+        card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/productName2"
+                android:id="@+id/productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/album_title_padding"
@@ -31,10 +26,12 @@
                 android:textColor="@color/album_title"
                 android:textSize="20sp"
                 android:fontFamily="@font/subtitlefont"
-                android:text="Product Name:"/>
+                android:text="AAAAAAAAAAAAA"/>
 
 
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
-</android.support.design.widget.CoordinatorLayout>
+
+
+</LinearLayout>
