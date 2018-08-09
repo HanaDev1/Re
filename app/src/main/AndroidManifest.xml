@@ -33,7 +33,6 @@
         <activity android:name="activity.ProductDetailsActivity" />
         <activity android:name="activity.MyProducts" />
         <activity android:name="activity.UserProductDetailsActivity" />
-        <activity android:name=".UserViewProfile" />
         <activity android:name="activity.AboutUs" />
         <activity android:name="activity.ContactUs" />
     </application>

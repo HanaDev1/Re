@@ -56,6 +56,9 @@ public class DesignerHomeActivity extends AppCompatActivity {
     private List<Product> productList;
     private Context mContext;
     Firebase firebase;
+    Product productItems;
+    FirebaseAuth auth;
+    EditText desc;
     String email, prodName;
     private TabLayout tabLayout;
     ViewPager vpPager;
@@ -75,7 +78,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //View pager
         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
         adapterViewPager = new DesignerPagerAdapter (getSupportFragmentManager());

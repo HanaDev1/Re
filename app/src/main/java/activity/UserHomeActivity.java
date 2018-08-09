@@ -20,6 +20,8 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,11 +47,15 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
     DatabaseReference myRef;
     private Context mContext;
     private DatabaseReference databaseReference;
+
     DrawerLayout drawerLayout;
     ImageView editName;
     TextView userFullName, userEmail;
     String email, userName;
     FirebaseAuth auth;
+    EditText newName;
+    NavigationView navigationView;
+    Button done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,22 +75,18 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        userFullName = (TextView) findViewById(R.id.userfullName);
-        userEmail = (TextView) findViewById(R.id.userEmail);
 
         auth = FirebaseAuth.getInstance();
 
 
-        editName = (ImageView) findViewById(R.id.editName);
-//        editName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        navigationView = findViewById(R.id.arcNavigationView);
+        userFullName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userfullName);
+        userEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userEmail);
+        newName = (EditText) navigationView.getHeaderView(0).findViewById(R.id.updateName);
+        done = (Button) navigationView.getHeaderView(0).findViewById(R.id.updateBtn);
 
-        NavigationView navigationView = findViewById(R.id.arcNavigationView);
         navigationView.setNavigationItemSelectedListener(this);
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         mContext = getApplicationContext();
@@ -124,25 +126,56 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         });
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //editUserName();
+
+        editUserName();
     }
 
-    public void editUserName (){
+    public void editUserName() {
         //Retrieving and editing user fullname
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("client").child(auth.getUid());
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                userName = dataSnapshot.child("full_name").getValue(String.class);
-//                email = dataSnapshot.child("email").getValue(String.class);
-//                Log.d("username",userName);
+                userName = dataSnapshot.child("full_name").getValue(String.class);
+                email = dataSnapshot.child("email").getValue(String.class);
+                Log.d("username", userName);
 
-                userFullName.setText("Hana");
-                userEmail.setText("Ahmed");
+                userFullName.setText(userName);
+                userEmail.setText(email);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        editName = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.editName);
+        editName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editName.setVisibility(View.INVISIBLE);
+                done.setVisibility(View.VISIBLE);
+                //newName.setText(userFullName.getText());
+                newName.setVisibility(View.VISIBLE);
+                userFullName.setVisibility(View.INVISIBLE);
+                done.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final String nameUpdate = newName.getText().toString().trim();
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client").child(auth.getUid());
+                        reference.child("full_name").setValue(nameUpdate);
+
+                        editName.setVisibility(View.VISIBLE);
+                        done.setVisibility(View.INVISIBLE);
+                        //newName.setText(userFullName.getText());
+                        newName.setVisibility(View.INVISIBLE);
+                        userFullName.setText(newName.getText());
+                        userFullName.setVisibility(View.VISIBLE);
+                    }
+
+
+                });
 
             }
         });

@@ -15,25 +15,19 @@
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/acount_pic" />
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/updateBtn"
-        android:background="@drawable/savechanges"
-        android:visibility="gone"/>
 
 </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
+        android:layout_height="wrap_content">
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -42,25 +36,31 @@
         android:fontFamily="@font/titlefont"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/userfullName"/>
-
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/editName"
-        android:src="@drawable/edit"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        />
-    </LinearLayout>
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/updateName"
         android:hint="New name"
         style="@style/EditText"
-        android:visibility="gone"/>
+        android:visibility="invisible"/>
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/editName"
+            android:src="@drawable/edit"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/updateName"/>
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/updateBtn"
+            android:background="@drawable/done"
+            android:layout_toRightOf="@+id/updateName"
+            android:visibility="invisible"/>
+
+</RelativeLayout>
 
     <TextView
         android:id="@+id/userEmail"
