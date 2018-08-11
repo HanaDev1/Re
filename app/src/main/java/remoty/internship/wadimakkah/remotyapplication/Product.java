@@ -15,7 +15,8 @@ public class Product {
 
     }
 
-
+    public Product() {
+    }
 
     public String getProductStatus() {
         return productStatus;
