@@ -1,92 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:layout_gravity="center"
-    android:layout_margin="20dp">
-
-    <LinearLayout
+    tools:context="activity.DesignerSignInActivity"
+    android:background="@drawable/lightback"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="40dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="@string/request_product"
-            android:textSize="36sp"
-            android:fontFamily="@font/remotymaintitle" />
-
-        <EditText
-            android:id="@+id/product_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="40dp"
-            android:hint="@string/product_name"
-            android:fontFamily="@font/titlefont"
-            android:textSize="16sp"
-            android:background="#fff"
-            style="@style/EditText"/>
-
-        <EditText
-            android:id="@+id/product_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:autoSizeMaxTextSize="20dp"
-            android:hint="@string/product_description"
-            android:fontFamily="@font/titlefont"
-            android:textSize="16sp"
-            android:background="#fff"
-            style="@style/EditText"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_gravity="center"
+        android:layout_margin="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="40dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="@string/request_product"
+                android:textSize="36sp"
+                android:fontFamily="@font/remotymaintitle" />
+
+            <EditText
+                android:id="@+id/product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="40dp"
-                android:text="@string/upload_file"
+                android:hint="@string/product_name"
                 android:fontFamily="@font/titlefont"
-                android:id="@+id/uploadfile"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:background="#fff"
+                style="@style/EditText"/>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/uploadfileicon"
-                android:src="@drawable/plus"
+            <EditText
+                android:id="@+id/product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:hint="@string/product_description"
+                android:fontFamily="@font/titlefont"
+                android:textSize="16sp"
+                android:background="#fff"
+                style="@style/EditText"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/upload_file"
+                    android:fontFamily="@font/titlefont"
+                    android:id="@+id/uploadfile"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/uploadfileicon"
+                    android:src="@drawable/plus"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"/>
 
 
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:text="@string/submit2"
+                android:fontFamily="@font/titlefont"
+                android:background="@drawable/button_n"
+                android:textSize="16sp"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/request"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
-            android:text="@string/submit2"
-            android:fontFamily="@font/titlefont"
-            android:background="@drawable/button_n"
-            android:textSize="16sp"/>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

@@ -1,21 +1,29 @@
 package activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,41 +33,38 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import adapter.MyProductAdapter;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
+
 public class MyProducts extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private MyProductAdapter adapter;
-    private List<Product> myProductList;
-    String designerName, productName;
+    ArrayList<Product> dataModels;
+    ListView listView;
+    private static MyProductAdapter adapter;
     DatabaseReference databaseReference;
     FirebaseAuth auth;
-    private Context mContext;
-
+    String Demail;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_products);
+        setContentView(R.layout.my_product_recycle_view);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mContext = getApplicationContext();
-        recyclerView = (RecyclerView) findViewById(R.id.myproductRecycle);
-        myProductList  = new ArrayList<>();
+        listView=(ListView)findViewById(R.id.list);
+        auth=FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+//////////////////////////////////////////////////////////////////////////////////////
+        dataModels= new ArrayList<>();
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new MyProductAdapter(mContext,myProductList);
+//        dataModels.add(new Product("Apple Pie"));
+//        dataModels.add(new Product("Banana Bread"));
 
-        recyclerView.setAdapter(adapter);
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //database
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child("hcDe1xCRXfZlKeBcKLBeqx0OUxr1").child("products");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child(user.getUid()).child("products");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -71,10 +76,12 @@ public class MyProducts extends AppCompatActivity {
                     reference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Product pro = dataSnapshot.getValue(Product.class);
-                            String test=dataSnapshot.child("product_name").getValue(String.class);
-                            Log.d("product name",test);
-                            myProductList.add(pro);
+                            //Product pro = dataSnapshot.getValue(Product.class);
+//                            String test=dataSnapshot.child("product_name").getValue(String.class);
+//                            Log.d("product name",test);
+                            //Demail=dataSnapshot.child("designer_email").getValue(String.class);
+                            dataModels.add(new Product(dataSnapshot.child("product_name").getValue(String.class)));
+
                             adapter.notifyDataSetChanged();
 
                         }
@@ -92,45 +99,50 @@ public class MyProducts extends AppCompatActivity {
 
             }
         });
-        }
-    /**
-     * RecyclerView item decoration - give equal margin around grid item
-     */
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
+        adapter= new MyProductAdapter(dataModels,getApplicationContext());
 
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-        }
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view); // item position
-            int column = position % spanCount; // item column
+                Product dataModel= dataModels.get(position);
+                //snackbar
+                Intent intent=new Intent(MyProducts.this,UserTrackActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("designerEmail",Demail);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing;
-                }
-                outRect.bottom = spacing; // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing; // item top
-                }
+                Snackbar.make(view, dataModel.getDesigner_email(), Snackbar.LENGTH_LONG)
+                        .setAction("No action", null).show();
             }
-        }
+        });
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+
+
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+
+////////////////////
 
 
     /**
