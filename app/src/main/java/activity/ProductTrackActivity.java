@@ -202,9 +202,11 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                 back.putExtras(bundleEmail);
                 startActivity(back);
 
-                finish();
             }
         });
+
+//        Intent i = new Intent(ProductTrackActivity.this, DesignerHomeActivity.class);
+//        startActivity(i);
     }
 
     @Override

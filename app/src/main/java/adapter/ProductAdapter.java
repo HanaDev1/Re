@@ -74,7 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             @Override
             public void onClick(final View view) {
                 final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("products");
-                Query refQuery = ref.orderByChild("product_name").equalTo(productName);
+                final Query refQuery = ref.orderByChild("product_status").equalTo("accepted"+productName);
 
                 refQuery.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -84,43 +84,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                             key = singleSnapshot.getKey();
                             Log.d("Product key ", key);
                             ref.child(key);
+                            //DatabaseReference refpro = FirebaseDatabase.getInstance().getReference("products").child(productName);
 
-                            Query q=ref.orderByChild("product_status").equalTo("accepted");
-                            q.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.exists()){
-                                        Intent a = new Intent (mContext, ProductDetailsActivity.class);
+//                            Query q =refpro.orderByChild("product_status").equalTo("accepted");
+//                            q.addListenerForSingleValueEvent(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                                        Intent a = new Intent(mContext, ProductTrackActivity.class);
                                         Bundle bundle = new Bundle();
-                                        bundle.putString("product_name",productName);
-                                        bundle.putString("product_details",productDetails);
-                                        bundle.putString("key",key);
-                                        bundle.putString("email",product.getDesigner_email());
+                                        bundle.putString("product_name", productName);
+                                        bundle.putString("product_details", productDetails);
+                                        bundle.putString("key", key);
+                                        bundle.putString("email", product.getDesigner_email());
 
                                         a.putExtras(bundle);
                                         a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         mContext.startActivity(a);
-                                    }
-                                    else{
-                                        Intent intent=new Intent(mContext,ProductDetailsActivity.class);
-
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("product_name",productName);
-                                        bundle.putString("product_details",productDetails);
-                                        bundle.putString("key",key);
-
-                                        intent.putExtras(bundle);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        mContext.startActivity(intent);
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
 
                         }
                     }
@@ -131,9 +112,37 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     }
                 });
 
-                //DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("products").child(key);
+                final DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("products");
+                final Query refQuery2 = ref2.orderByChild("product_status").equalTo("");
+                refQuery2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        key = dataSnapshot.getKey();
+                        Log.d("Product key ", key);
+                        ref.child(key);
+                        Intent intent = new Intent(mContext, ProductDetailsActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("product_name", productName);
+                        bundle.putString("product_details", productDetails);
+                        bundle.putString("key", key);
+
+                        intent.putExtras(bundle);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        mContext.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
+
+
+
          status = product.getProductStatus();
     }
     @Override

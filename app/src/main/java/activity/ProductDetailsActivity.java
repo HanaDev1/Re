@@ -39,6 +39,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     Button addMenu;
     FloatingActionButton butnFloat;
     private LinearLayout parentLinearLayout;
+    String email;
 
 
 
@@ -52,6 +53,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Description = (TextView) findViewById(R.id.deadline);
         acceptBtn = (Button) findViewById(R.id.acceptPro) ;
         rejecctBtn = (Button) findViewById(R.id.rejectPro) ;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Bundle bundle = getIntent().getExtras();
         productTitle=bundle.getString("product_name");
@@ -78,7 +81,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                              key = singleSnapshot.getKey();
                             Log.d("User key ",key);
-                            ref.child(key).child("product_status").setValue("accepted");
+                            ref.child(key).child("product_status").setValue("accepted"+productTitle);
                             Intent toAddSteps = new Intent(ProductDetailsActivity.this,ProductTrackActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("key",key);
