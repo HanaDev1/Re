@@ -51,25 +51,6 @@ public class MyProducts extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_my_products);
-
-        mContext = getApplicationContext();
-        recyclerView = (RecyclerView) findViewById(R.id.myproductRecycle);
-        myProductList  = new ArrayList<>();
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new UserHomeActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new MyProductAdapter(mContext,myProductList);
-
-        recyclerView.setAdapter(adapter);
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //database
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child(auth.getUid()).child("products");
-
         setContentView(R.layout.my_product_recycle_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,7 +65,6 @@ public class MyProducts extends AppCompatActivity {
 //        dataModels.add(new Product("Banana Bread"));
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child(user.getUid()).child("products");
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
