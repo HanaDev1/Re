@@ -1,57 +1,94 @@
 package adapter;
 
+
 import android.content.Context;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
-public class MyProductAdapter extends RecyclerView.Adapter<MyProductAdapter.MyViewHolder>{
+public class MyProductAdapter extends ArrayAdapter<Product> implements View.OnClickListener{
 
-    private Context mContext;
-    private List<Product> myprodList;
-    TextView productName;
-    CardView cardView;
+private ArrayList<Product> dataSet;
+        Context mContext;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+// View lookup cache
+private static class ViewHolder {
+    TextView txtName;
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            productName = itemView.findViewById(R.id.productName2);
-            cardView = itemView.findViewById(R.id.card_viewProduct);
 
+}
+
+    public MyProductAdapter(ArrayList<Product> data, Context context) {
+        super(context, R.layout.my_product_card, data);
+        this.dataSet = data;
+        this.mContext=context;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int position=(Integer) v.getTag();
+        Object object= getItem(position);
+        Product myProduct=(Product) object;
+
+        switch (v.getId())
+        {
+            case R.id.name:
+                Snackbar.make(v, "Release date " +myProduct.getProduct_name(), Snackbar.LENGTH_LONG)
+                        .setAction("No action", null).show();
+                break;
         }
     }
 
-    public MyProductAdapter(Context mContext, List<Product> myprodList) {
-        this.mContext = mContext;
-        this.myprodList = myprodList;
-    }
+    private int lastPosition = -1;
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_my_products,parent,false);
-        return new MyViewHolder(itemView);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Get the data item for this position
+        Product myproduct = getItem(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        ViewHolder viewHolder; // view lookup cache stored in tag
+
+        final View result;
+
+        if (convertView == null) {
+
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.my_product_card, parent, false);
+            viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
+
+
+
+
+            result=convertView;
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+            result=convertView;
+        }
+
+        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+        result.startAnimation(animation);
+        lastPosition = position;
+
+        viewHolder.txtName.setText(myproduct.getProduct_name());
+
+//        viewHolder.info.setOnClickListener(this);
+//        viewHolder.info.setTag(position);
+        // Return the completed view to render on screen
+        return convertView;
     }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Product myproducts = myprodList.get(position);
-        productName.setText(myproducts.getProduct_name());
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-
-
 }

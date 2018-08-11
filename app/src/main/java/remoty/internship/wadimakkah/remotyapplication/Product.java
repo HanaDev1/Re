@@ -10,21 +10,18 @@ public class Product {
     private String productStatus;
     private String steps;
 
-    public String getSteps() {
-        return steps;
+    public Product(String product_name) {
+        this.product_name = product_name;
+
     }
 
-    public void setSteps(String steps) {
-        this.steps = steps;
-    }
+
 
     public String getProductStatus() {
         return productStatus;
     }
 
-    public void setProductStatus(String productStatus) {
-        this.productStatus = productStatus;
-    }
+
 
     public String getType() { return type; }
 
@@ -59,7 +56,5 @@ public class Product {
         return product_details;
     }
 
-    public void setProduct_details(String product_details) {
-        this.product_details = product_details;
-    }
+
 }
