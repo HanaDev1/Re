@@ -49,6 +49,8 @@ public class DesignerSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_sign_in);
         TextView createNwe = (TextView) findViewById(R.id.toSignUp2);
+
+
         createNwe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

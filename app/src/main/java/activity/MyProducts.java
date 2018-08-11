@@ -59,7 +59,7 @@ public class MyProducts extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //database
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child("hcDe1xCRXfZlKeBcKLBeqx0OUxr1").child("products");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child(auth.getUid()).child("products");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

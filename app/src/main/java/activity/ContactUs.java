@@ -26,12 +26,6 @@ public class ContactUs extends AppCompatActivity {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
             startActivity(Intent.createChooser(emailIntent, chooserTitle));
         }
-
-        /* public void facebook(View view){
-             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/USER_ID"));
-             startActivity(intent);
-
-         }*/
         public void twitter(View view){
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/Remotelysa" )));
