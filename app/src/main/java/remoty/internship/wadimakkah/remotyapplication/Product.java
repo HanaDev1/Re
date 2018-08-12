@@ -8,10 +8,21 @@ public class Product {
     private String Designer_email;
     private String type;
     private String productStatus;
-    private String steps;
+    private String stepName;
 
-    public Product(String product_name) {
-        this.product_name = product_name;
+    public void setProductStatus(String productStatus) {
+        this.productStatus = productStatus;
+    }
+
+    public String getStepName() {
+        return stepName;
+    }
+
+    public void setStepName(String stepName) {
+        this.stepName = stepName;
+    }
+
+    public Product(String product_name) { this.product_name = product_name;
 
     }
 

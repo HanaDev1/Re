@@ -61,9 +61,6 @@ public class MyProducts extends AppCompatActivity {
 //////////////////////////////////////////////////////////////////////////////////////
         dataModels= new ArrayList<>();
 
-//        dataModels.add(new Product("Apple Pie"));
-//        dataModels.add(new Product("Banana Bread"));
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child(user.getUid()).child("products");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,14 +73,8 @@ public class MyProducts extends AppCompatActivity {
                     reference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            //Product pro = dataSnapshot.getValue(Product.class);
-//                            String test=dataSnapshot.child("product_name").getValue(String.class);
-//                            Log.d("product name",test);
-                            //Demail=dataSnapshot.child("designer_email").getValue(String.class);
                             dataModels.add(new Product(dataSnapshot.child("product_name").getValue(String.class)));
-
                             adapter.notifyDataSetChanged();
-
                         }
 
                         @Override

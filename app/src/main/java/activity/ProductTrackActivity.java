@@ -28,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class ProductTrackActivity extends Activity implements AdapterView.OnItemSelectedListener {
@@ -57,6 +59,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
 
         Bundle b = getIntent().getExtras();
         final String email = b.getString("email");
+        final String productName = b.getString("product_name");
 
 
         step1 = (EditText) findViewById(R.id.step1);
@@ -95,6 +98,41 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
         addNewStep = (FloatingActionButton) findViewById(R.id.addnewStep);
 
         mContext = getApplicationContext();
+
+        //Retrieve product steps
+        Bundle bundle = getIntent().getExtras();
+        key = bundle.getString("key");
+        DatabaseReference referenceSteps = FirebaseDatabase.getInstance().getReference("products");
+        Query query = referenceSteps.orderByChild("product_name").equalTo(productName);
+        Log.d("product name", productName);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                getStep1 = dataSnapshot.child(key).child("steps").child("0").child("step").getValue(String.class);
+                getStep2 = dataSnapshot.child(key).child("steps").child("1").child("step").getValue(String.class);
+                getStep3 = dataSnapshot.child(key).child("steps").child("2").child("step").getValue(String.class);
+                getStep4 = dataSnapshot.child(key).child("steps").child("3").child("step").getValue(String.class);
+                getStep5 = dataSnapshot.child(key).child("steps").child("4").child("step").getValue(String.class);
+                getStep6 = dataSnapshot.child(key).child("steps").child("5").child("step").getValue(String.class);
+                getStep6 = dataSnapshot.child(key).child("steps").child("6").child("step").getValue(String.class);
+                getPrice = dataSnapshot.child(key).child("steps").child("price").getValue(String.class);
+
+                step1.setText(getStep1);
+                step2.setText(getStep2);
+                step3.setText(getStep3);
+                step4.setText(getStep4);
+                step5.setText(getStep5);
+                step6.setText(getStep6);
+                step7.setText(getStep7);
+                price.setText(getPrice);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
         ArrayAdapter spinnerAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,sprintStatus);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -195,6 +233,7 @@ public class ProductTrackActivity extends Activity implements AdapterView.OnItem
                 reference.child("6").child("status").setValue(text7);
                 reference.child("price").setValue(getPrice);
 
+                finish();
 
                 Intent back = new Intent(ProductTrackActivity.this, DesignerHomeActivity.class);
                 Bundle bundleEmail = new Bundle();

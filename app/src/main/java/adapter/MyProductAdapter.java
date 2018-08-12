@@ -16,36 +16,35 @@ import java.util.ArrayList;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
-public class MyProductAdapter extends ArrayAdapter<Product> implements View.OnClickListener{
+public class MyProductAdapter extends ArrayAdapter<Product> implements View.OnClickListener {
 
-private ArrayList<Product> dataSet;
-        Context mContext;
+    private ArrayList<Product> dataSet;
+    Context mContext;
 
-// View lookup cache
-private static class ViewHolder {
-    TextView txtName;
+    // View lookup cache
+    private static class ViewHolder {
+        TextView txtName;
 
 
-}
+    }
 
     public MyProductAdapter(ArrayList<Product> data, Context context) {
         super(context, R.layout.my_product_card, data);
         this.dataSet = data;
-        this.mContext=context;
+        this.mContext = context;
 
     }
 
     @Override
     public void onClick(View v) {
 
-        int position=(Integer) v.getTag();
-        Object object= getItem(position);
-        Product myProduct=(Product) object;
+        int position = (Integer) v.getTag();
+        Object object = getItem(position);
+        Product myProduct = (Product) object;
 
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.name:
-                Snackbar.make(v, "Release date " +myProduct.getProduct_name(), Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "Release date " + myProduct.getProduct_name(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
         }
@@ -70,14 +69,12 @@ private static class ViewHolder {
             viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
 
 
-
-
-            result=convertView;
+            result = convertView;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
+            result = convertView;
         }
 
         Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
@@ -85,10 +82,6 @@ private static class ViewHolder {
         lastPosition = position;
 
         viewHolder.txtName.setText(myproduct.getProduct_name());
-
-//        viewHolder.info.setOnClickListener(this);
-//        viewHolder.info.setTag(position);
-        // Return the completed view to render on screen
         return convertView;
     }
 }
