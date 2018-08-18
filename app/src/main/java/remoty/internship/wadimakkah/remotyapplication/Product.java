@@ -7,19 +7,23 @@ public class Product {
     private String product_details;
     private String Designer_email;
     private String type;
-    private String productStatus;
-    private String stepName;
+    private String Status;
+    private String step;
 
-    public void setProductStatus(String productStatus) {
-        this.productStatus = productStatus;
+    public String getStatus() {
+        return Status;
     }
 
-    public String getStepName() {
-        return stepName;
+    public void setStatus(String status) {
+        Status = status;
     }
 
-    public void setStepName(String stepName) {
-        this.stepName = stepName;
+    public String getStep() {
+        return step;
+    }
+
+    public void setStep(String step) {
+        this.step = step;
     }
 
     public Product(String product_name) { this.product_name = product_name;
@@ -29,11 +33,10 @@ public class Product {
     public Product() {
     }
 
-    public String getProductStatus() {
-        return productStatus;
+    public Product(String product_name, String id) {
+        this.product_name = product_name;
+        this.id = id;
     }
-
-
 
     public String getType() { return type; }
 

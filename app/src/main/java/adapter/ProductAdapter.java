@@ -143,7 +143,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
 
 
-         status = product.getProductStatus();
+         status = product.getStatus();
     }
     @Override
     public int getItemCount() {

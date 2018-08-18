@@ -63,7 +63,7 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.main_user_home);
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        //drawer code
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
