@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,67 +23,89 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adapter.MyProductAdapter;
 import adapter.ProductAdapter;
 import adapter.UserTrackAdapter;
 import remoty.internship.wadimakkah.remotyapplication.Product;
 import remoty.internship.wadimakkah.remotyapplication.R;
+import remoty.internship.wadimakkah.remotyapplication.Steps;
 
 public class UserTrackActivity extends AppCompatActivity {
-    ArrayList<Product> dataModels;
-    ListView listView;
-    private static UserTrackAdapter adapter;
+    private List<Steps> stepList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private TextView price;
+    private UserTrackAdapter mAdapter;
+    String pID;
     FirebaseAuth auth;
     DatabaseReference databaseReference;
-    String key;
-    int counter = 0;
-    Context mContext;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_track);
-
+        setContentView(R.layout.user_track_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        price=(TextView)findViewById(R.id.price);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_track);
 
-        listView = (ListView) findViewById(R.id.testListView);
-        mContext = getApplicationContext();
+        mAdapter = new UserTrackAdapter(stepList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
 
-        //////////////////////////////////////////////////////////////////////////////////////
-        auth = FirebaseAuth.getInstance();
+        prepareMovieData();
+        getPrice();
+    }
 
-        dataModels = new ArrayList<>();
-        adapter = new UserTrackAdapter(dataModels, mContext);
-        FirebaseUser user = auth.getCurrentUser();
+    private void prepareMovieData() {
+        Bundle bundle=getIntent().getExtras();
+        pID=bundle.getString("productID");
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("client").child(user.getUid()).child("products");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference r= databaseReference.child("products").child(pID).child("steps");
+        //here will make a query
+
+        ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    final String id = snapshot.getValue(String.class);
-                    counter++;
-                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("products").child(id);
-                    reference2.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            dataModels.add(new Product(dataSnapshot.child("steps").child(String.valueOf(counter)).child("step").getValue(String.class)));
-                            adapter.notifyDataSetChanged();
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+              //    Steps step = data.getValue(Steps.class);
+//
+//                    String stepp=data.getValue(String.class);
+//                    Toast.makeText(UserTrackActivity.this, stepp, Toast.LENGTH_SHORT).show();
 
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                    stepList.add(new Steps(data.child("step").getValue(String.class),data.child("status").getValue(String.class)));
+                    mAdapter.notifyDataSetChanged();
 
-                        }
-                    });
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+            }
+        };
+        r.addListenerForSingleValueEvent(eventListener);
+
+
+    }
+
+    public void getPrice(){
+        DatabaseReference rf=databaseReference.child("products").child(pID);
+        rf.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String productPrice=dataSnapshot.child("price").getValue(String.class);
+                price.setText(productPrice);
             }
 
             @Override
@@ -86,8 +113,7 @@ public class UserTrackActivity extends AppCompatActivity {
 
             }
         });
-        adapter= new UserTrackAdapter(dataModels,getApplicationContext());
-        listView.setAdapter(adapter);
-
     }
 }
+
+

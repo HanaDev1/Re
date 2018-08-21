@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,11 +43,13 @@ import remoty.internship.wadimakkah.remotyapplication.R;
 public class MyProducts extends AppCompatActivity {
 
     ArrayList<Product> dataModels;
+
     ListView listView;
     private static MyProductAdapter adapter;
     DatabaseReference databaseReference;
+    DatabaseReference reference2;
     FirebaseAuth auth;
-    String Demail;
+    String Demail,name,ids,pID,test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +69,14 @@ public class MyProducts extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    String id = snapshot.getValue(String.class);
-                    Log.d("User id: ",id);
+                     ids = snapshot.getValue(String.class);
 
-                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("products").child(id);
+                     reference2 = FirebaseDatabase.getInstance().getReference("products").child(ids);
+
                     reference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            dataModels.add(new Product(dataSnapshot.child("product_name").getValue(String.class)));
+                            dataModels.add(new Product(dataSnapshot.child("product_name").getValue(String.class),dataSnapshot.getKey()));
                             adapter.notifyDataSetChanged();
                         }
 
@@ -99,39 +102,22 @@ public class MyProducts extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Product dataModel= dataModels.get(position);
+                name=dataModel.getProduct_name();
+                pID=dataModel.getId();
                 //snackbar
                 Intent intent=new Intent(MyProducts.this,UserTrackActivity.class);
                 Bundle bundle=new Bundle();
-                bundle.putString("designerEmail",Demail);
+                bundle.putString("productID",pID);
                 intent.putExtras(bundle);
                 startActivity(intent);
 
-                Snackbar.make(view, dataModel.getDesigner_email(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
+//                Snackbar.make(view, dataModel.getProduct_name(), Snackbar.LENGTH_LONG)
+//                        .setAction("No action", null).show();
+
             }
         });
     }
 
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-
-
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
 ////////////////////
 

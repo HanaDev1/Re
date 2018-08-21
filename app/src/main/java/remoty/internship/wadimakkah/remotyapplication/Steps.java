@@ -1,23 +1,30 @@
 package remoty.internship.wadimakkah.remotyapplication;
 
 public class Steps {
-    String stepName;
-    String StepStatus;
+    private String step;
+    private String status;
 
-
-    public String getStepName() {
-        return stepName;
+    public Steps() {
     }
 
-    public void setStepName(String stepName) {
-        this.stepName = stepName;
+    public Steps(String step, String status) {
+        this.step = step;
+        this.status = status;
     }
 
-    public String getStepStatus() {
-        return StepStatus;
+    public String getStep() {
+        return step;
     }
 
-    public void setStepStatus(String stepStatus) {
-        StepStatus = stepStatus;
+    public void setStep(String step) {
+        this.step = step;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
