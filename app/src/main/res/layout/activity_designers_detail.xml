@@ -108,6 +108,16 @@
                     android:layout_marginRight="30dp"
                     android:background="@drawable/button_n"
                     android:textStyle="bold"/>
+                <Button
+                    android:id="@+id/consultBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="Consult"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/button_n"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </LinearLayout>

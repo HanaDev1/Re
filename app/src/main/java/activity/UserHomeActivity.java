@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -24,7 +25,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +43,8 @@ import java.util.List;
 import adapter.UserHomeAdapter;
 import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
+
+import static com.google.firebase.auth.FirebaseAuth.*;
 
 public class UserHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recyclerView;
@@ -76,7 +82,7 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
 
-        auth = FirebaseAuth.getInstance();
+        auth = getInstance();
 
 
         navigationView = findViewById(R.id.arcNavigationView);
@@ -232,6 +238,12 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_contact_us) {
             myProfile = new Intent(UserHomeActivity.this, ContactUs.class);
             startActivity(myProfile);
+        }else if (id == R.id.menu_sign_out){
+            getInstance().signOut();
+            myProfile = new Intent(UserHomeActivity.this, DesignerSignInActivity.class);
+            startActivity(myProfile);
+            finish();
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

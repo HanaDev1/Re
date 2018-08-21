@@ -1,13 +1,18 @@
 package adapter;//use fragment and select which page will use it
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import activity.ResetPassActivity;
 import fragment.DesignerFragment;
+import remoty.internship.wadimakkah.remotyapplication.R;
 
 public class DesignerPagerAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 3;
+    Context mContext;
 
     public DesignerPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);

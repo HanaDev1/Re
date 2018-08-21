@@ -83,6 +83,18 @@ public class DesignersDetailActivity extends AppCompatActivity {
 
             }
         });
+        designerConslt = (Button) findViewById(R.id.consultBtn);
+        designerConslt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toDesignerConsult = new Intent(DesignersDetailActivity.this, ChatUserActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("email", email);
+                toDesignerConsult.putExtras(bundle);
+                startActivity(toDesignerConsult);
+            }
+        });
 
     }
 }

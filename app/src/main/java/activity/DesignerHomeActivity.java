@@ -81,7 +81,7 @@ public class DesignerHomeActivity extends AppCompatActivity {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //View pager
         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
-        adapterViewPager = new DesignerPagerAdapter (getSupportFragmentManager());
+        adapterViewPager = new DesignerPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         //tabLayout.setOnTabSelectedListener(this);
 
@@ -90,8 +90,17 @@ public class DesignerHomeActivity extends AppCompatActivity {
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position == 0) {
+                } else if (position == 1) {
+//                    startActivity(new Intent(DesignerHomeActivity.this, ResetPassActivity.class));
+                } else if (position == 2) {
+
+                }
+
                 Toast.makeText(DesignerHomeActivity.this,
-                        getString(R.string.selectedPgePos) + position, Toast.LENGTH_SHORT).show(); }
+                        getString(R.string.selectedPgePos) + position, Toast.LENGTH_SHORT).show();
+            }
+
             @Override
             public void onPageSelected(int position) {
             }
