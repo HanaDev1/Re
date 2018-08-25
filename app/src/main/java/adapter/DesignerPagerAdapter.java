@@ -29,7 +29,7 @@ public class DesignerPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                return DesignerFragment.newInstance(0, "Requst");
+                return DesignerFragment.newInstance(R.layout.request_tab, "Requst");
             case 1: // Fragment # 0 - This will show FirstFragment different title
                 return DesignerFragment.newInstance(1, "Current");
             case 2: // Fragment # 1 - This will show SecondFragment
