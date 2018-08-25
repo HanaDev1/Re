@@ -44,7 +44,7 @@ public class DesignersDetailActivity extends AppCompatActivity {
 
         Designer designer = new Designer();
         designerDesc.setText(designer.getDescription());
-        //designerConslt = (Button) findViewById(R.id.consultBtn);
+
 
 
         bundle = getIntent().getExtras();
@@ -91,6 +91,7 @@ public class DesignersDetailActivity extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("email", email);
+                bundle.putString("full_name",name);
                 toDesignerConsult.putExtras(bundle);
                 startActivity(toDesignerConsult);
             }

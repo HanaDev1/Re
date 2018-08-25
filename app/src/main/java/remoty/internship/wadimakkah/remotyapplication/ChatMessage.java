@@ -6,8 +6,28 @@ public class ChatMessage {
     private String messageText;
     private String messageUser;
     private long messageTime;
+    private String designerEmail;
+    private String designerFullName;
 
-    public ChatMessage(String messageText, String messageUser) {
+    public String getDesignerEmail() {
+        return designerEmail;
+    }
+
+    public void setDesignerEmail(String designerEmail) {
+        this.designerEmail = designerEmail;
+    }
+
+    public String getDesignerFullName() {
+        return designerFullName;
+    }
+
+    public void setDesignerFullName(String designerFullName) {
+        this.designerFullName = designerFullName;
+    }
+
+    public ChatMessage(String messageText, String DesignerEmail,String DesignerFullName, String messageUser) {
+        this.designerEmail = DesignerEmail;
+        this.designerFullName = DesignerFullName;
         this.messageText = messageText;
         this.messageUser = messageUser;
 

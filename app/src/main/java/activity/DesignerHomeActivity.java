@@ -7,10 +7,14 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,8 +23,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -45,8 +53,9 @@ import remoty.internship.wadimakkah.remotyapplication.R;
 import remoty.internship.wadimakkah.remotyapplication.Users;
 
 import static android.app.PendingIntent.getActivity;
+import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
-public class DesignerHomeActivity extends AppCompatActivity {
+public class DesignerHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //MyPagerAdapter adapterViewPager;
     private DesignerPagerAdapter adapterViewPager;
 
@@ -59,25 +68,38 @@ public class DesignerHomeActivity extends AppCompatActivity {
     Product productItems;
     FirebaseAuth auth;
     EditText desc;
-    String email, prodName;
     private TabLayout tabLayout;
     ViewPager vpPager;
     private DatabaseReference databaseReference;
+    DrawerLayout drawerLayout;
+    ImageView editName;
+    TextView userFullName, userEmail;
+    String email,userName;
+    EditText newName;
+    NavigationView navigationView;
+    Button done;
 
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designer_home);
 
-        Bundle bundle = getIntent().getExtras();
-        email = bundle.getString("email");
 
         mContext = getApplicationContext();
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //drawer code
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        auth = getInstance();
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+        ActionBarDrawerToggle toggle =
+                new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                        R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //View pager
         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
@@ -109,6 +131,14 @@ public class DesignerHomeActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        navigationView = findViewById(R.id.arcNavigationView);
+        userFullName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userfullName);
+        userEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userEmail);
+        newName = (EditText) navigationView.getHeaderView(0).findViewById(R.id.updateName);
+        done = (Button) navigationView.getHeaderView(0).findViewById(R.id.updateBtn);
+
+        navigationView.setNavigationItemSelectedListener(this);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -148,8 +178,14 @@ public class DesignerHomeActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+        editUserName();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
     /**
@@ -189,8 +225,93 @@ public class DesignerHomeActivity extends AppCompatActivity {
             }
         }
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void editUserName() {
+        //Retrieving and editing user fullname
+        DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("client").child(auth.getUid());
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userName = dataSnapshot.child("full_name").getValue(String.class);
+                email = dataSnapshot.child("email").getValue(String.class);
+
+                userFullName.setText(userName);
+                userEmail.setText(email);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        editName = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.editName);
+        editName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editName.setVisibility(View.INVISIBLE);
+                done.setVisibility(View.VISIBLE);
+                //newName.setText(userFullName.getText());
+                newName.setVisibility(View.VISIBLE);
+                userFullName.setVisibility(View.INVISIBLE);
+                done.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final String nameUpdate = newName.getText().toString().trim();
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client").child(auth.getUid());
+                        reference.child("full_name").setValue(nameUpdate);
+
+                        editName.setVisibility(View.VISIBLE);
+                        done.setVisibility(View.INVISIBLE);
+                        //newName.setText(userFullName.getText());
+                        newName.setVisibility(View.INVISIBLE);
+                        userFullName.setText(newName.getText());
+                        userFullName.setVisibility(View.VISIBLE);
+                    }
+
+
+                });
+
+            }
+        });
+
+    }
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        Intent myProfile;
+        int id = item.getItemId();
+        if (id == R.id.nav_myProduct) {
+            myProfile = new Intent(DesignerHomeActivity.this, MyProducts.class);
+            startActivity(myProfile);
+        } else if (id == R.id.nav_AboutUs) {
+            myProfile = new Intent(DesignerHomeActivity.this, AboutUs.class);
+            startActivity(myProfile);
+
+        } else if (id == R.id.nav_contact_us) {
+            myProfile = new Intent(DesignerHomeActivity.this, ContactUs.class);
+            startActivity(myProfile);
+        } else if (id == R.id.menu_sign_out) {
+            auth.getInstance().signOut();
+            myProfile = new Intent(DesignerHomeActivity.this, DesignerSignInActivity.class);
+            startActivity(myProfile);
+            finish();
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawerLayout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     /**
      * Converting dp to pixel

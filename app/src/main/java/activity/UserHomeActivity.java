@@ -239,7 +239,7 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
             myProfile = new Intent(UserHomeActivity.this, ContactUs.class);
             startActivity(myProfile);
         }else if (id == R.id.menu_sign_out){
-            getInstance().signOut();
+            auth.getInstance().signOut();
             myProfile = new Intent(UserHomeActivity.this, DesignerSignInActivity.class);
             startActivity(myProfile);
             finish();
