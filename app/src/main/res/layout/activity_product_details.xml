@@ -6,7 +6,6 @@
     tools:context="activity.ProductDetailsActivity"
     android:orientation="vertical"
     android:id="@+id/relative">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
         android:layout_marginLeft="16dp"
         android:id="@+id/titleView"
         android:textSize="20sp"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,10 +32,8 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/titlefont"
         android:layout_marginLeft="20dp"
-        android:textAllCaps="true"
         android:id="@+id/titleView2"
         android:textSize="20sp"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,5 +66,4 @@
         android:background="@drawable/mainbutton"
         android:id="@+id/rejectPro"/>
     </LinearLayout>
-
 </LinearLayout>

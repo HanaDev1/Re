@@ -17,12 +17,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/designer_profile"
                 android:layout_centerHorizontal="true"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:id="@+id/text"
                 android:fontFamily="@font/titlefont"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/male"
                 android:id="@+id/dImg"
@@ -36,45 +36,55 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dImg"
                 android:textSize="16sp"
-                android:textStyle="italic"
+                android:textStyle="bold"
                 style="@style/EditText"
+                android:background="#FFF"
                 android:layout_marginLeft="16dp"
-                android:text="Designer Name:" />
+                android:text="Designer Name:"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/dName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dImg"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:text="AAAAAAAAAAA"
-                style="@style/EditText"/>
+                style="@style/EditText"
+                android:background="#FFF"
+                android:layout_marginRight="16dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dImg"
-                android:textSize="20sp"
-                android:textStyle="italic"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="16dp"
                 android:text="About designer: "
-                style="@style/EditText"/>
+                style="@style/EditText"
+                android:background="#FFF"
+                android:layout_marginRight="16dp"/>
 
             <TextView
                 android:id="@+id/dAbout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textSize="16sp"
                 android:text="AAAAAAAAAAA"
-                style="@style/EditText"/>
+                style="@style/EditText"
+                android:background="#FFF"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -88,7 +98,7 @@
                     android:layout_height="50dp"
                     android:text="@string/request"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/button_n"
+                    android:background="@drawable/mainbutton"
                     android:textStyle="bold"
                     android:textSize="13sp"/>
                 <Button
@@ -98,7 +108,7 @@
                     android:text="Consult"
                     android:layout_marginRight="10dp"
                     android:textSize="13sp"
-                    android:background="@drawable/button_n"
+                    android:background="@drawable/mainbutton"
                     android:textStyle="bold"/>
 
             </LinearLayout>
