@@ -2,153 +2,131 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lightback"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+    android:orientation="vertical"
+    android:layout_marginTop="50dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/remotymaintitle"
+            android:fontFamily="@font/titlefont"
             android:text="Contact Us"
-            android:textSize="45sp" />
+            android:textSize="26sp"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="200dp"
-
-            android:layout_gravity="center_horizontal"
-            >
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="120dp"
-                android:layout_margin="2dp"
-                android:orientation="vertical"
-                android:background="@color/lihghtBlue">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/lihghtBlue"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/facebook" />
+                    android:src="@drawable/facebook"
+                    android:layout_marginLeft="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp"
-                    android:layout_marginTop="30dp"
-                    android:background="#f38630"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:text="Facebook"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
+                    android:textSize="16sp"
                     style="@style/EditText"
-                    />
+                    android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="120dp"
-                android:layout_margin="2dp"
-                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:background="#dc4c93"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 >
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
                     android:onClick="twitter"
                     android:src="@drawable/twitter"
-                    />
+                    android:layout_marginLeft="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@color/lihghtBlue"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:text="Twitter"
                     android:onClick="twitter"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    style="@style/EditText" />
+                    android:textSize="16sp"
+                    style="@style/EditText"
+                    android:layout_marginBottom="10dp"/>
 
 
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal">
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="120dp"
-
-                android:layout_margin="2dp"
-                android:orientation="vertical"
-                android:background="#fff870">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="#fff870"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
                     android:onClick="Instagram"
-                    android:src="@drawable/instagram"/>
+                    android:src="@drawable/instagram"
+                    android:layout_marginLeft="16dp" />
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@color/lihghtBlue"
+                    android:layout_marginTop="16dp"
                     android:text="Instagram"
                     android:onClick="Instagram"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    style="@style/EditText"/>
+                    android:textSize="16sp"
+                    style="@style/EditText"
+                    android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="120dp"
-                android:layout_margin="2dp"
-                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:background="@color/lihghtBlue"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 >
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
                     android:onClick="sendEmail"
-                    android:src="@drawable/at"/>
+                    android:src="@drawable/at"
+                    android:layout_marginLeft="16dp"/>
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp"
-                    android:layout_marginTop="30dp"
-                    android:background="#f38630"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:text="Email"
                     android:onClick="sendEmail"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    style="@style/EditText"/>
+                    android:textSize="16sp"
+                    style="@style/EditText"
+                    android:layout_marginBottom="10dp"/>
 
 
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>

@@ -11,11 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_nameDetails"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/buttonColor"
         android:fontFamily="@font/titlefont"
-        android:layout_marginLeft="20dp"
-        android:textAllCaps="true"
+        android:layout_marginLeft="16dp"
         android:id="@+id/titleView"
         android:textSize="20sp"/>
 
@@ -24,18 +23,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/prodName"
         android:text="name"
-        android:backgroundTint="@color/buttonColor"
-        android:fontFamily="@font/subtitlefont"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textStyle="bold"
-        android:textSize="20sp" />
+        android:fontFamily="@font/titlefont"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_marginLeft="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_detailsD"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/buttonColor"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/titlefont"
         android:layout_marginLeft="20dp"
         android:textAllCaps="true"
@@ -47,34 +43,32 @@
         android:layout_height="wrap_content"
         android:id="@+id/deadline"
         android:text="details"
-        android:backgroundTint="@color/buttonColor"
         android:fontFamily="@font/subtitlefont"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20sp"/>
-    <RelativeLayout
+        android:layout_marginLeft="20dp"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Accept"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="36dp"
+        android:text="@string/accept"
+        android:layout_marginLeft="26dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button_n"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/mainbutton"
         android:id="@+id/acceptPro"/>
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Reject"
-        android:layout_alignParentRight="true"
+        android:text="@string/reject"
+        android:layout_marginLeft="46dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="36dp"
-        android:background="@drawable/button_n"
+        android:background="@drawable/mainbutton"
         android:id="@+id/rejectPro"/>
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

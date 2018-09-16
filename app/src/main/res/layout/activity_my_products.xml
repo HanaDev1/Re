@@ -7,6 +7,4 @@
 
     <include layout="@layout/my_product_recycle_view" />
 
-
-
 </RelativeLayout>

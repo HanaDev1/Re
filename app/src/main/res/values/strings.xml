@@ -65,6 +65,8 @@
     <string name="product_detailsD">Product Details :</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
 
 
 </resources>
