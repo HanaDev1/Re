@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.DesignerSignInActivity"
-    android:background="@drawable/lightback">
+    tools:context="activity.DesignerSignInActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center_horizontal">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="160dp"
-        android:layout_marginBottom="100dp">
-        <ImageView
-            android:layout_width="300dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/logov_v2"/>
-
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="36dp"
-        android:layout_marginTop="100dp">
-
+            android:text="Sign In"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/titlefont"
+            android:textStyle="normal"
+            android:layout_marginTop="30dp"/>
         <EditText
             android:id="@+id/nameDesignerEditText"
             style="@style/EditText"
@@ -39,11 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_gravity="center_horizontal"
             android:background="#FFF"
             android:fontFamily="@font/titlefont"
             android:hint="@string/signFullNameEdit"
-            android:textStyle="bold" />
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/emailDesignerEditText"
@@ -52,11 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/titlefont"
             android:hint="@string/signEmailEdit"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
             android:background="#fff"/>
 
         <EditText
@@ -66,36 +50,33 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/titlefont"
             android:hint="@string/signPasswordEdit"
             android:inputType="textPassword"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
             android:background="#fff"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal">
 
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <RadioButton
                     android:id="@+id/user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:checked="true"
                     android:text="@string/user"
                     style="@style/EditText"
-                    android:textSize="24dp"
+                    android:textSize="16sp"
                     android:buttonTint="@color/primary"/>
 
                 <RadioButton
@@ -107,13 +88,11 @@
                     android:buttonTint="@color/primary"
                     android:text="@string/freelancer_company"
                     style="@style/EditText"
-                    android:textSize="24dp"/>
+                    android:textSize="16sp"/>
 
             </RadioGroup>
 
-
         </LinearLayout>
-
 
         <EditText
             android:id="@+id/DesignerDescription"
@@ -123,21 +102,20 @@
             android:backgroundTint="@color/buttonColor"
             android:fontFamily="@font/titlefont"
             android:layout_gravity="center_horizontal"
-            android:visibility="invisible"
-            />
-
-
+            android:visibility="gone"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
         <Button
             android:id="@+id/DesignerSignUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button_n"
             android:text="@string/signUpbutton"
             android:textColor="@color/black"
-            android:textSize="24dp"/>
+            android:textSize="20sp"/>
 
 
         <TextView
@@ -145,13 +123,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="30dp"
-            android:paddingTop="20dp"
             android:text="@string/tosignPage"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_gravity="end"/>
     </LinearLayout>
-    </LinearLayout>
+
 </ScrollView>

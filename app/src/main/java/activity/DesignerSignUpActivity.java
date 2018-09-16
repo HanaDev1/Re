@@ -127,6 +127,7 @@ public class DesignerSignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(DesignerSignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), LENGTH_SHORT).show();
+
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("client").push();
 
                         reference.child("full_name").setValue(fullName);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary1">#4E0E2E</color>
-    <color name="colorPrimaryDark1">#f38630</color>
+    <color name="colorPrimaryDark1">#69d2e7</color>
     <color name="colorAccent">#e0e4cc</color>
     <color name="black">#000000</color>
     <color name="album_title">#69d2e7</color>

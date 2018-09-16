@@ -1,45 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.DesignerSignInActivity"
-    android:background="@drawable/lightback"
-    >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="activity.DesignerSignInActivity">
+    <LinearLayout
         android:orientation="vertical"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="activity.DesignerSignInActivity"
-        android:background="@drawable/lightback">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="153dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="160dp"
-            android:layout_marginBottom="100dp">
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/remotymaintitle"
-                android:text="@string/signInbutton"
-                android:textSize="36sp"
-                android:src="@drawable/logov_v2"/>
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="20dp"
-
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:textSize="30sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/titlefont"
+                android:textStyle="normal"
+                android:layout_marginTop="30dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +35,8 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
                 android:layout_gravity="center_horizontal"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:layout_marginTop="16dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -63,7 +49,19 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
                 android:layout_gravity="center_horizontal"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/resetPass"
+                android:text="@string/forgetPass"
+                style="@style/EditText"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,24 +73,6 @@
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20sp"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="end"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/resetPass"
-                    android:text="@string/forgetPass"
-
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="20dp"
-                    style="@style/EditText"
-                    android:textSize="16sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,11 +80,9 @@
                     android:text="Create a new account ?"
                     style="@style/EditText"
                     android:gravity="center_horizontal"
-                    android:textSize="16sp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="20dp"
-                    />
-            </LinearLayout>
+                    android:textSize="13sp"
+                    android:layout_weight="1"
+                   />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

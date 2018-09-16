@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="activity.DesignerSignInActivity"
-            android:label="Sign In"></activity>
+        <activity
+            android:name="activity.DesignerSignInActivity"
+            android:label="Sign In"
+            android:theme="@style/AppTheme2" />
         <activity android:name="activity.ProductTrackActivity"
             android:label="Product steps"/>
         <activity android:name="activity.DesignerHomeActivity"
@@ -37,7 +39,8 @@
         <activity android:name="activity.DesignersDetailActivity"
             android:label="Designer Details"/>
         <activity android:name="activity.DesignerSignUpActivity"
-            android:label="Sign Up"/>
+            android:label="Sign Up"
+            android:theme="@style/AppTheme2"/>
         <activity android:name="activity.UserRequestActivity"
             android:label="Request"/>
         <activity android:name="activity.ProductDetailsActivity"
