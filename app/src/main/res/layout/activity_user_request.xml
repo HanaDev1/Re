@@ -68,7 +68,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/uploadfileicon"
-                    android:src="@drawable/plus"
+                    android:src="@drawable/ic_upload"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="16dp"/>
 

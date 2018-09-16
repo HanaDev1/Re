@@ -56,7 +56,9 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
 
     DrawerLayout drawerLayout;
     ImageView editName;
-    TextView userFullName, userEmail;
+    TextView userFullName;
+    TextView userEmail;
+    ImageView imageProfile;
     String email, userName;
     FirebaseAuth auth;
     EditText newName;
@@ -153,6 +155,14 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        imageProfile = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.imageProfile);
+        imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"this is image profile",Toast.LENGTH_LONG).show();
             }
         });
 
