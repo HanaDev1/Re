@@ -146,15 +146,12 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userName = dataSnapshot.child("full_name").getValue(String.class);
                 email = dataSnapshot.child("email").getValue(String.class);
-                Log.d("username", userName);
-
+                Log.d("email", email);
                 userFullName.setText(userName);
                 userEmail.setText(email);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
@@ -192,12 +189,9 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
 
 
                 });
-
             }
         });
-
     }
-
 
     public static class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 

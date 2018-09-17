@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -31,11 +32,11 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class ChatUserActivity extends AppCompatActivity {
     Bundle bundle;
-    String name, email, Message;
+    String name, email, userEmail;
     FirebaseListAdapter<ChatMessage> adapter;
     FirebaseAuth auth;
-    private DatabaseReference databaseReference;
      EditText input;
+     TextView desplayDesignerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,16 @@ public class ChatUserActivity extends AppCompatActivity {
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         auth = FirebaseAuth.getInstance();
+
         Bundle bundle = getIntent().getExtras();
         email = bundle.getString("email");
-        name = bundle.getString("name");
+        name = bundle.getString("full_name");
+        userEmail = bundle.getString("user_email");
+        Log.d("User Email",userEmail);
+
+
+        desplayDesignerName = (TextView) findViewById(R.id.getDesignerName);
+        desplayDesignerName.setText(name);
 
 
         FloatingActionButton fab =
@@ -61,13 +69,10 @@ public class ChatUserActivity extends AppCompatActivity {
                 // Read the input field and push a new instance
                 // of ChatMessage to the Firebase database
                 final DatabaseReference database = FirebaseDatabase.getInstance().getReference("chat");
-
-
-
                         FirebaseDatabase.getInstance()
                                 .getReference("chat")
                                 .push()
-                                .setValue(new ChatMessage(input.getText().toString().trim(),email,name,
+                                .setValue(new ChatMessage(input.getText().toString().trim(),email,name,userEmail,
                                         FirebaseAuth.getInstance()
                                                 .getCurrentUser()
                                                 .getDisplayName())
@@ -88,21 +93,18 @@ public class ChatUserActivity extends AppCompatActivity {
                 R.layout.activity_meassage, FirebaseDatabase.getInstance().getReference("chat").orderByChild("designerEmail").equalTo(email)) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
-                // Get references to the views of message.xml
+                // Get references to the views of message
                 TextView messageText = (TextView) v.findViewById(R.id.message_text);
-                TextView messageUser = (TextView) v.findViewById(R.id.message_user);
+                //TextView messageUser = (TextView) v.findViewById(R.id.message_user);
                 TextView messageTime = (TextView) v.findViewById(R.id.message_time);
-
                 // Set their text
                 messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
-
+                //messageUser.setText(model.getMessageUser());
                 // Format the date before showing it
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
                         model.getMessageTime()));
             }
         };
-
         listOfMessages.setAdapter(adapter);
     }
 }

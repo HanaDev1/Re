@@ -55,6 +55,7 @@ public class UserRequestActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         email=bundle.getString("email");
 
+
         name = pName.getText().toString().trim();
         details = pdesc.getText().toString().trim();
 

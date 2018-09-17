@@ -36,12 +36,21 @@
             android:id="@+id/input"/>
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/getDesignerName"
+        android:text="Designer Name"
+        android:textAllCaps="true"
+        style="@style/EditText"
+        android:textSize="16sp" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_above="@id/fab"
+        android:layout_below="@+id/getDesignerName"
         android:dividerHeight="16dp"
         android:divider="@android:color/transparent"
         android:id="@+id/list_of_messages"

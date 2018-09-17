@@ -8,6 +8,17 @@ public class ChatMessage {
     private long messageTime;
     private String designerEmail;
     private String designerFullName;
+    private String userName, userEmail;
+
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getDesignerEmail() {
         return designerEmail;
@@ -25,11 +36,12 @@ public class ChatMessage {
         this.designerFullName = designerFullName;
     }
 
-    public ChatMessage(String messageText, String DesignerEmail,String DesignerFullName, String messageUser) {
+    public ChatMessage(String messageText, String DesignerEmail,String DesignerFullName, String messageUser,String userMail) {
         this.designerEmail = DesignerEmail;
         this.designerFullName = DesignerFullName;
         this.messageText = messageText;
         this.messageUser = messageUser;
+        this.userEmail = userMail;
 
         // Initialize to current time
         messageTime = new Date().getTime();
@@ -37,6 +49,14 @@ public class ChatMessage {
 
     public ChatMessage(){
 
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getMessageText() {
