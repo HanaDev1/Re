@@ -50,7 +50,6 @@ public class UserHomeActivity extends AppCompatActivity implements NavigationVie
     private RecyclerView recyclerView;
     private UserHomeAdapter adapter;
     private List<Users> designerList;
-    DatabaseReference myRef;
     private Context mContext;
     private DatabaseReference databaseReference;
 

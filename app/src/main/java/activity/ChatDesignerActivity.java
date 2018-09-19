@@ -1,86 +1,66 @@
 package activity;
 
-import android.content.Intent;
-import android.database.DataSetObserver;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import remoty.internship.wadimakkah.remotyapplication.ChatMessage;
 import remoty.internship.wadimakkah.remotyapplication.R;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
-public class ChatUserActivity extends AppCompatActivity {
+public class ChatDesignerActivity extends AppCompatActivity {
     Bundle bundle;
-    String name, email, userEmail;
+    String name, email, designerEmail;
     FirebaseListAdapter<ChatMessage> adapter;
     FirebaseAuth auth;
-     EditText input;
-     TextView desplayDesignerName;
-
+    EditText input;
+    TextView desplayDesignerName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_user);
+        setContentView(R.layout.activity_chat_designer);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         auth = FirebaseAuth.getInstance();
-
-        Bundle bundle = getIntent().getExtras();
+        Bundle bundle = new Bundle();
         email = bundle.getString("email");
-        name = bundle.getString("full_name");
-        userEmail = bundle.getString("user_email");
-        Log.d("User Email",userEmail);
 
 
         desplayDesignerName = (TextView) findViewById(R.id.getDesignerName);
         desplayDesignerName.setText(name);
 
 
-      Button fab = (Button) findViewById(R.id.fab);
+      Button fab = (Button) findViewById(R.id.sendMessage);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 input = (EditText) findViewById(R.id.input);
-
-                // Read the input field and push a new instance
-                // of ChatMessage to the Firebase database
                 final DatabaseReference database = FirebaseDatabase.getInstance().getReference("chat");
-                        FirebaseDatabase.getInstance()
-                                .getReference("chat")
-                                .push()
-                                .setValue(new ChatMessage(input.getText().toString().trim(),email,name,userEmail,
-                                        FirebaseAuth.getInstance()
-                                                .getCurrentUser()
-                                                .getDisplayName())
-                                );
-                        // Clear the input
-                        input.setText("");
+                FirebaseDatabase.getInstance()
+                        .getReference("chat")
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString().trim(),email,name,designerEmail,
+                                FirebaseAuth.getInstance()
+                                        .getCurrentUser()
+                                        .getDisplayName())
+                        );
+                // Clear the input
+                input.setText("");
 
-                    }
+            }
         });
         displayChatMessage();
     }
@@ -95,13 +75,9 @@ public class ChatUserActivity extends AppCompatActivity {
             protected void populateView(View v, ChatMessage model, int position) {
                 // Get references to the views of message
                 TextView messageText = (TextView) v.findViewById(R.id.message_text);
-                //TextView messageUser = (TextView) v.findViewById(R.id.message_user);
                 TextView messageTime = (TextView) v.findViewById(R.id.message_time);
-                // Set their text
                 messageText.setText(model.getMessageText());
-                //messageUser.setText(model.getMessageUser());
-                // Format the date before showing it
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
                         model.getMessageTime()));
             }
         };
