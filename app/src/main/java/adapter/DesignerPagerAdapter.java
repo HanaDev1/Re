@@ -1,4 +1,4 @@
-package adapter;//use fragment and select which page will use it
+package adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,18 +28,18 @@ public class DesignerPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show FirstFragment
-                return DesignerFragment.newInstance(R.layout.request_tab, "Requst");
-            case 1: // Fragment # 0 - This will show FirstFragment different title
+            case 0:
+                return DesignerFragment.newInstance(R.layout.request_tab, "Request");
+            case 1:
                 return DesignerFragment.newInstance(1, "Current");
-            case 2: // Fragment # 1 - This will show SecondFragment
+            case 2:
                 return DesignerFragment.newInstance(2, "Chat");
             default:
                 return null;
 
         }}
 
-    // Returns the page title for the top indicator
+
     @Override
     public CharSequence getPageTitle(int position) {
         if (position == 0) {

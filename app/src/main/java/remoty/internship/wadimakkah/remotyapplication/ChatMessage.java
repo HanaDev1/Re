@@ -8,9 +8,16 @@ public class ChatMessage {
     private long messageTime;
     private String designerEmail;
     private String designerFullName;
-    private String userName, userEmail;
+    private String userName, userEmail,senderType;
 
 
+    public String getSenderType() {
+        return senderType;
+    }
+
+    public void setSenderType(String senderType) {
+        this.senderType = senderType;
+    }
 
     public String getUserName() {
         return userName;
@@ -36,12 +43,13 @@ public class ChatMessage {
         this.designerFullName = designerFullName;
     }
 
-    public ChatMessage(String messageText, String DesignerEmail,String DesignerFullName, String messageUser,String userMail) {
+    public ChatMessage(String messageText, String DesignerEmail,String DesignerFullName, String messageUser,String userMail,String senderTypet) {
         this.designerEmail = DesignerEmail;
         this.designerFullName = DesignerFullName;
         this.messageText = messageText;
         this.messageUser = messageUser;
         this.userEmail = userMail;
+        this.senderType = senderTypet;
 
         // Initialize to current time
         messageTime = new Date().getTime();

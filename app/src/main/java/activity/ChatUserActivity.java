@@ -1,5 +1,6 @@
 package activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.support.annotation.NonNull;
@@ -33,7 +34,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class ChatUserActivity extends AppCompatActivity {
     Bundle bundle;
-    String name, email, userEmail;
+    String name, email, userEmail, senderType;
     FirebaseListAdapter<ChatMessage> adapter;
     FirebaseAuth auth;
      EditText input;
@@ -51,6 +52,7 @@ public class ChatUserActivity extends AppCompatActivity {
         email = bundle.getString("email");
         name = bundle.getString("full_name");
         userEmail = bundle.getString("user_email");
+        senderType = "User";
         Log.d("User Email",userEmail);
 
 
@@ -72,11 +74,8 @@ public class ChatUserActivity extends AppCompatActivity {
                         FirebaseDatabase.getInstance()
                                 .getReference("chat")
                                 .push()
-                                .setValue(new ChatMessage(input.getText().toString().trim(),email,name,userEmail,
-                                        FirebaseAuth.getInstance()
-                                                .getCurrentUser()
-                                                .getDisplayName())
-                                );
+                                .setValue(new ChatMessage(input.getText().toString().trim(),email,name,senderType,userEmail,
+                                        auth.getCurrentUser().getDisplayName()));
                         // Clear the input
                         input.setText("");
 
@@ -91,14 +90,28 @@ public class ChatUserActivity extends AppCompatActivity {
 
         adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
                 R.layout.activity_meassage, FirebaseDatabase.getInstance().getReference("chat").orderByChild("designerEmail").equalTo(email)) {
+
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 // Get references to the views of message
-                TextView messageText = (TextView) v.findViewById(R.id.message_text);
+                final TextView messageText = (TextView) v.findViewById(R.id.message_text);
                 //TextView messageUser = (TextView) v.findViewById(R.id.message_user);
                 TextView messageTime = (TextView) v.findViewById(R.id.message_time);
                 // Set their text
                 messageText.setText(model.getMessageText());
+                Query q = FirebaseDatabase.getInstance().getReference("chat").orderByChild("messageUser").equalTo("User");
+                q.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        messageText.setBackground(getResources().getDrawable(R.drawable.chat_box_style));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 //messageUser.setText(model.getMessageUser());
                 // Format the date before showing it
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",

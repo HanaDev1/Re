@@ -57,7 +57,7 @@ import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
 public class DesignerHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //MyPagerAdapter adapterViewPager;
-    Intent a ;
+    Intent a;
     private DesignerPagerAdapter adapterViewPager;
 
     //product details
@@ -72,11 +72,16 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
     DrawerLayout drawerLayout;
     ImageView editName;
     TextView userFullName, userEmail;
-    String email,userName;
+     String email, userName, designerName, bundleEmail;
     EditText newName;
     NavigationView navigationView;
     Button done;
     ImageView imageProfile;
+    Bundle bundleChat;
+    DatabaseReference databaseReference2;
+
+    public DesignerHomeActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,53 +89,21 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
         setContentView(R.layout.activity_designer_home);
         mContext = getApplicationContext();
 
-        Bundle bundle =  getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         email = bundle.getString("email");
-
-
-        //drawer code
-//        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Log.d("first email on page",email);
 
         auth = getInstance();
 
-//        drawerLayout = findViewById(R.id.drawerLayout);
-//        ActionBarDrawerToggle toggle =
-//                new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-//                        R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawerLayout.addDrawerListener(toggle);
-        //toggle.syncState();
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //View pager
         vpPager = (ViewPager) findViewById(R.id.designerHomeViewPager);
         adapterViewPager = new DesignerPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-        //tabLayout.setOnTabSelectedListener(this);
 
         vpPager.setPageTransformer(true, new RotateUpTransformer());
 
-        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position == 0) {
-                } else if (position == 1) {
-//                    startActivity(new Intent(DesignerHomeActivity.this, ResetPassActivity.class));
-                } else if (position == 2) {
-                    startActivity(new Intent(DesignerHomeActivity.this, ChatDesignerActivity.class));
-                }
 
-                Toast.makeText(DesignerHomeActivity.this,
-                        getString(R.string.selectedPgePos) + position, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
 
         navigationView = findViewById(R.id.arcNavigationView);
         userFullName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userfullName2);
@@ -160,7 +133,7 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("remotyapp");
         //from designer side like a designer
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("products");
+        databaseReference = database.getInstance().getReference().child("products");
         Query query = databaseReference.orderByChild("designer_email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -170,7 +143,9 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
                     Product pro = singleSnapshot.getValue(Product.class);
                     productList.add(pro);
                     adapter.notifyDataSetChanged();
+
                 }
+
             }
 
             @Override
@@ -178,34 +153,73 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+        databaseReference2 = database.getInstance().getReference().child("client").child(auth.getUid());
+        Query query2 = databaseReference2.orderByChild("designer_email").equalTo(email);
+        query2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userName = dataSnapshot.child("full_name").getValue(String.class);
+                bundleEmail = dataSnapshot.child("email").getValue(String.class);
+                userFullName.setText(userName);
+                userEmail.setText(bundleEmail);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position == 0) {
+                } else if (position == 1) {
+//                    startActivity(new Intent(DesignerHomeActivity.this, ResetPassActivity.class));
+                } else if (position == 2) {
+                    Intent toChat = new Intent(DesignerHomeActivity.this, ChatDesignerActivity.class);
+                    bundleChat = new Bundle();
+                    bundleChat.putString("email", bundleEmail);
+                    toChat.putExtras(bundleChat);
+                    toChat.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(toChat);
+                }
+            }
 
-        editUserName();
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        //editUserName();
 
     }
+
     public void editUserName() {
         //Retrieving and editing designer fullname
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("client").child(auth.getUid());
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                userName = dataSnapshot.child("full_name").getValue(String.class);
-                email = dataSnapshot.child("email").getValue(String.class);
-               // Log.d("email", email);
-                userFullName.setText(userName);
-                userEmail.setText(email);
+                String userName2 = dataSnapshot.child("full_name").getValue(String.class);
+                String email2 = dataSnapshot.child("email").getValue(String.class);
+                userFullName.setText(userName2);
+                userEmail.setText(email2);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 
-        imageProfile = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.imageProfile2);
+        imageProfile = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageProfile2);
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"this is image profile",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "this is image profile", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -238,6 +252,7 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
             }
         });
     }
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
@@ -264,16 +279,16 @@ public class DesignerHomeActivity extends AppCompatActivity implements Navigatio
             int column = position % spanCount; // item column
 
             if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+                outRect.left = spacing - column * spacing / spanCount;
+                outRect.right = (column + 1) * spacing / spanCount;
 
                 if (position < spanCount) { // top edge
                     outRect.top = spacing;
                 }
                 outRect.bottom = spacing; // item bottom
             } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                outRect.left = column * spacing / spanCount;
+                outRect.right = spacing - (column + 1) * spacing / spanCount;
                 if (position >= spanCount) {
                     outRect.top = spacing; // item top
                 }
